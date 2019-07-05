@@ -15,3 +15,7 @@ use TightenCo\Jigsaw\Jigsaw;
  *     // Your code here
  * });
  */
+
+$events->afterBuild(function ($jigsaw) {
+    copy('source/_redirects', "build_{$jigsaw->getEnvironment()}/_redirects");
+});
