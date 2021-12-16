@@ -16,9 +16,9 @@
 
                 <div class="text-center md:text-left md:w-1/2 md:px-12">
                     <h2 class="mb-8 text-4xl font-semibold text-white">Web Developer</h2>
-                    <p class="mb-4">Hi! My name is André Breia, and I'm a Web Developer currently working at <a
+                    <p class="mb-4">Hi! My name is André Breia, I'm a Web Developer based in Lyon (France) and currently working at <a
                             class="text-brand-secondary underline" target="_blank"
-                            href="https://steadfastcollective.com">Steadfast Collective</a> in Southampton, UK.</p>
+                            href="https://steadfastcollective.com">Steadfast Collective</a> as a Tech Lead.</p>
                     <p class="mb-4">Over the years I've worked in many web based projects, from small marketing websites to
                         e-commerce websites. These days, I focus primarily on web apps built using the Laravel framework. I
                         also like to work with TailwindCSS and VueJs.</p>
