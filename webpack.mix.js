@@ -1,20 +1,41 @@
-let mix = require('laravel-mix');
-let build = require('./tasks/build.js');
-var tailwindcss = require('tailwindcss')
+const mix = require('laravel-mix');
 
-mix.disableSuccessNotifications();
-mix.setPublicPath('source/assets/build');
-mix.webpackConfig({
-    plugins: [
-        build.jigsaw,
-        build.browserSync(),
-        build.watch(['source/**/*.md', 'source/**/*.php', 'source/**/*.scss', '!source/**/_tmp/*']),
-    ]
-});
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel applications. By default, we are compiling the CSS
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
 
-mix.js('source/_assets/js/main.js', 'js')
-    .sass('source/_assets/sass/main.scss', 'css')
-    .options({
-        processCssUrls: false,
-        postCss: [ tailwindcss('./tailwind.js') ],
-    }).version();
+mix.js('resources/js/site.js', 'public/js')
+
+mix.postCss('resources/css/tailwind.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss/nesting'),
+    require('tailwindcss'),
+])
+
+if (mix.inProduction()) {
+   mix.version();
+}
+
+/*
+ |--------------------------------------------------------------------------
+ | Statamic Control Panel
+ |--------------------------------------------------------------------------
+ |
+ | Feel free to add your own JS or CSS to the Statamic Control Panel.
+ | https://statamic.dev/extending/control-panel#adding-css-and-js-assets
+ |
+ */
+
+// mix.js('resources/js/cp.js', 'public/vendor/app/js')
+//    .postCss('resources/css/cp.css', 'public/vendor/app/css', [
+//     require('postcss-import'),
+//     require('tailwindcss/nesting'),
+//     require('tailwindcss'),
+// ])
