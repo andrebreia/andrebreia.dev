@@ -1,0 +1,56 @@
+sections:
+  work_history:
+    display: 'Work history'
+    fields:
+      -
+        handle: work_history_items
+        field:
+          collapse: false
+          previews: true
+          sets:
+            work_history_items:
+              display: 'Work history items'
+              fields:
+                -
+                  handle: company_name
+                  field:
+                    input_type: text
+                    antlers: false
+                    display: 'Company name'
+                    type: text
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    always_save: false
+                -
+                  handle: job_title
+                  field:
+                    input_type: text
+                    antlers: false
+                    display: 'Job title'
+                    type: text
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    always_save: false
+                -
+                  handle: job_time
+                  field:
+                    input_type: text
+                    antlers: false
+                    display: 'Job time'
+                    type: text
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    always_save: false
+          display: 'Work history items'
+          type: replicator
+          icon: replicator
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+          always_save: false
