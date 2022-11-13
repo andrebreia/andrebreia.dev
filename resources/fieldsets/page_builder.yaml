@@ -28,3 +28,12 @@ fields:
           fields:
             -
               import: link_blocks
+        page_intro:
+          display: 'Page Intro'
+          fields:
+            -
+              import: page_intro
+      instructions_position: above
+      visibility: visible
+      always_save: false
+      previews: true

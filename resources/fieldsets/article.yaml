@@ -1,6 +1,19 @@
 title: Article
 fields:
   -
+    handle: heading
+    field:
+      input_type: text
+      antlers: false
+      display: Heading
+      type: text
+      icon: text
+      instructions: 'The main heading (h1) of the page'
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
     handle: article
     field:
       buttons:

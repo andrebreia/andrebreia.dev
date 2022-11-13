@@ -2,3 +2,7 @@ name: 'André Breia'
 super: true
 id: b544fa68-142e-4b12-87bb-2bd9208208da
 password_hash: $2y$10$t4n8SzdOQVpfWBpr4faES.Y4wbZlXc81e.86vJehDaxfuwjdMMBEm
+preferences:
+  collections:
+    pages:
+      after_save: continue_editing

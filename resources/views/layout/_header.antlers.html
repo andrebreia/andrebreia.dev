@@ -109,10 +109,9 @@
        
   }" x-effect="init()" class="relative z-50 flex flex-col pointer-events-none"
     style="height: var(--header-height); margin-bottom: var(--header-mb);">
-    {{# @todo: if home page display large avatar #}}
     {{ if current_uri === '/' }}
         <div x-ref="avatarRef" class="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]">
-            {{ partial:layout/container classes="top-0 order-last pt-3 -mb-3" styles="position: var(--header-position)" }}
+            {{ partial:layout/container class="top-0 order-last pt-3 -mb-3" style="position: var(--header-position)" }}
                 <div class="top-[var(--avatar-top,theme(spacing.3))] w-full"
                     style="position: var(--header-inner-position)">
                     <div class="relative">
@@ -132,10 +131,9 @@
         </div>
     {{ /if }}
     <div x-ref="headerRef" class="top-0 z-10 h-16 pt-6" style="position: var(--header-position)">
-        {{ partial:layout/container classes="top-[var(--header-top,theme(spacing.6))] w-full" styles="position: var(--header-inner-position)" }}
+        {{ partial:layout/container class="top-[var(--header-top,theme(spacing.6))] w-full" style="position: var(--header-inner-position)" }}
             <div class="relative flex gap-4">
                 <div class="flex flex-1">
-                    {{# @todo if not home page display smaller avatar #}}
                     {{ if current_uri !== '/' }}
                         <div x-ref="avatarRef" class="w-16 h-16 bg-red-100 rounded-full"></div>
                     {{ /if }}

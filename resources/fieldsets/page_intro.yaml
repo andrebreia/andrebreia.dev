@@ -1,0 +1,37 @@
+title: 'Page Intro'
+fields:
+  -
+    handle: page_intro_heading
+    field:
+      input_type: text
+      antlers: false
+      display: 'Page Intro Heading'
+      type: text
+      icon: text
+      instructions: 'The heading for the page intro'
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
+    handle: page_intro_content
+    field:
+      antlers: false
+      display: 'Page Intro Content'
+      type: textarea
+      icon: textarea
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
+    handle: display_social_icons
+    field:
+      default: true
+      display: 'Display Social Icons'
+      type: toggle
+      icon: toggle
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false

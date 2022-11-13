@@ -2,17 +2,20 @@ title: 'Social media'
 data:
   social_media:
     -
-      handle: studio1902
+      id: NZ4zWKRe
+      handle: andrebreia
       prefix: 'https://www.twitter.com/'
       type: twitter
       enabled: true
     -
-      handle: studio1902/statamic-peak
+      id: W2JYwNw6
+      handle: andrebreia
       prefix: 'https://www.github.com/'
       type: github
       enabled: true
     -
-      handle: in/robdekort/
+      id: a1Fqny4I
+      handle: in/andre-breia
       prefix: 'https://www.linkedin.com/'
       type: linkedin
       enabled: true
