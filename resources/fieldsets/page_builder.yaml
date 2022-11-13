@@ -33,6 +33,12 @@ fields:
           fields:
             -
               import: page_intro
+        photos:
+          display: Photos
+          fields:
+            -
+              handle: photos
+              field: photos.photos
       instructions_position: above
       visibility: visible
       always_save: false

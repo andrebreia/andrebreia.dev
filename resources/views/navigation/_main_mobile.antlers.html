@@ -69,7 +69,7 @@
                                 x-data="{ subnavOpen: false }"
                                 @focusin.window="!$refs.subnav.contains($event.target) && (subnavOpen = false)"
                             {{ /if }}>
-                            <a class="block py-2 {{ is_current || is_parent ? 'text-teal-500 dark:text-teal-400' : '' }}"
+                            <a class="block py-2 {{ is_current || is_parent ? 'text-sky-500 dark:text-sky-400' : '' }}"
                                 {{ if children }}
                                     href="#"
                                     @click.prevent="subnavOpen = !subnavOpen"
@@ -96,7 +96,7 @@
                                     x-collapse>
                                     {{ children }}
                                         <li class="{{ first ?= 'mt-2' }}">
-                                            <a class="block py-2 {{ is_current || is_parent ? 'text-teal-500 dark:text-teal-400' : '' }}"
+                                            <a class="block py-2 {{ is_current || is_parent ? 'text-sky-500 dark:text-sky-400' : '' }}"
                                                 href="{{ url }}">
                                                 {{ title }}
                                             </a>
