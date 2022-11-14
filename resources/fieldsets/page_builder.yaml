@@ -39,6 +39,11 @@ fields:
             -
               handle: photos
               field: photos.photos
+        articles_and_resume:
+          display: 'Articles and resume'
+          fields:
+            -
+              import: articles_and_resume
       instructions_position: above
       visibility: visible
       always_save: false

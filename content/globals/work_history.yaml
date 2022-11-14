@@ -1,1 +1,18 @@
 title: 'Work history'
+data:
+  work_history_items:
+    -
+      id: lageesl3
+      company: BreiaDev
+      title: Freelance
+      start: '2022-10-20'
+      type: work_history_items
+      enabled: true
+    -
+      id: lage122v
+      company: 'Steadfast Collective'
+      logo: logo_white_with_background.png
+      title: 'Technical Lead'
+      start: '2017-08-14'
+      type: work_history_items
+      enabled: true

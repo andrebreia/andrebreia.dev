@@ -21,9 +21,10 @@
                     </a>
                 {{ /if }}
                 <article>
-                    {{ if block:heading }}
+                    {{ title = block:heading ? block:heading : title }}
+                    {{ if title }}
                         <header>
-                            {{ partial:typography/h1 :content="block:heading" }}
+                            {{ partial:typography/h1 :content="title" }}
                         </header>
                     {{ /if }}
                     {{ partial:typography/prose as="div" }}

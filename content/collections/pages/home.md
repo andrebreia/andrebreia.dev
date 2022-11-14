@@ -3,7 +3,7 @@ id: home
 blueprint: page
 title: Home
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1668341051
+updated_at: 1668400623
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -27,4 +27,8 @@ page_builder:
       - image-3.jpg
       - image-4.jpg
       - image-5.jpg
+  -
+    id: laganidh
+    type: articles_and_resume
+    enabled: true
 ---

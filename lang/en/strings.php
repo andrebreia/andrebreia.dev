@@ -1,5 +1,8 @@
 <?php
 return [
+    // Article
+    'read_more'                         => 'Read article',
+
     // Contact form
     'form_honeypot'                     => 'Fax',
     'form_mail_body_owner'              => 'A contact form has been sent.',
