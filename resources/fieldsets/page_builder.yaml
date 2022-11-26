@@ -16,12 +16,23 @@ fields:
           fields:
             -
               import: article
+        articles_and_resume:
+          display: 'Articles and resume'
+          fields:
+            -
+              import: articles_and_resume
         form:
           display: Form
           instructions: 'Show a form.'
           fields:
             -
               import: form
+        grouped_text:
+          display: 'Grouped Text'
+          instructions: 'Add groups and text'
+          fields:
+            -
+              import: grouped_text
         link_blocks:
           display: 'Link blocks'
           instructions: 'Show link blocks.'
@@ -39,11 +50,6 @@ fields:
             -
               handle: photos
               field: photos.photos
-        articles_and_resume:
-          display: 'Articles and resume'
-          fields:
-            -
-              import: articles_and_resume
       instructions_position: above
       visibility: visible
       always_save: false

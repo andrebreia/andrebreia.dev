@@ -135,7 +135,13 @@
             <div class="relative flex gap-4">
                 <div class="flex flex-1">
                     {{ if current_uri !== '/' }}
-                        <div x-ref="avatarRef" class="w-16 h-16 bg-red-100 rounded-full"></div>
+                        <div x-ref="avatarRef"
+                            class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+                            <a href="/" aria-label="home" class="pointer-events-auto">
+                                <img src="/visuals/avatar.jpg" alt="" width="36" height="36"
+                                    class="object-cover rounded-full bg-zinc-100 dark:bg-zinc-800 w-9 h-9">
+                            </a>
+                        </div>
                     {{ /if }}
                 </div>
 

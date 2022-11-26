@@ -16,3 +16,11 @@ data:
       start: '2017-08-14'
       type: work_history_items
       enabled: true
+    -
+      id: lasjkf4w
+      company: Chaptr
+      title: 'Web Developer'
+      start: '2014-02-17'
+      type: work_history_items
+      enabled: true
+      end: '2017-08-14'

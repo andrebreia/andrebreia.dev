@@ -5,8 +5,9 @@
 #}}
 
 <!-- /page_builder/_page-intro.antlers.html -->
+{{ marginTopClass = current_uri === '/' ? 'mt-9' : 'mt-16 sm:mt-32' }}
 <section>
-    {{ partial:layout/container class="mt-9" }}
+    {{ partial:layout/container class="{{marginTopClass}}" }}
         <div class="max-w-2xl">
             {{ partial:typography/h1 :content="block:page_intro_heading" }}
             <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">

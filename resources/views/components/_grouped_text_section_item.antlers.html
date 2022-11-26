@@ -1,0 +1,15 @@
+{{#
+    @name Grouped Text Section Item
+    @desc The grouped text section item component.
+#}}
+
+<!-- /components/_grouped_text_section_item.antlers.html -->
+{{ partial:components/card as="li" }}
+    {{ partial:components/card_title as="h3" :href="href" }}
+        {{ title }}
+    {{ /partial:components/card_title }}
+    {{ partial:components/card_description }}
+        {{ description }}
+    {{ /partial:components/card_description }}
+{{ /partial:components/card }}
+<!-- End: /components/_grouped_text_section_item.antlers.html -->
