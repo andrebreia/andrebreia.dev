@@ -1,6 +1,9 @@
 title: Articles
 template: default
 layout: layout
+mount: 739bcb51-751b-4d61-a34a-9fc032bcdf94
+taxonomies:
+  - categories
 revisions: false
 route: 'articles/{slug}'
 date: true
