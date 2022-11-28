@@ -173,7 +173,39 @@ sections:
                   field:
                     type: hidden
                     default: 'https://www.youtube.com/'
+            mastodon:
+              display: Mastodon
+              fields:
+                -
+                  handle: handle
+                  field:
+                    input_type: text
+                    prepend: 'https://phpc.social/'
+                    antlers: false
+                    display: Handle
+                    type: text
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    always_save: false
+                -
+                  handle: prefix
+                  field:
+                    default: 'https://phpc.social/'
+                    display: Prefix
+                    type: hidden
+                    icon: hidden
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    always_save: false
           type: replicator
           listable: hidden
           localizable: true
           display: 'Social media'
+          instructions_position: above
+          visibility: visible
+          always_save: false
+          collapse: false
+          previews: true

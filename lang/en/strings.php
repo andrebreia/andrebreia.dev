@@ -19,6 +19,10 @@ return [
     'form_subject_sent'                 => 'Contact form sent',
     'form_success'                      => 'Thank you, we received your message and will contact you as soon as possible.',
 
+    // Get in touch
+    'get_in_touch' => 'Get in touch',
+    'get_in_touch_text' => 'If you\'d like to get in touch with me, feel free to :mailto.',
+
     // Cookie banner
     'cookie_accept'                     => 'Accept',
     'cookie_ads'                        => 'Ads & tracking',

@@ -19,3 +19,9 @@ data:
       prefix: 'https://www.linkedin.com/'
       type: linkedin
       enabled: true
+    -
+      id: lb0o1g5c
+      handle: '@andrebreia'
+      prefix: 'https://phpc.social/'
+      type: mastodon
+      enabled: true

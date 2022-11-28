@@ -1,0 +1,27 @@
+{{#
+    @name Get in touch section
+    @desc The get in touch section.
+#}}
+
+<!-- /components/_get_in_touch.antlers.html -->
+<div class="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
+    <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+            aria-hidden="true" class="flex-none w-6 h-6">
+            <path d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+                class="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500" />
+            <path d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6" class="stroke-zinc-400 dark:stroke-zinc-500" />
+        </svg>
+        <span class="ml-3">{{ trans:strings.get_in_touch }}</span>
+    </h2>
+    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        {{ trans:strings.get_in_touch_text mailto='<a href="mailto:hey@andrebreia.dev"
+        class="text-sky-500 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-400">send me an email</a>' }}
+        {{#
+            If you'd like to get in touch with me, feel free to <a href="mailto:hey@andrebreia.dev"
+            class="text-sky-500 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-400">send me an email</a>.
+        #}}
+    </p>
+
+</div>
+<!-- End: /components/_get_in_touch.antlers.html -->
