@@ -20,6 +20,12 @@ data:
       type: linkedin
       enabled: true
     -
+      id: lb0qmufr
+      handle: andrebreia
+      prefix: 'https://www.instagram.com/'
+      type: instagram
+      enabled: true
+    -
       id: lb0o1g5c
       handle: '@andrebreia'
       prefix: 'https://phpc.social/'

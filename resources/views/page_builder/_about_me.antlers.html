@@ -31,7 +31,7 @@
                                 href="{{ prefix }}{{ handle }}"
                                 rel="{{ type == 'mastodon' ? 'me' : 'noopener' }}" target="_blank">
                                 {{ svg :src="type" class="flex-none w-6 h-6 transition fill-zinc-500 group-hover:fill-sky-500" alt="" }}
-                                <span class="ml-4">Follow on {{ type | title }}</span>
+                                <span class="ml-4">{{ trans:strings.follow_on :social="type|title" }}</span>
                             </a>
                         </li>
                     {{ /social_media:social_media }}
