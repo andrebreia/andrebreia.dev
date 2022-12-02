@@ -4,6 +4,7 @@ blueprint: page
 title: 'Page not found'
 page_builder:
   -
+    id: WbGepIkx
     article:
       -
         type: heading
@@ -26,6 +27,6 @@ seo_nofollow: false
 seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
-updated_by: 66c6ff90-a9a2-42ba-a4e1-c0872e344786
-updated_at: 1646921434
+updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
+updated_at: 1669995334
 ---
