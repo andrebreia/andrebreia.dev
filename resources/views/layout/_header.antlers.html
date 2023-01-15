@@ -121,8 +121,11 @@
 
                         <a href="/" aria-label="home" class="block w-16 h-16 origin-left pointer-events-auto"
                             style="transform: var(--avatar-image-transform)">
-                            <img src="/visuals/avatar.jpg" alt="" width="64" height="64"
+                            {{ partial:components/picture aspect_ratio="1/1" :image="configuration:avatar" class="object-cover w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-800" }}
+                            {{#
+                                <img src="/visuals/avatar.jpg" alt="" width="64" height="64"
                                 class="object-cover w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-800">
+                            #}}
                         </a>
 
                     </div>
@@ -138,8 +141,12 @@
                         <div x-ref="avatarRef"
                             class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
                             <a href="/" aria-label="home" class="pointer-events-auto">
-                                <img src="/visuals/avatar.jpg" alt="" width="36" height="36"
+                                {{ partial:components/picture aspect_ratio="1/1" :image="configuration:avatar" class="object-cover rounded-full bg-zinc-100 dark:bg-zinc-800 w-9 h-9" }}
+                                {{#
+                                    <img src="/visuals/avatar.jpg" alt="" width="36" height="36"
                                     class="object-cover rounded-full bg-zinc-100 dark:bg-zinc-800 w-9 h-9">
+                                #}}
+
                             </a>
                         </div>
                     {{ /if }}
