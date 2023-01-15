@@ -6,7 +6,7 @@
 <!-- /components/_card_title.antlers.html -->
 <{{ as or 'h2' }} class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 {{ class }}">
     {{ if href }}
-        {{ partial:components/card_link :href="href" }}
+        {{ partial:components/card_link :href="href" external="{{ external or false }}" }}
             {{ slot }}
         {{ /partial:components/card_link }}
     {{ else }}

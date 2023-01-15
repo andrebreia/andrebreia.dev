@@ -5,8 +5,13 @@
 
 <!-- /components/_grouped_text_section_item.antlers.html -->
 {{ partial:components/card as="li" }}
-    {{ partial:components/card_title as="h3" :href="href" }}
-        {{ title }}
+    {{ partial:components/card_title as="h3" :href="href" external="true" }}
+        <span class="flex items-center justify-between space-x-2">
+            <span>{{ title }}</span>
+            {{ if href }}
+                {{ svg:external_link class="w-4 h-4" alt="" aria-hidden="true" }}
+            {{ /if }}
+        </span>
     {{ /partial:components/card_title }}
     {{ partial:components/card_description }}
         {{ description }}

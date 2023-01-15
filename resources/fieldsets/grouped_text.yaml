@@ -43,6 +43,16 @@ fields:
                           visibility: visible
                           always_save: false
                       -
+                        handle: link
+                        field:
+                          display: Link
+                          type: link
+                          icon: link
+                          listable: hidden
+                          instructions_position: above
+                          visibility: visible
+                          always_save: false
+                      -
                         handle: text
                         field:
                           antlers: false
