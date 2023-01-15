@@ -8,11 +8,11 @@ seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1673793956
+updated_at: 1673799842
 page_builder:
   -
     id: lb0pbir9
-    heading: 'I’m Spencer Sharp. I live in New York City, where I design the future.'
+    heading: 'I’m André Breia. A Portuguese developer living in France.'
     content:
       -
         type: paragraph
@@ -47,7 +47,7 @@ page_builder:
           -
             type: text
             text: "\_make it to orbit — from the comfort of their own backyards."
-    photo: image-5.jpg
+    photo: steadfast_teamheadshot_andre-(1).jpg
     type: about_me
     enabled: true
 ---
