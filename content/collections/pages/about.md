@@ -8,7 +8,7 @@ seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1673799842
+updated_at: 1674924684
 page_builder:
   -
     id: lb0pbir9
@@ -19,34 +19,29 @@ page_builder:
         content:
           -
             type: text
-            text: 'I’ve loved making things for as long as I can remember, and wrote my first program when I was 6 years old, just two weeks after my mom brought home the brand new Macintosh LC 550 that I taught myself to type on.'
+            text: "I'm a full-stack developer based in Lyon 🇫🇷. I'm the Tech Lead at Steadfast Collective, where we build community-focused websites and web applications."
       -
         type: paragraph
         content:
           -
             type: text
-            text: 'The only thing I loved more than computers as a kid was space. When I was 8, I climbed the 40-foot oak tree at the back of our yard while wearing my older sister’s motorcycle helmet, counted down from three, and jumped — hoping the tree was tall enough that with just a bit of momentum I’d be able to get to orbit.'
+            text: 'My professional journey started in 2014, shortly after I graduated with a Computer Science and Engineering degree, in Portugal. I then moved to the UK for an internship, that turned into a full-time job, building WordPress websites for many clients. After a while, I moved on to a PHP developer role at Steadfast Collective, where we build Laravel websites and web applications using Laravel, Vuejs and TailwindCSS as the primary tech stack. In the meanwhile, I moved to France and got a new role at the company.'
       -
         type: paragraph
         content:
           -
             type: text
-            text: 'I spent the next few summers indoors working on a rocket design, while I recovered from the multiple surgeries it took to fix my badly broken legs. It took nine iterations, but when I was 15 I sent my dad’s Blackberry into orbit and was able to transmit a photo back down to our family computer from space.'
+            text: 'Even though the previously mentioned stack is my favourite, I also love learning new things, and I do, sometimes, spend some time exploring new tech or tools.'
       -
         type: paragraph
         content:
           -
             type: text
-            text: "Today, I’m the founder of Planetaria, where we’re working on civilian space suits and manned shuttle kits you can assemble at home so that the next generation of kids really\_"
-          -
-            type: text
-            marks:
-              -
-                type: italic
-            text: can
-          -
-            type: text
-            text: "\_make it to orbit — from the comfort of their own backyards."
+            text: 'Outside of work, I like to spend time with family, spend time in nature, sports, gaming and many other things. I have recently been enjoying participating in artisan workshops to learn to make something with my hands and tools I never used!'
+      -
+        type: paragraph
+      -
+        type: paragraph
     photo: steadfast_teamheadshot_andre-(1).jpg
     type: about_me
     enabled: true
