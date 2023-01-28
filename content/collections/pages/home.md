@@ -3,7 +3,7 @@ id: home
 blueprint: page
 title: Home
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1673794907
+updated_at: 1674926588
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -20,13 +20,13 @@ page_builder:
   -
     id: laf9nam3
     type: photos
-    enabled: false
+    enabled: true
     photos:
-      - image-1.jpg
-      - image-2.jpg
-      - image-3.jpg
-      - image-4.jpg
-      - image-5.jpg
+      - _dsc8606.jpeg
+      - 0q0a2082.jpg
+      - ea7b63c8-209d-4252-87c0-aa6673e39c02.JPG
+      - img_0774.jpg
+      - img_2029.jpg
   -
     id: laganidh
     type: articles_and_resume

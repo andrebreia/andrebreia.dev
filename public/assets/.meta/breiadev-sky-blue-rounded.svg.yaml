@@ -1,4 +1,5 @@
-data: {  }
+data:
+  alt: 'BreiaDev Logo'
 size: 2971
 last_modified: 1669633322
 width: 300.0
