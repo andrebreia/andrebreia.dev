@@ -3,7 +3,7 @@ id: home
 blueprint: page
 title: Home
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1674926588
+updated_at: 1674926745
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -22,10 +22,10 @@ page_builder:
     type: photos
     enabled: true
     photos:
-      - _dsc8606.jpeg
-      - 0q0a2082.jpg
       - ea7b63c8-209d-4252-87c0-aa6673e39c02.JPG
+      - _dsc8606.jpeg
       - img_0774.jpg
+      - 0q0a2082.jpg
       - img_2029.jpg
   -
     id: laganidh
