@@ -1,0 +1,79 @@
+title: 'Grouped Text'
+fields:
+  -
+    handle: grouped_text
+    field:
+      collapse: false
+      previews: true
+      sets:
+        section:
+          display: Section
+          fields:
+            -
+              handle: section_title
+              field:
+                input_type: text
+                antlers: false
+                display: 'Section Title'
+                type: text
+                icon: text
+                listable: hidden
+                instructions_position: above
+                visibility: visible
+                always_save: false
+            -
+              handle: section_items
+              field:
+                collapse: false
+                previews: true
+                sets:
+                  section_children:
+                    display: 'Section Children'
+                    fields:
+                      -
+                        handle: title
+                        field:
+                          input_type: text
+                          antlers: false
+                          display: Title
+                          type: text
+                          icon: text
+                          listable: hidden
+                          instructions_position: above
+                          visibility: visible
+                          always_save: false
+                      -
+                        handle: link
+                        field:
+                          display: Link
+                          type: link
+                          icon: link
+                          listable: hidden
+                          instructions_position: above
+                          visibility: visible
+                          always_save: false
+                      -
+                        handle: text
+                        field:
+                          antlers: false
+                          display: Text
+                          type: textarea
+                          icon: textarea
+                          listable: hidden
+                          instructions_position: above
+                          visibility: visible
+                          always_save: false
+                display: 'Section Items'
+                type: replicator
+                icon: replicator
+                listable: hidden
+                instructions_position: above
+                visibility: visible
+                always_save: false
+      display: 'Grouped Text'
+      type: replicator
+      icon: replicator
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false

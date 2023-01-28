@@ -1,0 +1,31 @@
+{{#
+    @name Page intro
+    @desc The intro of a page with a heading and text.
+    @set page.page_builder.page_intro
+#}}
+
+<!-- /page_builder/_page-intro.antlers.html -->
+{{ marginTopClass = current_uri === '/' ? 'mt-9' : 'mt-16 sm:mt-32' }}
+<section>
+    {{ partial:layout/container class="{{marginTopClass}}" }}
+        <div class="max-w-2xl">
+            {{ partial:typography/h1 :content="block:page_intro_heading" }}
+            <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+                {{ block:page_intro_content }}
+            </p>
+            {{ if block:display_social_icons and social_media:social_media }}
+                <div class="flex gap-6 mt-6">
+                    {{ social_media:social_media }}
+                        <a class="p-1 -m-1 group" href="{{ prefix }}{{ handle }}"
+                            rel="{{ type == 'mastodon' ? 'me' : 'noopener' }}"
+                            aria-label="{{ config:app:name }} {{ trans:strings.on }} {{ type | title }}"
+                            target="_blank">
+                            {{ svg :src="type" class="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" alt="" aria-hidden="true" }}
+                        </a>
+                    {{ /social_media:social_media }}
+                </div>
+            {{ /if }}
+        </div>
+    {{ /partial:layout/container }}
+</section>
+<!-- End: /page_builder/_page-intro.antlers.html -->

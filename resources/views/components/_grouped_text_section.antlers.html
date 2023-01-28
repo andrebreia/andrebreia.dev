@@ -1,0 +1,19 @@
+{{#
+    @name Grouped Text Section
+    @desc The grouped text section component.
+#}}
+
+<!-- /components/_grouped_text_section.antlers.html -->
+<section aria-labelledby="{{ id }}" class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+    <div class="grid items-baseline max-w-3xl grid-cols-1 gap-y-8 md:grid-cols-4">
+        <h2 id="{{ id }}" class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+            {{ title }}
+        </h2>
+        <div class="md:col-span-3">
+            <ul role="list" class="space-y-16">
+                {{ slot }}
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- End: /components/_grouped_text_section.antlers.html -->

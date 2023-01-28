@@ -1,0 +1,21 @@
+{{#
+    @name Article card
+    @desc The article card component.
+#}}
+
+<!-- /components/_article_card.antlers.html -->
+{{ partial:components/card as="article" }}
+    {{ partial:components/card_title :href="href" }}
+        {{ title }}
+    {{ /partial:components/card_title }}
+    {{ partial:components/card_eyebrow as="time" decorate="true" dateTimeAttr="{{date | format('Y-m-d')}}" }}
+        {{ date }}
+    {{ /partial:components/card_eyebrow }}
+    {{ partial:components/card_description }}
+        {{ description }}
+    {{ /partial:components/card_description }}
+    {{ partial:components/card_cta }}
+        {{ trans:strings.read_more }}
+    {{ /partial:components/card_cta }}
+{{ /partial:components/card }}
+<!-- End: /components/_article_card.antlers.html -->

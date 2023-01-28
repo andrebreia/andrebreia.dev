@@ -1,0 +1,33 @@
+title: 'Social media'
+data:
+  social_media:
+    -
+      id: NZ4zWKRe
+      handle: andrebreia
+      prefix: 'https://www.twitter.com/'
+      type: twitter
+      enabled: true
+    -
+      id: W2JYwNw6
+      handle: andrebreia
+      prefix: 'https://www.github.com/'
+      type: github
+      enabled: true
+    -
+      id: a1Fqny4I
+      handle: in/andre-breia
+      prefix: 'https://www.linkedin.com/'
+      type: linkedin
+      enabled: true
+    -
+      id: lb0qmufr
+      handle: andrebreia
+      prefix: 'https://www.instagram.com/'
+      type: instagram
+      enabled: true
+    -
+      id: lb0o1g5c
+      handle: '@andrebreia'
+      prefix: 'https://phpc.social/'
+      type: mastodon
+      enabled: true
