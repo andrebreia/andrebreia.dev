@@ -73,7 +73,6 @@
                     let toX = 2 / 16
             
                     let scrollY = downDelay - window.scrollY
-                    console.log(window.scrollY, downDelay, scrollY, fromScale, toScale)
         
                     let scale = (scrollY * (fromScale - toScale)) / downDelay + toScale
                     scale = self.clamp(scale, fromScale, toScale)
@@ -158,7 +157,7 @@
 
                 <div class="flex justify-end md:flex-1">
                     <div class="pointer-events-auto">
-                        {{ partial:navigation/mode_toggle }}
+                        {{ partial:components/theme_toggle }}
                     </div>
                 </div>
             </div>

@@ -48,6 +48,7 @@ return [
     'theme_toggle_system_short'         => 'System',
     'theme_toggle_toggle_open'          => 'Open dark mode picker.',
     'theme_toggle_toggle_close'         => 'Close dark mode picker.',
+    'theme_toggle_toggle'               => 'Toggle dark mode.',
 
     // Footer
     'on'                                => 'on',

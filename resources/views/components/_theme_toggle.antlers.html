@@ -6,68 +6,30 @@
 #}}
 
 <!-- /components/_theme_toggle.antlers.html -->
-<li x-data="themeToggle" x-bind="root" class="relative" x-cloak>
-    <button
-        x-bind="toggle"
-        class="p-1 -m-1 flex items-center text-neutral dark:text-white hover:text-primary focus:outline-none focus-visible:ring-2 ring-primary motion-safe:transition-colors"
-    >
-        {{ icon_classes = 'w-4 h-4 stroke-current overflow-visible' }}
-        <div x-show="$store.theme.get() === 'light'">
-            {{ svg:sun class="{icon_classes}" alt="" aria-hidden="true" }}
-        </div>
-        <div x-show="$store.theme.get() === 'dark'">
-            {{ svg:moon class="{icon_classes}" alt="" aria-hidden="true" }}
-        </div>
-        <div x-show="$store.theme.get() === 'system'">
-            {{ svg:sun x-show="preferredColorScheme === 'light'" class="{icon_classes} opacity-50" alt="" aria-hidden="true" }}
-            {{ svg:moon x-show="preferredColorScheme === 'dark'" class="{icon_classes} opacity-50" alt="" aria-hidden="true" }}
-        </div>
+<div x-data="themeToggle" x-bind="root" class="relative" x-cloak>
+    <button x-bind="toggle"
+        class="px-3 py-2 transition rounded-full shadow-lg group bg-white/90 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+        aria-label="{{ trans:strings.theme_toggle_toggle_open }}">
+        <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+            class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-sky-50 [@media(prefers-color-scheme:dark)]:stroke-sky-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-sky-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-sky-600">
+            <path
+                d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z" />
+            <path
+                d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
+                fill="none" />
+        </svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+            class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-sky-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-sky-500">
+            <path
+                d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
+                strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
     </button>
-    <div
-        x-bind="panel"
-        x-ref="panel"
-        class="absolute right-0 mt-2 -ml-3 py-2 px-3 bg-white border border-neutral/10 rounded shadow"
-    >
-        {{ button_classes = 'py-2 px-1 -mx-1 flex items-center space-x-2 hover:text-primary focus:outline-none focus-visible:ring-2 ring-primary motion-safe:transition-colors' }}
-        {{ icon_classes = 'w-4 h-4 stroke-current overflow-visible' }}
-        {{ label_classes = 'text-xs font-bold' }}
-        <button
-            @click="themeLight()"
-            :class="{ 'text-primary': $store.theme.get() === 'light' }"
-            aria-label="{{ trans:strings.theme_toggle_light }}"
-            title="{{ trans:strings.theme_toggle_light }}"
-            class="{{ button_classes }}"
-        >
-            {{ svg:sun class="{icon_classes}" alt="" aria-hidden="true" }}
-            <span class="{{ label_classes }}">{{ trans:strings.theme_toggle_light_short }}</span>
-        </button>
-        <button
-            @click="themeDark()"
-            :class="{ 'text-primary': $store.theme.get() === 'dark' }"
-            aria-label="{{ trans:strings.theme_toggle_dark }}"
-            title="{{ trans:strings.theme_toggle_dark }}"
-            class="{{ button_classes }}"
-        >
-            {{ svg:moon class="{icon_classes}" alt="" aria-hidden="true" }}
-            <span class="{{ label_classes }}">{{ trans:strings.theme_toggle_dark_short }}</span>
-        </button>
-        <button
-            @click="themeSystem()"
-            :class="{ 'text-primary': $store.theme.get() === 'system' }"
-            aria-label="{{ trans:strings.theme_toggle_system }}"
-            title="{{ trans:strings.theme_toggle_system }}"
-            class="{{ button_classes }}"
-        >
-            {{ svg:cog class="{icon_classes}" alt="" aria-hidden="true" }}
-            <span class="{{ label_classes }}">{{ trans:strings.theme_toggle_system_short }}</span>
-        </button>
-    </div>
 
     {{# Set Antlers variable if there's a regular and dark mode theme color set in browser appearance. #}}
     {{ if browser_appearance:use_theme_color && browser_appearance:use_theme_color_dark_mode }}
         {{ theme_color = true }}
     {{ /if }}
-
     <script>
         document.addEventListener('alpine:initializing', () => {
             Alpine.store('theme', {
@@ -82,11 +44,11 @@
 
             Alpine.data('themeToggle', () => {
                 return {
-                    themeToggleOpen: false,
-                    preferredColorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+                    preferredColorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ?
+                        'dark' : 'light',
                     themeColor: {{ theme_color ?? 'false' }},
                     themeLight: function() {
-                        this.$store.theme.set('light')
+                        this.$store.theme.set('system')
                         this.setLightTheme()
                     },
                     themeDark: function() {
@@ -95,66 +57,55 @@
                     },
                     themeSystem: function() {
                         this.$store.theme.set('system')
-                        window.matchMedia('(prefers-color-scheme: light)').matches && this.setLightTheme()
-                        window.matchMedia('(prefers-color-scheme: dark)').matches && this.setDarkTheme()
+                        window.matchMedia('(prefers-color-scheme: light)').matches && this
+                            .setLightTheme()
+                        window.matchMedia('(prefers-color-scheme: dark)').matches && this
+                            .setDarkTheme()
                     },
                     setLightTheme: function() {
                         document.documentElement.classList.remove('dark')
-                        this.themeColor && document.querySelector('meta[name=theme-color]').setAttribute('content', '{{ browser_appearance:theme_color }}' )
+                        this.themeColor && document.querySelector('meta[name=theme-color]')
+                            .setAttribute('content', '{{ browser_appearance:theme_color }}')
                     },
                     setDarkTheme: function() {
                         document.documentElement.classList.add('dark')
-                        this.themeColor && document.querySelector('meta[name=theme-color]').setAttribute('content', '{{ browser_appearance:theme_color_dark_mode ?? browser_appearance:theme_color }}' )
+                        this.themeColor && document.querySelector('meta[name=theme-color]')
+                            .setAttribute('content',
+                                '{{ browser_appearance:theme_color_dark_mode ?? browser_appearance:theme_color }}'
+                            )
+                    },
+                    disableTransitionsTemporarily() {
+                        document.documentElement.classList.add('[&_*]:!transition-none')
+                        window.setTimeout(() => {
+                            document.documentElement.classList.remove('[&_*]:!transition-none')
+                        }, 0)
                     },
                     root: {
                         ['x-init']() {
-                            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                                e.matches
-                                    ? (this.preferredColorScheme = 'dark', this.setDarkTheme())
-                                    : (this.preferredColorScheme = 'light', this.setLightTheme())
-                            })
-                        },
-                        ['@keyup.escape.stop.prevent']() {
-                            this.themeToggleOpen = false
-                        },
-                        ['@focusin.window']() {
-                            !this.$refs.panel.contains(this.$event.target) && (this.themeToggleOpen = false)
+                            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',
+                                e => {
+                                    e.matches ?
+                                        (this.preferredColorScheme = 'dark', this.setDarkTheme()) :
+                                        (this.preferredColorScheme = 'light', this.setLightTheme())
+                                })
                         },
                     },
                     toggle: {
                         ['@click.prevent']() {
-                            this.themeToggleOpen = !this.themeToggleOpen
+                            this.disableTransitionsTemporarily()
+
+                            if (this.$store.theme.get() === 'dark') {
+                                this.themeLight()
+                            } else {
+                                this.themeDark()
+                            }
                         },
-                        [':aria-label']() {
-                            return this.themeToggleOpen
-                                ? '{{ trans:strings.theme_toggle_toggle_close }}'
-                                : '{{ trans:strings.theme_toggle_toggle_open }}'
-                        },
-                        [':aria-expanded']() {
-                            return this.themeToggleOpen
-                        },
-                        [':aria-controls']() {
-                            return this.$id('dropdown-button')
-                        }
                     },
-                    panel: {
-                        ['x-show']() {
-                            return this.themeToggleOpen
-                        },
-                        ['@click.outside']() {
-                            this.themeToggleOpen = false
-                        },
-                        [':id']() {
-                            return this.$id('dropdown-button')
-                        },
-                        ['x-transition']() {
-                        }
-                    }
                 }
             })
         })
     </script>
-</li>
+</div>
 <!-- End: /components/_theme_toggle.antlers.html -->
 
 {{# The script for setting the correct theme on page load. Yielded in `resources/views/snippets/_browser_appearance.antlers.html`. #}}
@@ -162,8 +113,16 @@
     <!-- /components/_theme_toggle.antlers.html -->
     {{# We can't use Alpine logic here since this has to run before anything else. #}}
     <script>
+        function disableTransitionsTemporarily() {
+            document.documentElement.classList.add('[&_*]:!transition-none')
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('[&_*]:!transition-none')
+            }, 0)
+        }
+
         {{# Set light theme. #}}
         function setThemeLight() {
+            disableTransitionsTemporarily()
             document.documentElement.classList.remove('dark')
             {{ if theme_color }}
                 document.querySelector('meta[name=theme-color]').setAttribute('content', '{{ browser_appearance:theme_color }}' )
@@ -172,6 +131,7 @@
 
         {{# Set dark theme. #}}
         function setThemeDark() {
+            this.disableTransitionsTemporarily()
             document.documentElement.classList.add('dark')
             {{ if theme_color }}
                 document.querySelector('meta[name=theme-color]').setAttribute('content', '{{ browser_appearance:theme_color_dark_mode ?? browser_appearance:theme_color }}' )
