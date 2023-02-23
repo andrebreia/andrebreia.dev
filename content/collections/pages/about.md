@@ -8,7 +8,7 @@ seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1674924684
+updated_at: 1677171384
 page_builder:
   -
     id: lb0pbir9
@@ -37,7 +37,7 @@ page_builder:
         content:
           -
             type: text
-            text: 'Outside of work, I like to spend time with family, spend time in nature, sports, gaming and many other things. I have recently been enjoying participating in artisan workshops to learn to make something with my hands and tools I never used!'
+            text: 'Outside of work, I like to spend time with family, spend time in nature, sports, gaming and many other things. I have recently been enjoying participating in artisan workshops to learn to make something with my own hands!'
       -
         type: paragraph
       -
