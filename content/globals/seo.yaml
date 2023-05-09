@@ -14,9 +14,8 @@ data:
   trackers_production: true
   use_google_site_verification: false
   use_fathom: true
-  fathom_use_custom_domain: true
+  fathom_use_custom_domain: false
   fathom: HCDAUBHO
-  fathom_custom_script_url: 'https://exciting-special.andrebreia.dev/script.js'
   use_plausible: false
   use_cloudflare_web_analytics: false
   tracker_type: none
