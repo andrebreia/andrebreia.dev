@@ -153,11 +153,18 @@ page_builder:
             enabled: true
             text: "The best calendar app I've used in a long time."
             link: 'https://cron.com/'
+          -
+            id: ll7tam9c
+            title: Loom
+            link: 'https://loom.com'
+            text: 'Loom is a video messaging tool. I use it to share updates with clients or the team, onboarding materials and also for adding context to pull requests.'
+            type: section_children
+            enabled: true
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1674922677
+updated_at: 1691832566
 ---

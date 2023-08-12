@@ -30,4 +30,4 @@ data:
       handle: '@andrebreia'
       prefix: 'https://phpc.social/'
       type: mastodon
-      enabled: true
+      enabled: false
