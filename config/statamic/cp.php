@@ -17,6 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Authentication
+    |--------------------------------------------------------------------------
+    |
+    | Whether the Control Panel's authentication pages should be enabled,
+    | and where users should be redirected in order to authenticate.
+    |
+    */
+
+    'auth' => [
+        'enabled' => true,
+        'redirect_to' => null,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Start Page
     |--------------------------------------------------------------------------
     |
@@ -38,18 +53,7 @@ return [
     */
 
     'widgets' => [
-        [
-            'type' => 'images_missing_alt',
-            'container' => 'assets',
-            'limit' => 5,
-            'expiry' => 0,
-            'width' => 50
-        ],
-        [
-            'type' => 'collection',
-            'collection' => 'pages',
-            'width' => 50
-        ],
+        'getting_started',
     ],
 
     /*
@@ -58,7 +62,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | When a date is encountered throughout the Control Panel, it will be
-    | rendered in the following format. Any PHP date variables are permitted.
+    | rendered in the following format unless overridden in specific
+    | fields, and so on. Any PHP date variables are permitted.
+    |
+    | This takes precedence over the date_format in system.php.
+    |
+    | https://www.php.net/manual/en/function.date.php
     |
     */
 
@@ -69,11 +78,14 @@ return [
     | Pagination
     |--------------------------------------------------------------------------
     |
-    | The numbers of items to show on each paginated page.
+    | Here you may define the default pagination size as well as the options
+    | the user can select on any paginated listing in the Control Panel.
     |
     */
 
     'pagination_size' => 50,
+
+    'pagination_size_options' => [10, 25, 50, 100, 500],
 
     /*
     |--------------------------------------------------------------------------
@@ -98,9 +110,9 @@ return [
 
     'support_url' => env('STATAMIC_SUPPORT_URL', 'https://statamic.com/support'),
 
-     /*
+    /*
     |--------------------------------------------------------------------------
-    | Login Theme
+    | Theme
     |--------------------------------------------------------------------------
     |
     | Optionally spice up the login and other outside-the-control-panel
@@ -123,13 +135,26 @@ return [
 
     'custom_cms_name' => env('STATAMIC_CUSTOM_CMS_NAME', 'Statamic'),
 
-    'custom_logo_url' => [
-        'nav' => env('STATAMIC_CUSTOM_LOGO_NAV_URL', null),
-        'outside' => env('STATAMIC_CUSTOM_LOGO_OUTSIDE_URL', null)
-    ],
+    'custom_logo_url' => env('STATAMIC_CUSTOM_LOGO_URL', null),
+
+    'custom_dark_logo_url' => env('STATAMIC_CUSTOM_DARK_LOGO_URL', null),
+
+    'custom_logo_text' => env('STATAMIC_CUSTOM_LOGO_TEXT', null),
 
     'custom_favicon_url' => env('STATAMIC_CUSTOM_FAVICON_URL', null),
 
     'custom_css_url' => env('STATAMIC_CUSTOM_CSS_URL', null),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Thumbnails
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define additional CP asset thumbnail presets.
+    |
+    */
+
+    'thumbnail_presets' => [
+        // 'medium' => 800,
+    ],
 ];
