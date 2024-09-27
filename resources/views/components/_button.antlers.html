@@ -5,7 +5,6 @@
     @param as The wrapping element. Defaults to `a`.
     @param button_type `Inline` if the button needs to be rendered as an inline button.
     @param faux Boolean. For faux button wrapped in an actual button/anchor.
-    @param inverted Boolean. When the button needs inverted styles.
 #}}
 
 <!-- /components/_button.antlers.html -->
@@ -13,18 +12,14 @@
     <{{ as or 'a' }}
         {{ slot:attributes }}
         class="
-            font-bold underline decoration-2 focus:outline-none focus-visible:ring focus-visible:ring-offset-2
+            text-sm font-medium transition
             {{ if button_type === 'inline' }}
-                underline motion-safe:transition
-                {{ inverted
-                    ? 'text-white decoration-white focus-visible:ring-white'
-                    : 'text-neutral decoration-primary focus-visible:ring-primary'
-                }}
+                text-sky-500 hover:text-sky-700 dark:hover:text-sky-400
             {{ else }}
-                inline-flex items-center py-3 px-4 rounded leading-none no-underline select-none whitespace-nowrap motion-safe:transition
+                inline-flex items-center gap-2 justify-center py-2 px-3 outline-offset-2 rounded-md leading-none no-underline active:transition-none
                 {{ inverted
                     ? 'bg-white text-primary focus-visible:ring-white'
-                    : 'bg-primary text-white focus-visible:ring-primary'
+                    : 'bg-zinc-50 text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 '
                 }}
             {{ /if }}
             {{ class }}
