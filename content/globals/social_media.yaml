@@ -2,10 +2,10 @@ title: 'Social media'
 data:
   social_media:
     -
-      id: NZ4zWKRe
+      id: m1ktcwli
       handle: andrebreia
-      prefix: 'https://www.twitter.com/'
-      type: twitter
+      prefix: 'https://www.x.com/'
+      type: x
       enabled: true
     -
       id: W2JYwNw6

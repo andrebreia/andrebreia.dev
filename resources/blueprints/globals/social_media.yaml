@@ -115,8 +115,8 @@ tabs:
                           field:
                             type: hidden
                             default: 'https://www.pinterest.com/'
-                    twitter:
-                      display: Twitter
+                    x:
+                      display: X
                       fields:
                         -
                           handle: handle
@@ -130,7 +130,7 @@ tabs:
                           handle: prefix
                           field:
                             type: hidden
-                            default: 'https://www.twitter.com/'
+                            default: 'https://www.x.com/'
                     vimeo:
                       display: Vimeo
                       fields:
