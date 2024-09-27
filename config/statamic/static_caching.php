@@ -37,7 +37,10 @@ return [
             'driver' => 'file',
             'path' => public_path('static'),
             'lock_hold_length' => 0,
-            'warm_concurrency' => 10
+            'permissions' => [
+                'directory' => 0755,
+                'file' => 0644,
+            ],
         ],
 
     ],
@@ -54,10 +57,15 @@ return [
     */
 
     'exclude' => [
-        '/site.webmanifest',
-        '/sitemap.xml',
-        '/sitemaps.xml'
-        // Add sitemaps for multisites here
+
+        'class' => null,
+
+        'urls' => [
+            '/site.webmanifest',
+            '/sitemap.xml',
+            '/sitemaps.xml',
+        ],
+
     ],
 
     /*
@@ -77,10 +85,11 @@ return [
 
         'class' => null,
 
-        'rules' => 'all',
+        'rules' => [
+            //
+        ],
 
     ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -94,5 +103,72 @@ return [
     */
 
     'ignore_query_strings' => false,
+
+    'allowed_query_strings' => [
+        //
+    ],
+
+    'disallowed_query_strings' => [
+        //
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Nocache
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define where the nocache data is stored.
+    |
+    | https://statamic.dev/tags/nocache#database
+    |
+    | Supported drivers: "cache", "database"
+    |
+    */
+
+    'nocache' => 'cache',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Replacers
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define replacers that dynamically replace content within
+    | the response. Each replacer must implement the Replacer interface.
+    |
+    */
+
+    'replacers' => [
+        \Statamic\StaticCaching\Replacers\CsrfTokenReplacer::class,
+        \Statamic\StaticCaching\Replacers\NoCacheReplacer::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Warm Queue
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the queue name and connection
+    | that will be used when warming the static cache.
+    |
+    */
+
+    'warm_queue' => env('STATAMIC_STATIC_WARM_QUEUE'),
+
+    'warm_queue_connection' => env('STATAMIC_STATIC_WARM_QUEUE_CONNECTION'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Shared Error Pages
+    |--------------------------------------------------------------------------
+    |
+    | You may choose to share the same statically generated error page across
+    | all errors. For example, the first time a 404 is encountered it will
+    | be generated and cached, and then served for all subsequent 404s.
+    |
+    | This is only supported for half measure.
+    |
+    */
+
+    'share_errors' => false,
 
 ];
