@@ -1,0 +1,51 @@
+title: 'Code Block'
+fields:
+  -
+    handle: language
+    field:
+      options:
+        -
+          key: php
+          value: PHP
+        -
+          key: js
+          value: JavaScript
+        -
+          key: json
+          value: JSON
+        -
+          key: alpinejs
+          value: Alpine.js
+        -
+          key: blade
+          value: 'Laravel Blade'
+        -
+          key: antlers
+          value: 'Statamic Antlers'
+        -
+          key: html
+          value: HTML
+        -
+          key: css
+          value: CSS
+        -
+          key: vue
+          value: Vue.js
+        -
+          key: yaml
+          value: YAML
+        -
+          key: markdown
+          value: Markdown
+        -
+          key: plaintext
+          value: Plaintext
+      default: php
+      type: select
+      display: Language
+      width: 50
+  -
+    handle: code_snippet
+    field:
+      type: code
+      display: Code

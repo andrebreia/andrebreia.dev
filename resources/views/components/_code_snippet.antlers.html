@@ -1,0 +1,13 @@
+{{#
+    @name Code Block
+    @desc The Code Block component.
+    @set page.article.code_block
+#}}
+
+<!-- /components/_code_block.antlers.html -->
+{{ code_snippet }}
+    {{ shiki :language="language" }}
+        {{ code | noparse | entities }}
+    {{ /shiki }}
+{{ /code_snippet }}
+<!-- End: /components/_code_block.antlers.html -->
