@@ -14,3 +14,7 @@ tree:
   -
     id: 3715848d-9999-461d-8132-18d13b482e9c
     entry: c9776429-4e48-434f-a3a9-a4c5467f7e48
+  -
+    id: c5da895d-820e-4078-a44a-e659e91bcb37
+    title: Contact
+    url: '/#contact'
