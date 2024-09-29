@@ -26,13 +26,13 @@
                                         class="transition duration-500 origin-center scale-100 motion-safe:group-hover:scale-105">
                                         <foreignObject width="655" height="680"><img alt="" loading="lazy" width="2400"
                                                 height="3000" decoding="async" data-nimg="1"
-                                                class="object-cover w-full bg-neutral-100"
+                                                class="object-cover w-full bg-zinc-100 dark:bg-zinc-800"
                                                 style="color:transparent;aspect-ratio:655 / 680"
                                                 sizes="(min-width: 1024px) 41rem, 31rem"
                                                 src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=4470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                                         </foreignObject>
                                     </g>
-                                    <use href="#:S1:-shape" stroke-width="2" class="stroke-neutral-950/10"></use>
+                                    <use href="#:S1:-shape" stroke-width="2" class="stroke-zinc-950/10"></use>
                                 </g>
                                 <defs>
                                     <clipPath id=":S1:-clip">
@@ -51,7 +51,7 @@
                                 <div>
                                     <div
                                         class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
-                                        <strong class="font-semibold text-zinc-800 dark:text-zinc-100">{{ title }}. </strong>{{ content }}</div>
+                                        <strong class="font-semibold text-zinc-800 dark:text-zinc-100">{{ title }}. </strong>{{ content | strip_tags('p') }}</div>
                                 </div>
                             </li>
                         {{ /collection:services }}
