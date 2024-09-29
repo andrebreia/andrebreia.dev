@@ -17,6 +17,7 @@ data:
       start: '2017-08-14'
       type: work_history_items
       enabled: true
+      end: '2024-11-29'
     -
       id: lasjkf4w
       company: Chaptr

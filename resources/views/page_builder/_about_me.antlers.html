@@ -42,6 +42,13 @@
                             <span class="ml-4">contact@andrebreia.dev</span>
                         </a>
                     </li>
+                    <li class="flex items-center gap-4 pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40">
+                        {{ accreditations:accreditations_list }}
+                            <a href="{{ credential_file:url }}" target="_blank" {{ if credential_source === 'external '}} rel="noopener noreferrer" {{ endif }}>
+                                <img class="w-auto h-32" src="{{ image:url }}" alt="{{ image:alt }}">
+                            </a>
+                        {{ /accreditations:accreditations_list }}
+                    </li>
                 </ul>
             </div>
 

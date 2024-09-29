@@ -1,0 +1,20 @@
+title: Accreditations
+data:
+  accreditations_list:
+    -
+      id: m1nltxqt
+      image_source: external
+      image_url: 'https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/109206135'
+      credential_source: asset
+      credential_file: stripe-certified.pdf
+      type: new_accreditation
+      enabled: true
+      image: stripe-certified.png
+    -
+      id: m1nlugak
+      image_source: asset
+      image: laravel-certification.jpg
+      credential_source: asset
+      credential_file: laravel-certification.pdf
+      type: new_accreditation
+      enabled: true

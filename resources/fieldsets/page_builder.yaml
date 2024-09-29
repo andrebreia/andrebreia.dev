@@ -56,6 +56,12 @@ fields:
             -
               handle: photos
               field: photos.photos
+        services:
+          display: Services
+          instructions: null
+          fields:
+            -
+              import: services
       instructions_position: above
       visibility: visible
       always_save: false
