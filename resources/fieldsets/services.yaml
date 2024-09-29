@@ -1,2 +1,20 @@
-title: 'Services'
-fields: [ ]
+title: Services
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Title
+  -
+    handle: text
+    field:
+      type: textarea
+      display: Text
+  -
+    handle: image
+    field:
+      max_files: 1
+      min_files: 1
+      container: assets
+      type: assets
+      display: Image

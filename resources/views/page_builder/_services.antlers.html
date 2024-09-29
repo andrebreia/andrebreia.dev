@@ -9,13 +9,9 @@
     {{ partial:layout/container class="mt-24 md:mt-28" }}
         <div class="">
             <div class="max-w-2xl" style="opacity: 1; transform: none;">
-                {{ partial:typography/h2 content="Web development services" class="text-zinc-800 dark:text-zinc-100" }}
-                {{# <h2><span class="block mb-6 text-base font-semibold font-display text-neutral-950">Services</span><span
-                        class="sr-only"> - </span><span
-                        class="block font-display tracking-tight [text-wrap:balance] text-4xl font-medium sm:text-5xl text-neutral-950">We
-                        help you identify, explore and respond to new opportunities.</span></h2> #}}
+                {{ partial:typography/h2 :content="title" class="text-zinc-800 dark:text-zinc-100" }}
                 <div class="mt-6 text-xl text-zinc-600 dark:text-zinc-400">
-                    <p>As a freelance web developer, I offer a number of services to help your business.</p>
+                    <p>{{ text }}</p>
                 </div>
             </div>
         </div>
@@ -50,37 +46,15 @@
                 </div>
                 <div>
                     <ul role="list" class="text-base text-zinc-600 dark:text-zinc-400 mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-                        <li class="mt-10 group first:mt-0">
-                            <div style="opacity: 1; transform: none;">
-                                <div
-                                    class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
-                                    <strong class="font-semibold text-zinc-800 dark:text-zinc-100">Laravel development. </strong>Bring the power of Laravel to your next project with certified expertise. I specialize in crafting dynamic, robust applications tailored to meet your specific business needs.</div>
-                            </div>
-                        </li>
-                        <li class="mt-10 group first:mt-0">
-                            <div style="opacity: 1; transform: none;">
-                                <div
-                                    class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
-                                    <strong class="font-semibold text-zinc-800 dark:text-zinc-100">Design to TailwindCSS. </strong>Transform your designs into pixel-perfect, responsive interfaces with TailwindCSS. My meticulous attention to detail ensures your vision is realized with precision and style.
+                        {{ collection:services }}
+                            <li class="mt-10 group first:mt-0">
+                                <div>
+                                    <div
+                                        class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
+                                        <strong class="font-semibold text-zinc-800 dark:text-zinc-100">{{ title }}. </strong>{{ content }}</div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="mt-10 group first:mt-0">
-                            <div style="opacity: 1; transform: none;">
-                                <div
-                                    class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
-                                    <strong class="font-semibold text-zinc-800 dark:text-zinc-100">Statamic development. </strong>Enhance your online presence with a custom Statamic CMS. I offer tailored solutions that combine modern aesthetics with powerful functionality, perfect for businesses aiming to stand out.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mt-10 group first:mt-0">
-                            <div style="opacity: 1; transform: none;">
-                                <div
-                                    class="relative pt-10 group-first:pt-0 group-first:before:hidden group-first:after:hidden before:absolute after:absolute before:bg-sky-500 after:bg-sky-500/10 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
-                                    <strong class="font-semibold text-zinc-800 dark:text-zinc-100">Laravel maintenance and hosting. </strong>Secure, maintain, and accelerate your Laravel application with comprehensive support and hosting services. Whether it's updates, backups, or performance optimization, I ensure your application runs smoothly and efficiently.
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        {{ /collection:services }}
                     </ul>
                 </div>
             </div>

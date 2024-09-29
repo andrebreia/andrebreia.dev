@@ -3,7 +3,7 @@ id: home
 blueprint: page
 title: Home
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1727615103
+updated_at: 1727617565
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -31,6 +31,9 @@ page_builder:
     id: m1kuajwr
     type: services
     enabled: true
+    title: 'Web development services'
+    text: 'As a freelance web developer, I offer a number of services to help your business.'
+    image: desk-photo.jpeg
   -
     id: laganidh
     type: articles_and_resume
