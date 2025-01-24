@@ -8,7 +8,7 @@ seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1677171384
+updated_at: 1737711763
 page_builder:
   -
     id: lb0pbir9
@@ -19,13 +19,19 @@ page_builder:
         content:
           -
             type: text
-            text: "I'm a full-stack developer based in Lyon 🇫🇷. I'm the Tech Lead at Steadfast Collective, where we build community-focused websites and web applications."
+            text: "I'm a full-stack developer based in Lyon 🇫🇷. I'm a Software Developer at Atma Energy."
       -
         type: paragraph
         content:
           -
             type: text
-            text: 'My professional journey started in 2014, shortly after I graduated with a Computer Science and Engineering degree, in Portugal. I then moved to the UK for an internship, that turned into a full-time job, building WordPress websites for many clients. After a while, I moved on to a PHP developer role at Steadfast Collective, where we build Laravel websites and web applications using Laravel, Vuejs and TailwindCSS as the primary tech stack. In the meanwhile, I moved to France and got a new role at the company.'
+            text: 'My professional journey started in 2014, shortly after I graduated with a Computer Engineering degree, in Portugal. I then moved to the UK for an internship, that turned into a full-time job, building WordPress websites for many clients. After a while, I moved on to a PHP developer role at Steadfast Collective, where we build Laravel websites and web applications using Laravel, Vuejs and TailwindCSS as the primary tech stack. In the meanwhile, I moved to France and got a new role at the company.'
+      -
+        type: paragraph
+        content:
+          -
+            type: text
+            text: "Currently working at Atma Energy, aiming to make it easier to bring solar energy to anyone, as well as providing insights about customers' systems and top-notch support."
       -
         type: paragraph
         content:
@@ -37,7 +43,7 @@ page_builder:
         content:
           -
             type: text
-            text: 'Outside of work, I like to spend time with family, spend time in nature, sports, gaming and many other things. I have recently been enjoying participating in artisan workshops to learn to make something with my own hands!'
+            text: 'Outside of work, I like to spend time with family, spend time in nature, sports, gaming and many other things.'
       -
         type: paragraph
       -

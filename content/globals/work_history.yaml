@@ -2,6 +2,14 @@ title: 'Work history'
 data:
   work_history_items:
     -
+      id: m6ak3lxr
+      company: 'Atma Energy'
+      logo: logo-symbol.jpeg
+      title: 'Software Developer'
+      start: '2024-12-02'
+      type: work_history_items
+      enabled: true
+    -
       id: lageesl3
       company: BreiaDev
       title: Freelance

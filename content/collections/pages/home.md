@@ -3,7 +3,7 @@ id: home
 blueprint: page
 title: Home
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1674926745
+updated_at: 1737711814
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -12,8 +12,8 @@ sitemap_priority: 0.5
 page_builder:
   -
     id: laf5xyu4
-    page_intro_heading: 'Full-stack developer and Tech Lead'
-    page_intro_content: "I'm André, a full-stack developer based in Lyon 🇫🇷. I'm the Tech Lead at Steadfast Collective, where we build community-focused websites and web applications."
+    page_intro_heading: 'Software Developer'
+    page_intro_content: "I'm André, a Software Developer based in France 🇫🇷. I'm currently working at Atma Energy."
     type: page_intro
     enabled: true
     display_social_icons: true

@@ -2,10 +2,10 @@ title: 'Social media'
 data:
   social_media:
     -
-      id: m1ktcwli
-      handle: andrebreia
-      prefix: 'https://www.x.com/'
-      type: x
+      id: m6akc16e
+      handle: andrebreia.dev
+      prefix: 'https://bsky.app/profile/'
+      type: bluesky
       enabled: true
     -
       id: W2JYwNw6
@@ -24,6 +24,12 @@ data:
       handle: andrebreia
       prefix: 'https://www.instagram.com/'
       type: instagram
+      enabled: true
+    -
+      id: m1ktcwli
+      handle: andrebreia
+      prefix: 'https://www.x.com/'
+      type: x
       enabled: true
     -
       id: lb0o1g5c

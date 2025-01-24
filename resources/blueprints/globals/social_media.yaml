@@ -180,3 +180,18 @@ tabs:
                             display: Prefix
                             type: hidden
                             always_save: false
+                    bluesky:
+                      display: Bluesky
+                      fields:
+                        -
+                          handle: handle
+                          field:
+                            prepend: 'https://bsky.app/profile/'
+                            type: text
+                            display: Handle
+                        -
+                          handle: prefix
+                          field:
+                            default: 'https://bsky.app/profile/'
+                            type: hidden
+                            display: Prefix

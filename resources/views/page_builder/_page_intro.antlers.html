@@ -20,7 +20,7 @@
                             rel="{{ type == 'mastodon' ? 'me' : 'noopener' }}"
                             aria-label="{{ config:app:name }} {{ trans:strings.on }} {{ type | title }}"
                             target="_blank">
-                            {{ svg :src="type" class="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" alt="" aria-hidden="true" }}
+                            {{ svg :src="type" class="size-6 transition  fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" alt="" aria-hidden="true" }}
                         </a>
                     {{ /social_media:social_media }}
                 </div>
