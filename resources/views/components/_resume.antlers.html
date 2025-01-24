@@ -21,9 +21,8 @@
             {{ endTime = end ? end : now }}
             <li class="flex gap-4">
                 <div
-                    class="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                    {{# @todo use round image #}}
-                    {{ partial:components/picture :image="logo:url" class="w-7 h-7" }}
+                    class="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 overflow-hidden">
+                    {{ partial:components/picture :image="logo:url" class="w-7 h-7 rounded-full" }}
                 </div>
                 <dl class="flex flex-wrap flex-auto gap-x-2">
                     <dt class="sr-only">Company</dt>
@@ -55,9 +54,9 @@
     </ol>
     {{#
         <Button href="#" variant="secondary" class="w-full mt-6 group">
-        Download CV
-        <ArrowDownIcon
-        class="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+            Download CV
+            <ArrowDownIcon
+                class="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
         </Button>
     #}}
     <!-- End: /components/_resume.antlers.html -->
