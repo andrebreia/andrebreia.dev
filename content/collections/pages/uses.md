@@ -59,8 +59,8 @@ page_builder:
         section_items:
           -
             id: laxpx1ai
-            title: '14" MacBook Pro, M1 Pro, 16GB RAM (2021)'
-            text: "This is my work laptop and it's great. I've never heard the sound of the fans since I got it."
+            title: '13" MacBook Air, M3, 24GB RAM (2024)'
+            text: "This is my laptop and it's been great for dev work."
             type: section_children
             enabled: true
           -
@@ -103,15 +103,28 @@ page_builder:
             id: laxqxg28
             title: 'VS Code'
             type: section_children
-            enabled: true
+            enabled: false
             text: 'I switched from Atom to VS Code a while ago and never looked back. This code editor is great and highly customisable. I have it nicely configured for both backend and frontend work.'
+          -
+            id: m7k7z5cx
+            title: PhpStorm
+            type: section_children
+            enabled: true
+            text: "I've recently moved from VS Code to PhpStorm and been enjoying it more than I thought I would!"
           -
             id: laxqxl6h
             title: iTerm2
             type: section_children
-            enabled: true
+            enabled: false
             text: "The best terminal for mac I've used and is highly customisable."
             link: 'https://iterm2.com/'
+          -
+            id: m7k7wjmq
+            title: Warp
+            type: section_children
+            enabled: true
+            text: 'The is my current terminal on mac. Their natural language feature is pretty good.'
+            link: 'https://warp.dev/'
           -
             id: laxqxodr
             title: TablePlus
@@ -144,8 +157,8 @@ page_builder:
             type: section_children
             enabled: true
             title: Raycast
-            text: "This is a launcher that replaces macOS spotlight and it's the ultimate productivity hack."
-            link: 'https://www.raycast.com/'
+            text: "This is a launcher (and more) that replaces macOS spotlight and it's the ultimate productivity hack."
+            link: 'https://raycast.com/?via=andrebreia'
           -
             id: laxqy018
             title: 'Cron Calendar'
@@ -159,12 +172,12 @@ page_builder:
             link: 'https://loom.com'
             text: 'Loom is a video messaging tool. I use it to share updates with clients or the team, onboarding materials and also for adding context to pull requests.'
             type: section_children
-            enabled: true
+            enabled: false
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
 sitemap_change_frequency: weekly
 sitemap_priority: 0.5
 updated_by: b544fa68-142e-4b12-87bb-2bd9208208da
-updated_at: 1691832566
+updated_at: 1740472018
 ---
