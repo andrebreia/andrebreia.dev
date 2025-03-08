@@ -13,9 +13,10 @@ data:
   trackers_staging: false
   trackers_production: true
   use_google_site_verification: false
-  use_fathom: true
-  fathom_use_custom_domain: false
-  fathom: HCDAUBHO
-  use_plausible: false
+  use_fathom: false
+  use_plausible: true
+  plausible_use_custom_script: true
+  plausible: andrebreia.dev
+  plausible_custom_script_url: 'https://analytics.breia.dev/js/script.js'
   use_cloudflare_web_analytics: false
   tracker_type: none
