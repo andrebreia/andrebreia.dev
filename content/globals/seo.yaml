@@ -14,9 +14,10 @@ data:
   trackers_production: true
   use_google_site_verification: false
   use_fathom: false
-  use_plausible: true
-  plausible_use_custom_script: true
-  plausible: andrebreia.dev
-  plausible_custom_script_url: 'https://analytics.breia.dev/js/script.js'
+  use_plausible: false
+  use_umami: true
+  umami_use_custom_script: true
+  umami: 47205238-2f47-48f3-ac50-71b0c2f392ed
+  umami_custom_script_url: 'https://umami.breia.dev/script.js'
   use_cloudflare_web_analytics: false
   tracker_type: none

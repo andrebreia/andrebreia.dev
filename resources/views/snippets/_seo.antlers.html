@@ -236,6 +236,12 @@
        <script src="https://plausible.io/js/script.js" data-domain="{{ seo:plausible }}" defer></script>
    {{ /if }}
 
+   {{ if seo:use_umami && seo:umami_use_custom_script }}
+       <script src="{{ seo:umami_custom_script_url }}" data-website-id="{{ seo:umami }}" defer></script>
+   {{ elseif seo:use_umami }}
+       <script src="https://umami.is/script.js" data-website-id="{{ seo:umami }}" defer></script>
+   {{ /if }}
+
    {{ if seo:use_cloudflare_web_analytics }}
        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ seo:cloudflare_web_analytics }}"}'></script>
    {{ /if }}
