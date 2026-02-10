@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# andrebreia.dev
 
-```sh
-npm create astro@latest -- --template minimal
+Personal website and portfolio for Andre Breia, freelance full-stack developer.
+
+Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com), and [MDX](https://mdxjs.com).
+
+## Tech stack
+
+- **Framework**: Astro 5
+- **Styling**: Tailwind CSS v4 (CSS-based config)
+- **Content**: MDX collections for articles and projects
+- **Typography**: Inter (body) + Geist (headings), variable fonts
+- **Icons**: astro-icon with Iconify (Solar, Lucide, Simple Icons)
+- **OG images**: Auto-generated at build time via satori + resvg
+- **Sitemap**: Auto-generated via @astrojs/sitemap
+
+## Project structure
+
+```
+src/
+  components/       # Astro components
+  content/
+    articles/       # MDX blog posts
+    projects/       # MDX project pages
+  data/             # Static data (site config, experience, services, etc.)
+  layouts/          # BaseLayout
+  lib/              # Utilities (OG image generation)
+  pages/            # Routes
+    og/             # Dynamic OG image endpoints
+    articles/       # Article listing + detail pages
+    projects/       # Project detail pages
+  styles/           # Global CSS + Tailwind config
+public/
+  fonts/            # Inter + Geist variable fonts
+  images/           # Static images and logos
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Install dependencies                         |
+| `npm run dev`     | Start dev server at `localhost:4321`         |
+| `npm run build`   | Build production site to `./dist/`           |
+| `npm run preview` | Preview the build locally before deploying   |
