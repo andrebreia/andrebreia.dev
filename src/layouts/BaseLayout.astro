@@ -85,6 +85,9 @@ const ogImageUrl = new URL(ogImage, Astro.site).href
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
+
+    <!-- Analytics -->
+    <script async src="https://umami.breia.dev/script.js" data-website-id="c559bc93-558d-495c-9e18-ec6ad79d9337"></script>
   </head>
   <body class="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 text-slate-600 bg-slate-100 p-4">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
