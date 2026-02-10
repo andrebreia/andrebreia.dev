@@ -1,6 +1,6 @@
 # andrebreia.dev
 
-Personal website and portfolio for Andre Breia, freelance full-stack developer.
+Personal website and portfolio for André Breia, freelance full-stack developer.
 
 Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com), and [MDX](https://mdxjs.com).
 
