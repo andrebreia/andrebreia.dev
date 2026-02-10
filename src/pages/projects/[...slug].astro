@@ -26,7 +26,7 @@ const { Content } = await render(project)
       <div class="flex items-center gap-4 mb-4">
         {project.data.logo ? (
           <div class="relative w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden shrink-0">
-            <img src={project.data.logo} alt="" class="w-full h-full object-contain p-1.5 relative z-0" />
+            <img src={project.data.logo} alt="" class="w-full h-full object-contain p-1.5 relative z-0" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-slate-500 mix-blend-color opacity-80 z-10"></div>
           </div>
         ) : (

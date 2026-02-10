@@ -17,7 +17,7 @@ const { title, tags, year, icon, href, logo } = Astro.props
   <div class="flex items-center gap-4">
     {logo ? (
       <div class="relative w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden group-hover:bg-white group-hover:shadow-sm transition-all shrink-0">
-        <img src={logo} alt="" class="w-full h-full object-contain p-1.5 relative z-0" />
+        <img src={logo} alt="" class="w-full h-full object-contain p-1.5 relative z-0" loading="lazy" decoding="async" />
         <div class="absolute inset-0 bg-slate-500 mix-blend-color opacity-80 transition-opacity duration-200 group-hover:opacity-0 z-10"></div>
       </div>
     ) : (

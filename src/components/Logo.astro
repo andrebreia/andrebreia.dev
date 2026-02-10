@@ -1,8 +1,17 @@
-<img
-  src="/images/logo.png"
-  srcset="/images/logo@2x.png 2x"
+---
+import { Image } from 'astro:assets'
+import logo from '../assets/logo.png'
+---
+
+<Image
+  src={logo}
   alt="BreiaDev logo"
-  width="40"
-  height="40"
+  width={40}
+  height={40}
+  format="webp"
+  quality={80}
+  densities={[1, 2]}
   class="h-10 w-10 rounded-lg shadow-sm"
+  fetchpriority="high"
+  decoding="async"
 />

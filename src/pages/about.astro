@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Card from '../components/Card.astro'
 import Footer from '../components/Footer.astro'
@@ -7,15 +8,22 @@ import CertificationItem from '../components/CertificationItem.astro'
 import CTASection from '../components/CTASection.astro'
 import { siteConfig } from '../data/site'
 import { certifications } from '../data/certifications'
+import andrePhoto from '../assets/andre.jpg'
 ---
 
 <BaseLayout title={`About – ${siteConfig.name}`} description="I'm André Breia. A Portuguese developer living in France.">
   <Card>
     <header class="relative mb-12">
-      <img
-        src="/images/andre.jpg"
+      <Image
+        src={andrePhoto}
         alt="André Breia"
+        width={80}
+        height={80}
+        format="webp"
+        quality={80}
         class="w-20 h-20 rounded-2xl object-cover mb-6"
+        fetchpriority="high"
+        decoding="async"
       />
       <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
         I'm André Breia. A Portuguese developer living in France.
