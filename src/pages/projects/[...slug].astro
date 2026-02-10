@@ -38,7 +38,7 @@ const { Content } = await render(project)
           <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight">
             {project.data.title}
           </h1>
-          <p class="text-xs text-slate-400 mt-1">{project.data.tags} &middot; {project.data.year}</p>
+          <p class="text-xs text-slate-500 mt-1">{project.data.tags} &middot; {project.data.year}</p>
         </div>
       </div>
 
@@ -64,9 +64,9 @@ const { Content } = await render(project)
       prose-headings:font-heading prose-headings:tracking-tight
       prose-h2:text-lg prose-h2:mt-10 prose-h2:mb-4
       prose-h3:text-base prose-h3:mt-6 prose-h3:mb-3
-      prose-p:text-slate-600 prose-p:leading-relaxed prose-p:font-light
+      prose-p:text-slate-600 prose-p:leading-relaxed
       prose-strong:text-slate-700 prose-strong:font-medium
-      prose-li:text-slate-600 prose-li:font-light
+      prose-li:text-slate-600
       prose-ul:my-4">
       <Content />
     </article>

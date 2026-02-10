@@ -46,10 +46,10 @@ const { page } = Astro.props
                 {article.data.title}
               </h2>
               {formattedDate && (
-                <time class="text-xs text-slate-400 shrink-0">{formattedDate}</time>
+                <time class="text-xs text-slate-500 shrink-0">{formattedDate}</time>
               )}
             </div>
-            <p class="text-xs text-slate-600 leading-relaxed">{article.data.excerpt}</p>
+            <p class="text-sm text-slate-600 leading-relaxed">{article.data.excerpt}</p>
           </a>
         )
       })}
