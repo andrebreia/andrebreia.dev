@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string
+  text: string
+  link?: string
+}
+
+const { title, text, link } = Astro.props
+---
+
+<div class="group py-3">
+  <h3 class="text-slate-900 font-medium text-sm">
+    {link ? (
+      <a href={link} target="_blank" rel="noopener noreferrer" class="hover:underline decoration-slate-300 underline-offset-4">
+        {title}
+        <span class="sr-only">(opens in new tab)</span>
+      </a>
+    ) : (
+      title
+    )}
+  </h3>
+  <p class="text-slate-600 text-xs mt-0.5 leading-relaxed">{text}</p>
+</div>

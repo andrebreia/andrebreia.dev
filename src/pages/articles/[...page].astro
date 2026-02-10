@@ -1,0 +1,67 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Card from '../../components/Card.astro'
+import Pagination from '../../components/Pagination.astro'
+import Footer from '../../components/Footer.astro'
+import { siteConfig } from '../../data/site'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const articles = (await getCollection('articles')).filter((a) => !a.data.draft)
+
+  const sorted = articles.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0
+    return dateB - dateA
+  })
+
+  return paginate(sorted, { pageSize: 4 })
+}) satisfies GetStaticPaths
+
+const { page } = Astro.props
+---
+
+<BaseLayout title={`Articles${page.currentPage > 1 ? ` – Page ${page.currentPage}` : ''} – ${siteConfig.name}`} description="Thoughts on web development, tools, and the things I'm learning along the way.">
+  <Card>
+    <header class="relative mb-12">
+      <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
+        Articles
+      </h1>
+      <p class="text-sm text-slate-600">
+        Thoughts on web development, tools, and the things I'm learning along the way.
+      </p>
+    </header>
+
+    <div class="flex flex-col divide-y divide-slate-100">
+      {page.data.map((article) => {
+        const formattedDate = article.data.date
+          ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(article.data.date))
+          : null
+
+        return (
+          <a href={`/articles/${article.id}`} class="group py-4 first:pt-0 last:pb-0 block">
+            <div class="flex items-baseline justify-between gap-4 mb-1">
+              <h2 class="text-slate-900 font-medium text-sm group-hover:underline decoration-slate-300 underline-offset-4">
+                {article.data.title}
+              </h2>
+              {formattedDate && (
+                <time class="text-xs text-slate-400 shrink-0">{formattedDate}</time>
+              )}
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">{article.data.excerpt}</p>
+          </a>
+        )
+      })}
+    </div>
+
+    <Pagination
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+    />
+
+    <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+  </Card>
+</BaseLayout>

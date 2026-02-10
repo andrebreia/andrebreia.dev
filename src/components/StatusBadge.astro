@@ -1,0 +1,15 @@
+---
+interface Props {
+  label?: string
+}
+
+const { label = 'Available for projects' } = Astro.props
+---
+
+<div role="status" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/50">
+  <span class="relative flex h-2 w-2" aria-hidden="true">
+    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+  </span>
+  <span class="text-xs font-medium text-slate-500 tracking-tight">{label}</span>
+</div>

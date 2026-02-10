@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Card from '../../components/Card.astro'
+import Footer from '../../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import { siteConfig } from '../../data/site'
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('articles')).filter((a) => !a.data.draft)
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }))
+}
+
+const { article } = Astro.props
+const { Content } = await render(article)
+---
+
+<BaseLayout title={`${article.data.title} – ${siteConfig.name}`} description={article.data.excerpt}>
+  <Card>
+    <header class="relative mb-12">
+      <a id="back-link" href="/articles" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-600 transition-colors mb-8">
+        <Icon name="lucide:arrow-left" class="size-3.5" aria-hidden="true" />
+        Back to articles
+      </a>
+
+      <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
+        {article.data.title}
+      </h1>
+      <p class="text-sm text-slate-400">
+        {article.data.excerpt}
+      </p>
+    </header>
+
+    <article class="prose prose-slate prose-sm max-w-none
+      prose-headings:font-heading prose-headings:tracking-tight
+      prose-h2:text-lg prose-h2:mt-10 prose-h2:mb-4
+      prose-h3:text-base prose-h3:mt-6 prose-h3:mb-3
+      prose-p:text-slate-600 prose-p:leading-relaxed prose-p:font-light
+      prose-strong:text-slate-700 prose-strong:font-medium
+      prose-li:text-slate-600 prose-li:font-light
+      prose-ul:my-4">
+      <Content />
+    </article>
+
+    <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+  </Card>
+</BaseLayout>
+
+<script>
+  const link = document.getElementById('back-link')
+  if (link && document.referrer && new URL(document.referrer).pathname.startsWith('/articles')) {
+    link.addEventListener('click', (e) => {
+      e.preventDefault()
+      history.back()
+    })
+  }
+</script>

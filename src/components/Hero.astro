@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon/components'
+import Logo from './Logo.astro'
+import StatusBadge from './StatusBadge.astro'
+import SocialLinks from './SocialLinks.astro'
+
+interface SocialLink {
+  href: string
+  icon: string
+  label: string
+}
+
+interface Props {
+  heading: string
+  bio: string
+  links: SocialLink[]
+  statusLabel?: string
+  bookingUrl?: string
+}
+
+const { heading, bio, links, statusLabel, bookingUrl } = Astro.props
+---
+
+<header class="relative mb-16">
+  <div class="flex justify-between items-start mb-8">
+    <Logo />
+    <StatusBadge label={statusLabel} />
+  </div>
+
+  <h1 class="text-3xl sm:text-4xl font-medium text-slate-900 tracking-tight mb-4 leading-[1.1]">
+    {heading}
+  </h1>
+  <p class="text-base text-slate-600 leading-relaxed max-w-lg">
+    {bio}
+  </p>
+
+  {bookingUrl && (
+    <a
+      href={bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 mt-6 bg-slate-900 text-white text-sm font-medium rounded-xl px-5 py-2.5 hover:bg-slate-800 transition-colors"
+    >
+      <Icon name="lucide:calendar" class="size-4" aria-hidden="true" />
+      Schedule a call
+      <span class="sr-only">(opens in new tab)</span>
+    </a>
+  )}
+
+  <SocialLinks links={links} />
+</header>

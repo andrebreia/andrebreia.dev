@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  title: string
+  issuer: string
+  icon: string
+  url: string
+}
+
+const { title, issuer, icon, url } = Astro.props
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-3 -mx-3 rounded-xl hover:bg-slate-50 transition-all duration-200">
+  <div class="flex items-center gap-4">
+    <div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 group-hover:text-slate-600 group-hover:bg-white group-hover:shadow-sm transition-all shrink-0">
+      <Icon name={icon} class="size-5" aria-hidden="true" />
+    </div>
+    <div>
+      <h3 class="text-slate-900 font-medium text-sm">{title}</h3>
+      <p class="text-slate-600 text-xs mt-0.5">{issuer}</p>
+    </div>
+  </div>
+  <Icon name="solar:arrow-right-up-linear" class="size-4 text-slate-400 group-hover:text-slate-600 transition-colors" aria-hidden="true" />
+</a>

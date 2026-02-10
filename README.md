@@ -1,149 +1,43 @@
-# site.ext
+# Astro Starter Kit: Minimal
 
-## Installation instructions
-
-1. run `composer install`
-2. run `php please make:user`
-3. run `npm i` && `npm run dev`
-
-## Environment file contents
-
-### Development
-
-```env
-Dump your .env values here with sensitive data removed.
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-### Production
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-```env
-Dump your .env values here with sensitive data removed. The following is a production example that uses full static caching:
-APP_NAME="andrebreia"
-APP_ENV=production
-APP_KEY="base64:QIKhP/9+4m9+Q2YBJkpVoPXDkEteGwvIn2MttL77Acc="
-APP_DEBUG=false
-APP_URL=
+## 🚀 Project Structure
 
-DEBUGBAR_ENABLED=false
+Inside of your Astro project, you'll see the following folders and files:
 
-LOG_CHANNEL=stack
-
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-
-REDIS_HOST=127.0.0.1
-REDIS_DATABASE=
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.postmarkapp.com
-MAIL_PORT=587
-MAIL_ENCRYPTION=tls
-MAIL_USERNAME=
-MAIL_PASSWORD=
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME="${APP_NAME}"
-
-IMAGE_MANIPULATION_DRIVER=imagick
-
-STATAMIC_LICENSE_KEY=
-STATAMIC_THEME=business
-
-STATAMIC_API_ENABLED=false
-STATAMIC_REVISIONS_ENABLED=false
-
-STATAMIC_GIT_ENABLED=true
-STATAMIC_GIT_PUSH=true
-STATAMIC_GIT_DISPATCH_DELAY=5
-
-STATAMIC_STATIC_CACHING_STRATEGY=full
-SAVE_CACHED_IMAGES=true
-STATAMIC_STACHE_WATCHER=false
-STATAMIC_CACHE_TAGS_ENABLED=true
-
-#STATAMIC_CUSTOM_CMS_NAME=
-STATAMIC_CUSTOM_LOGO_OUTSIDE_URL="/visuals/client-logo.svg"
-#STATAMIC_CUSTOM_LOGO_NAV_URL=
-#STATAMIC_CUSTOM_FAVICON_URL=
-#STATAMIC_CUSTOM_CSS_URL=
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-## NGINX config
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-Add the following to your NGINX config __inside the server block__ enable static resource caching:
-```
-expires $expires;
-```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-And this __outside the server block__:
-```
-map $sent_http_content_type $expires {
-    default    off;
-    text/css    max;
-    ~image/    max;
-    application/javascript    max;
-    application/octet-stream    max;
-}
-```
+Any static assets, like images, can be placed in the `public/` directory.
 
-## Deploy script Ploi
+## 🧞 Commands
 
-```bash
-if [[ {COMMIT_MESSAGE} =~ "[BOT]" ]]; then
-    echo "Automatically committed on production. Nothing to deploy."
-    {DO_NOT_NOTIFY}
-    # Uncomment the following line when using zero downtime deployments.
-    # {CLEAR_NEW_RELEASE}
-    exit 0
-fi
+All commands are run from the root of the project, from a terminal:
 
-cd {SITE_DIRECTORY}
-git pull origin main
-composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-npm ci
-npm run build
-{SITE_PHP} artisan cache:clear
-{SITE_PHP} artisan config:cache
-{SITE_PHP} artisan route:cache
-{SITE_PHP} artisan statamic:stache:warm
-{SITE_PHP} artisan queue:restart
-{SITE_PHP} artisan statamic:search:update --all
-{SITE_PHP} artisan statamic:static:clear
-{SITE_PHP} artisan statamic:static:warm --queue
+## 👀 Want to learn more?
 
-{RELOAD_PHP_FPM}
-
-echo "🚀 Application deployed!"
-```
-
-## Deploy script Forge
-
-```bash
-if [[ $FORGE_DEPLOY_MESSAGE =~ "[BOT]" ]]; then
-    echo "Automatically committed on production. Nothing to deploy."
-    exit 0
-fi
-
-cd $FORGE_SITE_PATH
-git pull origin main
-$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-
-npm ci
-npm run build
-$FORGE_PHP artisan cache:clear
-$FORGE_PHP artisan config:cache
-$FORGE_PHP artisan route:cache
-$FORGE_PHP artisan statamic:stache:warm
-$FORGE_PHP artisan queue:restart
-$FORGE_PHP artisan statamic:search:update --all
-$FORGE_PHP artisan statamic:static:clear
-$FORGE_PHP artisan statamic:static:warm --queue
-
-( flock -w 10 9 || exit 1
-    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
-```
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

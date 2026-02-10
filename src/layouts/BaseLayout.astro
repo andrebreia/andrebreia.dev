@@ -1,0 +1,79 @@
+---
+import '../styles/global.css'
+import FloatingNav from '../components/FloatingNav.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'André Breia – Freelance Developer',
+  description = 'Full-stack developer specializing in Laravel, Vue/React, and TailwindCSS. Helping businesses build fast, reliable web applications.',
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://andrebreia.dev" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'André Breia',
+      url: 'https://andrebreia.dev',
+      jobTitle: 'Freelance Full-Stack Developer',
+      knowsAbout: ['Laravel', 'React', 'Vue', 'PHP', 'JavaScript', 'TypeScript', 'InertiaJs', 'Livewire'],
+      hasCredential: [
+        {
+          '@type': 'EducationalOccupationalCredential',
+          name: 'Laravel Certified Developer',
+          credentialCategory: 'Professional Certification',
+        },
+        {
+          '@type': 'EducationalOccupationalCredential',
+          name: 'Stripe Certified Architect',
+          credentialCategory: 'Professional Certification',
+        },
+      ],
+      sameAs: [
+        'https://github.com/andrebreia',
+        'https://www.linkedin.com/in/andre-breia',
+        'https://bsky.app/profile/andrebreia.dev',
+        'https://www.x.com/andrebreia',
+      ],
+    })} />
+  </head>
+  <body class="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 text-stone-600 bg-stone-100 p-4">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
+      Skip to content
+    </a>
+    <FloatingNav />
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,127 @@
+---
+layout: ../layouts/BaseLayout.astro
+title: "André Breia – Software Developer"
+description: "Freelance Laravel & JavaScript developer based in France. 10+ years building web applications for startups and agencies."
+---
+
+import { getCollection } from 'astro:content'
+import Card from '../components/Card.astro'
+import Hero from '../components/Hero.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+import ProjectItem from '../components/ProjectItem.astro'
+import ExperienceItem from '../components/ExperienceItem.astro'
+import ArticleCard from '../components/ArticleCard.astro'
+import ServiceItem from '../components/ServiceItem.astro'
+import TestimonialItem from '../components/TestimonialItem.astro'
+import CertificationItem from '../components/CertificationItem.astro'
+import CTASection from '../components/CTASection.astro'
+import Footer from '../components/Footer.astro'
+
+import { siteConfig, socialLinks } from '../data/site'
+import { experience } from '../data/experience'
+import { services } from '../data/services'
+import { testimonials } from '../data/testimonials'
+import { certifications } from '../data/certifications'
+
+export const projects = (await getCollection('projects'))
+  .sort((a, b) => Number(b.data.year) - Number(a.data.year))
+export const articles = (await getCollection('articles'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0
+    return dateB - dateA
+  })
+  .slice(0, 2)
+
+<Card>
+  <Hero
+    heading="I build web applications that work. Fast, reliable, and maintainable."
+    bio="I'm André, a freelance developer based in France with 10+ years of experience. I help startups and agencies ship products faster and keep them running smoothly."
+    links={socialLinks}
+    bookingUrl={siteConfig.bookingUrl}
+  />
+
+  {/* Services */}
+  <section class="mb-14">
+    <SectionHeading icon="solar:widget-2-linear" label="Services" />
+    <div class="flex flex-col gap-1">
+      {services.map((s) => (
+        <ServiceItem icon={s.icon} title={s.title} description={s.description} />
+      ))}
+    </div>
+  </section>
+
+  {/* Selected Work */}
+  <section class="mb-14">
+    <SectionHeading icon="solar:folder-with-files-linear" label="Selected Work" />
+    <div class="flex flex-col gap-1">
+      {projects.map((p) => (
+        <ProjectItem
+          title={p.data.title}
+          tags={p.data.tags}
+          year={p.data.year}
+          icon={p.data.icon}
+          logo={p.data.logo}
+          href={`/projects/${p.id}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  {/* Experience */}
+  <section class="mb-14">
+    <SectionHeading icon="solar:case-linear" label="Experience" />
+    <div class="space-y-6 relative">
+      <div class="absolute left-[5px] top-2 bottom-2 w-[1px] bg-slate-100"></div>
+      {experience.map((job) => (
+        <ExperienceItem
+          role={job.role}
+          period={job.period}
+          company={job.company}
+          description={job.description}
+          isCurrent={job.isCurrent}
+        />
+      ))}
+    </div>
+  </section>
+
+  {/* Certifications */}
+  <section class="mb-14">
+    <SectionHeading icon="solar:medal-ribbon-star-linear" label="Certifications" />
+    <div class="flex flex-col gap-1">
+      {certifications.map((c) => (
+        <CertificationItem icon={c.icon} title={c.title} issuer={c.issuer} url={c.url} />
+      ))}
+    </div>
+  </section>
+
+  {/* Testimonials */}
+  {/* <section class="mb-14">
+    <SectionHeading icon="solar:chat-square-like-linear" label="What Clients Say" />
+    <div class="space-y-4">
+      {testimonials.map((t) => (
+        <TestimonialItem quote={t.quote} author={t.author} role={t.role} company={t.company} />
+      ))}
+    </div>
+  </section> */}
+
+  {/* Articles */}
+  <section class="mb-14">
+    <SectionHeading icon="solar:pen-new-square-linear" label="Articles" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {articles.map((a) => (
+        <ArticleCard
+          title={a.data.title}
+          excerpt={a.data.excerpt}
+          href={`/articles/${a.id}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  {/* CTA */}
+  <CTASection bookingUrl={siteConfig.bookingUrl} />
+
+  <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+</Card>

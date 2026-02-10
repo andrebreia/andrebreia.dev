@@ -1,0 +1,29 @@
+---
+interface Props {
+  role: string
+  period: string
+  company: string
+  description: string
+  isCurrent?: boolean
+}
+
+const { role, period, company, description, isCurrent = false } = Astro.props
+---
+
+<div class="relative pl-6">
+  <div class:list={[
+    'absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-white ring-1 ring-slate-100',
+    isCurrent ? 'bg-slate-300' : 'bg-slate-200',
+  ]} aria-hidden="true"></div>
+  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+    <h3 class="text-slate-900 font-medium text-sm">
+      {role}
+      {isCurrent && <span class="sr-only">(Current)</span>}
+    </h3>
+    <span class="text-xs text-slate-500">{period}</span>
+  </div>
+  <div class="text-sm text-slate-600 mb-1">{company}</div>
+  <p class="text-sm text-slate-600 font-light leading-relaxed">
+    {description}
+  </p>
+</div>

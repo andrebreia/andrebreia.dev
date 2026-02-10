@@ -1,0 +1,108 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const pathname = Astro.url.pathname
+
+const links = [
+  { href: '/', label: 'Home', icon: 'solar:home-smile-linear' },
+  { href: '/about', label: 'About' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/uses', label: 'Uses' },
+]
+
+function isActive(href: string, current: string) {
+  if (href === '/') return current === '/'
+  return current.startsWith(href)
+}
+---
+
+<div id="floating-nav-wrapper" class="floating-nav-wrapper fixed left-0 right-0 z-40 flex justify-center animate-blur-enter">
+<nav
+  aria-label="Main navigation"
+  class="flex items-center gap-1 bg-slate-900/90 backdrop-blur-sm rounded-full px-2 py-2 shadow-lg shadow-black/20 border border-white/10 ring-1 ring-inset ring-white/[0.07]"
+>
+  {links.map((link) => {
+    const active = isActive(link.href, pathname)
+    return link.icon ? (
+      <a
+        href={link.href}
+        aria-label={link.label}
+        aria-current={active ? 'page' : undefined}
+        class:list={[
+          'flex items-center justify-center size-9 rounded-full transition-colors',
+          active ? 'text-white bg-white/10' : 'text-white/60 hover:text-white hover:bg-white/5',
+        ]}
+      >
+        <Icon name={link.icon} class="size-5" />
+      </a>
+    ) : (
+      <a
+        href={link.href}
+        aria-current={active ? 'page' : undefined}
+        class:list={[
+          'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
+          active ? 'text-white bg-white/10' : 'text-white/60 hover:text-white hover:bg-white/5',
+        ]}
+      >
+        {link.label}
+      </a>
+    )
+  })}
+</nav>
+</div>
+
+<style>
+  .floating-nav-wrapper {
+    bottom: 24px;
+    transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .floating-nav-wrapper > nav {
+    pointer-events: auto;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .floating-nav-wrapper.is-hidden {
+    bottom: -34px !important;
+  }
+  .floating-nav-wrapper.is-bouncing > nav {
+    animation: navBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes navBounce {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+</style>
+
+<script>
+  const wrapper = document.getElementById('floating-nav-wrapper')
+  if (wrapper) {
+    const nav = wrapper.querySelector('nav')!
+    let timeout: ReturnType<typeof setTimeout>
+    let isHidden = false
+
+    window.addEventListener('scroll', () => {
+      clearTimeout(timeout)
+      if (!isHidden) {
+        wrapper.classList.add('is-hidden')
+        isHidden = true
+      }
+      timeout = setTimeout(() => {
+        wrapper.classList.remove('is-hidden')
+        wrapper.classList.add('is-bouncing')
+        isHidden = false
+        nav.addEventListener('animationend', () => wrapper.classList.remove('is-bouncing'), { once: true })
+      }, 1500)
+    }, { passive: true })
+
+    nav.addEventListener('mouseenter', () => {
+      clearTimeout(timeout)
+      if (isHidden) {
+        wrapper.classList.remove('is-hidden')
+        wrapper.classList.add('is-bouncing')
+        isHidden = false
+        nav.addEventListener('animationend', () => wrapper.classList.remove('is-bouncing'), { once: true })
+      }
+    })
+  }
+</script>

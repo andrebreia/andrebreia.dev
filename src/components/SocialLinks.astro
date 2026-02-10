@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface SocialLink {
+  href: string
+  icon: string
+  label: string
+}
+
+interface Props {
+  links: SocialLink[]
+}
+
+const { links } = Astro.props
+---
+
+<nav aria-label="Social links" class="flex gap-4 mt-6">
+  {links.map((link) => (
+    <a
+      href={link.href}
+      aria-label={link.label}
+      class="text-slate-500 hover:text-slate-800 transition-colors"
+      target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+      rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+    >
+      <Icon name={link.icon} class="size-5" />
+    </a>
+  ))}
+</nav>

@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Card from '../components/Card.astro'
+import Footer from '../components/Footer.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+import UsesItem from '../components/UsesItem.astro'
+import { siteConfig } from '../data/site'
+---
+
+<BaseLayout title={`Uses – ${siteConfig.name}`} description="Software I use, gadgets I love, and other things I recommend.">
+  <Card>
+    <header class="relative mb-12">
+      <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
+        Software I use, gadgets I love, and other things I recommend.
+      </h1>
+      <p class="text-sm text-slate-600">
+        Here's an extensive list of all my favourite stuff where you can learn about the things I use to build software and stay productive.
+      </p>
+    </header>
+
+    {/* Workstation */}
+    <section class="mb-14">
+      <SectionHeading icon="solar:monitor-linear" label="Workstation" />
+      <div class="flex flex-col divide-y divide-slate-100">
+        <UsesItem
+          title='13" MacBook Air, M3, 24GB RAM (2024)'
+          text="This is my laptop and it's been great for dev work."
+        />
+        <UsesItem
+          title='LG 27UL850-W 27"'
+          text="This 4K display does the job and I love it."
+        />
+        <UsesItem
+          title="Magic Keyboard"
+          text="I like the feel of the keyboard, and it does the job."
+        />
+        <UsesItem
+          title="Magic Trackpad"
+          text="I enjoy using this trackpad. I have not had hand or wrist pain again since I replaced the mouse."
+        />
+        <UsesItem
+          title="Flexispot Standing Desk"
+          text="Paired with an IKEA table top. I stand on my desk 2 or 3 times a day."
+        />
+      </div>
+    </section>
+
+    {/* Development Tools */}
+    <section class="mb-14">
+      <SectionHeading icon="solar:code-square-linear" label="Development Tools" />
+      <div class="flex flex-col divide-y divide-slate-100">
+        <UsesItem
+          title="Cursor"
+          text="Mostly using it for the autocompletions."
+        />
+        <UsesItem
+          title="Warp"
+          text="This is my current terminal on Mac. Their natural language feature is pretty good."
+          link="https://warp.dev/"
+        />
+        <UsesItem
+          title="TablePlus"
+          text="After Sequel Pro stopped working on macOS the hunt for a new database management tool started. After trying a few of them, only TablePlus stuck."
+          link="https://tableplus.com/"
+        />
+        <UsesItem
+          title="Tinkerwell"
+          text="It's the perfect companion for every developer. It helps with debugging and quickly testing logic."
+          link="https://tinkerwell.app/"
+        />
+        <UsesItem
+          title="Ray"
+          text="This is a debugging tool I use frequently to make it easier to find even the most stubborn bugs."
+          link="https://spatie.be/products/ray"
+        />
+        <UsesItem
+          title="Claude Code/Codex"
+          text="AI pair-programming agents for scaffolding, bug fixes and refactoring. These help me be more productive."
+        />
+      </div>
+    </section>
+
+    {/* Productivity */}
+    <section class="mb-14">
+      <SectionHeading icon="solar:rocket-linear" label="Productivity" />
+      <div class="flex flex-col divide-y divide-slate-100">
+        <UsesItem
+          title="Raycast"
+          text="This is a launcher (and more) that replaces macOS spotlight and it's the ultimate productivity hack."
+          link="https://raycast.com/?via=andrebreia"
+        />
+        <UsesItem
+          title="Notion Calendar"
+          text="The best calendar app I've used in a long time. Formerly known as Cron."
+          link="https://www.notion.com/product/calendar"
+        />
+      </div>
+    </section>
+
+    <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+  </Card>
+</BaseLayout>

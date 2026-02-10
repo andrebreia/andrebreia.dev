@@ -1,0 +1,43 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  name: string
+  location: string
+  timezone: string
+}
+
+const { name, location, timezone } = Astro.props
+const year = new Date().getFullYear()
+---
+
+<footer class="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+  <div>
+    &copy; {year} {name}.
+  </div>
+  <div class="flex gap-6">
+    <span class="flex items-center gap-1.5">
+      <Icon name="solar:map-point-linear" class="size-3.5" aria-hidden="true" /> {location}
+    </span>
+    <span class="flex items-center gap-1.5" title={timezone}>
+      <Icon name="solar:clock-circle-linear" class="size-3.5" aria-hidden="true" />
+      <time id="local-time" data-tz={timezone}>{timezone}</time>
+    </span>
+  </div>
+</footer>
+
+<script>
+  function updateTime() {
+    const el = document.getElementById('local-time')
+    if (!el) return
+    const tz = el.dataset.tz || 'Europe/Paris'
+    const now = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: tz,
+    }).format(new Date())
+    el.textContent = now
+  }
+  updateTime()
+  setInterval(updateTime, 60_000)
+</script>

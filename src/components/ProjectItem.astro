@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  title: string
+  tags: string
+  year: string
+  icon: string
+  href: string
+  logo?: string
+}
+
+const { title, tags, year, icon, href, logo } = Astro.props
+---
+
+<a href={href} class="group flex items-center justify-between p-3 -mx-3 rounded-xl hover:bg-slate-50 transition-all duration-200">
+  <div class="flex items-center gap-4">
+    {logo ? (
+      <div class="relative w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden group-hover:bg-white group-hover:shadow-sm transition-all shrink-0">
+        <img src={logo} alt="" class="w-full h-full object-contain p-1.5 relative z-0" />
+        <div class="absolute inset-0 bg-slate-500 mix-blend-color opacity-80 transition-opacity duration-200 group-hover:opacity-0 z-10"></div>
+      </div>
+    ) : (
+      <div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 group-hover:text-slate-600 group-hover:bg-white group-hover:shadow-sm transition-all shrink-0">
+        <Icon name={icon} class="size-5" aria-hidden="true" />
+      </div>
+    )}
+    <div>
+      <h3 class="text-slate-900 font-medium text-sm">{title}</h3>
+      <p class="text-slate-500 text-xs mt-0.5">{tags}</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <span class="text-xs text-slate-500 font-medium hidden sm:block">{year}</span>
+    <Icon name="solar:arrow-right-linear" class="size-4 text-slate-400 group-hover:text-slate-600 transition-colors" aria-hidden="true" />
+  </div>
+</a>
