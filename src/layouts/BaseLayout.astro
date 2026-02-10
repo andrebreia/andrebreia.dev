@@ -5,12 +5,21 @@ import FloatingNav from '../components/FloatingNav.astro'
 interface Props {
   title?: string
   description?: string
+  ogImage?: string
+  ogType?: 'website' | 'article'
+  jsonLd?: Record<string, any>
 }
 
 const {
   title = 'André Breia – Freelance Developer',
   description = 'Full-stack developer specializing in Laravel, Vue/React, and TailwindCSS. Helping businesses build fast, reliable web applications.',
+  ogImage = '/og-image.png',
+  ogType = 'website',
+  jsonLd,
 } = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
+const ogImageUrl = new URL(ogImage, Astro.site).href
 ---
 
 <!doctype html>
@@ -20,6 +29,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Fonts -->
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
@@ -35,11 +45,15 @@ const {
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://andrebreia.dev" />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -68,8 +82,11 @@ const {
         'https://www.x.com/andrebreia',
       ],
     })} />
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
   </head>
-  <body class="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 text-stone-600 bg-stone-100 p-4">
+  <body class="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 text-slate-600 bg-slate-100 p-4">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
       Skip to content
     </a>

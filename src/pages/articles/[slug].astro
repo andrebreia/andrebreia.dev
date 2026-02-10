@@ -16,9 +16,23 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props
 const { Content } = await render(article)
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: article.data.title,
+  description: article.data.excerpt,
+  ...(article.data.date && { datePublished: new Date(article.data.date).toISOString() }),
+  url: new URL(`/articles/${article.id}`, Astro.site).href,
+  author: {
+    '@type': 'Person',
+    name: siteConfig.name,
+    url: siteConfig.url,
+  },
+}
 ---
 
-<BaseLayout title={`${article.data.title} – ${siteConfig.name}`} description={article.data.excerpt}>
+<BaseLayout title={`${article.data.title} – ${siteConfig.name}`} description={article.data.excerpt} ogImage={`/og/articles/${article.id}.png`} ogType="article" jsonLd={articleJsonLd}>
   <Card>
     <header class="relative mb-12">
       <a id="back-link" href="/articles" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-600 transition-colors mb-8">

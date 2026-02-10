@@ -20,7 +20,7 @@ const { project } = Astro.props
 const { Content } = await render(project)
 ---
 
-<BaseLayout title={`${project.data.title} – ${siteConfig.name}`} description={project.data.excerpt}>
+<BaseLayout title={`${project.data.title} – ${siteConfig.name}`} description={project.data.excerpt} ogImage={`/og/projects/${project.id}.png`}>
   <Card>
     <header class="relative mb-12">
       <div class="flex items-center gap-4 mb-4">

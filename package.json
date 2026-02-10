@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
+    "@astrojs/sitemap": "^3.7.0",
     "@iconify-json/lucide": "^1.2.89",
     "@iconify-json/ri": "^1.2.9",
     "@iconify-json/simple-icons": "^1.2.69",
     "@iconify-json/solar": "^1.2.5",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "astro-icon": "^1.1.5",
     "geist": "^1.7.0",
+    "satori": "^0.19.1",
     "tailwindcss": "^4.1.18"
   }
 }
