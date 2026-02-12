@@ -16,9 +16,10 @@ interface Props {
   links: SocialLink[]
   statusLabel?: string
   bookingUrl?: string
+  emailHref?: string
 }
 
-const { heading, bio, links, statusLabel, bookingUrl } = Astro.props
+const { heading, bio, links, statusLabel, bookingUrl, emailHref = 'mailto:contact@andrebreia.dev' } = Astro.props
 ---
 
 <header class="relative mb-16">
@@ -34,18 +35,27 @@ const { heading, bio, links, statusLabel, bookingUrl } = Astro.props
     {bio}
   </p>
 
-  {bookingUrl && (
+  <div class="flex flex-wrap gap-3 mt-6">
+    {bookingUrl && (
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-slate-900 text-white text-sm font-medium rounded-xl px-5 py-2.5 hover:bg-slate-800 transition-colors"
+      >
+        <Icon name="lucide:calendar" class="size-4" aria-hidden="true" />
+        Schedule a call
+        <span class="sr-only">(opens in new tab)</span>
+      </a>
+    )}
     <a
-      href={bookingUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 mt-6 bg-slate-900 text-white text-sm font-medium rounded-xl px-5 py-2.5 hover:bg-slate-800 transition-colors"
+      href={emailHref}
+      class="inline-flex items-center gap-2 border border-slate-200 text-slate-700 text-sm font-medium rounded-xl px-5 py-2.5 hover:bg-slate-50 hover:border-slate-300 transition-colors"
     >
-      <Icon name="lucide:calendar" class="size-4" aria-hidden="true" />
-      Schedule a call
-      <span class="sr-only">(opens in new tab)</span>
+      <Icon name="lucide:mail" class="size-4" aria-hidden="true" />
+      Send an email
     </a>
-  )}
+  </div>
 
   <SocialLinks links={links} />
 </header>

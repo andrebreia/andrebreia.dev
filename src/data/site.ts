@@ -31,9 +31,4 @@ export const socialLinks = [
     icon: 'lucide:twitter',
     label: 'X',
   },
-  {
-    href: 'mailto:contact@andrebreia.dev',
-    icon: 'lucide:mail',
-    label: 'Email',
-  },
 ]
