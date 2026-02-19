@@ -1,109 +1,274 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 
-const pathname = Astro.url.pathname
+const pathname = Astro.url.pathname;
 
 const links = [
-  { href: '/', label: 'Home', icon: 'solar:home-smile-linear' },
-  { href: '/services', label: 'Services' },
-  { href: '/about', label: 'About' },
-  { href: '/articles', label: 'Articles' },
-  { href: '/uses', label: 'Uses' },
-]
+    { href: "/", label: "Home", icon: "solar:home-smile-linear" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services", hasChildren: true },
+    { href: "/articles", label: "Articles" },
+    { href: "/uses", label: "Uses" },
+];
+
+const services = (await getCollection("services")).sort(
+    (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
+);
 
 function isActive(href: string, current: string) {
-  if (href === '/') return current === '/'
-  return current.startsWith(href)
+    if (href === "/") return current === "/";
+    return current.startsWith(href);
 }
 ---
 
-<div id="floating-nav-wrapper" class="floating-nav-wrapper fixed left-0 right-0 z-40 flex justify-center">
-<nav
-  aria-label="Main navigation"
-  class="flex items-center gap-1 bg-slate-900/90 backdrop-blur-sm rounded-full px-2 py-2 shadow-lg shadow-black/20 border border-white/10 ring-1 ring-inset ring-white/[0.07]"
+<div
+    id="floating-nav-wrapper"
+    class="floating-nav-wrapper fixed left-0 right-0 z-40 flex justify-center"
 >
-  {links.map((link) => {
-    const active = isActive(link.href, pathname)
-    return link.icon ? (
-      <a
-        href={link.href}
-        aria-label={link.label}
-        aria-current={active ? 'page' : undefined}
-        class:list={[
-          'flex items-center justify-center size-9 rounded-full transition-colors',
-          active ? 'text-white bg-white/10' : 'text-white/60 hover:text-white hover:bg-white/5',
-        ]}
-      >
-        <Icon name={link.icon} class="size-5" />
-      </a>
-    ) : (
-      <a
-        href={link.href}
-        aria-current={active ? 'page' : undefined}
-        class:list={[
-          'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
-          active ? 'text-white bg-white/10' : 'text-white/60 hover:text-white hover:bg-white/5',
-        ]}
-      >
-        {link.label}
-      </a>
-    )
-  })}
-</nav>
+    <nav
+        aria-label="Main navigation"
+        class="flex items-center gap-1 bg-slate-900/90 backdrop-blur-sm rounded-full px-2 py-2 shadow-lg shadow-black/20 border border-white/10 ring-1 ring-inset ring-white/[0.07]"
+    >
+        {
+            links.map((link) => {
+                const active = isActive(link.href, pathname);
+
+                if (link.hasChildren) {
+                    return (
+                        <div
+                            class="services-stack relative"
+                            id="services-stack"
+                        >
+                            <a
+                                href={link.href}
+                                aria-current={active ? "page" : undefined}
+                                class:list={[
+                                    "services-trigger px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                                    active
+                                        ? "text-white bg-white/10"
+                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                ]}
+                            >
+                                {link.label}
+                            </a>
+                            <div
+                                class="stack-fan"
+                                aria-label="Services submenu"
+                            >
+                                {services.map((service, i) => (
+                                    <a
+                                        href={`/services/${service.id}`}
+                                        class="stack-item"
+                                        data-index={i}
+                                        data-total={services.length}
+                                    >
+                                        <Icon
+                                            name={service.data.icon}
+                                            class="size-4"
+                                        />
+                                        <span>{service.data.title}</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                }
+
+                return link.icon ? (
+                    <a
+                        href={link.href}
+                        aria-label={link.label}
+                        aria-current={active ? "page" : undefined}
+                        class:list={[
+                            "flex items-center justify-center size-9 rounded-full transition-colors",
+                            active
+                                ? "text-white bg-white/10"
+                                : "text-white/60 hover:text-white hover:bg-white/5",
+                        ]}
+                    >
+                        <Icon name={link.icon} class="size-5" />
+                    </a>
+                ) : (
+                    <a
+                        href={link.href}
+                        aria-current={active ? "page" : undefined}
+                        class:list={[
+                            "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                            active
+                                ? "text-white bg-white/10"
+                                : "text-white/60 hover:text-white hover:bg-white/5",
+                        ]}
+                    >
+                        {link.label}
+                    </a>
+                );
+            })
+        }
+    </nav>
 </div>
 
 <style>
-  .floating-nav-wrapper {
-    bottom: 24px;
-    transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-  }
-  .floating-nav-wrapper > nav {
-    pointer-events: auto;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .floating-nav-wrapper.is-hidden {
-    bottom: -34px !important;
-  }
-  .floating-nav-wrapper.is-bouncing > nav {
-    animation: navBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  @keyframes navBounce {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
+    .floating-nav-wrapper {
+        bottom: 24px;
+        transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+    }
+    .floating-nav-wrapper > nav {
+        pointer-events: auto;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .floating-nav-wrapper.is-hidden {
+        bottom: -34px !important;
+    }
+    .floating-nav-wrapper.is-bouncing > nav {
+        animation: navBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes navBounce {
+        0% {
+            transform: scale(1);
+        }
+        40% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Services fan stack */
+    .services-stack {
+        position: relative;
+    }
+
+    .stack-fan {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 6px;
+        padding-bottom: 24px;
+        pointer-events: none;
+    }
+
+    .stack-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(15, 23, 42, 0.92);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transform-origin: left bottom;
+        opacity: 0;
+        transform: translateY(8px) scale(0.8) rotate(0deg);
+        transition:
+            transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+            opacity 0.2s ease;
+        pointer-events: none;
+        text-decoration: none;
+    }
+
+    .stack-item:hover {
+        background: rgba(30, 41, 59, 0.95);
+        color: white;
+    }
+
+    .services-stack.is-open .stack-fan {
+        pointer-events: auto;
+    }
+
+    .services-stack.is-open .stack-item {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(var(--fan-rotate, 0deg));
+        pointer-events: auto;
+    }
 </style>
 
 <script>
-  const wrapper = document.getElementById('floating-nav-wrapper')
-  if (wrapper) {
-    const nav = wrapper.querySelector('nav')!
-    let timeout: ReturnType<typeof setTimeout>
-    let isHidden = false
+    const wrapper = document.getElementById("floating-nav-wrapper");
+    if (wrapper) {
+        const nav = wrapper.querySelector("nav")!;
+        let timeout: ReturnType<typeof setTimeout>;
+        let isHidden = false;
 
-    window.addEventListener('scroll', () => {
-      clearTimeout(timeout)
-      if (!isHidden) {
-        wrapper.classList.add('is-hidden')
-        isHidden = true
-      }
-      timeout = setTimeout(() => {
-        wrapper.classList.remove('is-hidden')
-        wrapper.classList.add('is-bouncing')
-        isHidden = false
-        nav.addEventListener('animationend', () => wrapper.classList.remove('is-bouncing'), { once: true })
-      }, 1500)
-    }, { passive: true })
+        window.addEventListener(
+            "scroll",
+            () => {
+                clearTimeout(timeout);
+                if (!isHidden) {
+                    wrapper.classList.add("is-hidden");
+                    isHidden = true;
+                }
+                timeout = setTimeout(() => {
+                    wrapper.classList.remove("is-hidden");
+                    wrapper.classList.add("is-bouncing");
+                    isHidden = false;
+                    nav.addEventListener(
+                        "animationend",
+                        () => wrapper.classList.remove("is-bouncing"),
+                        { once: true },
+                    );
+                }, 1500);
+            },
+            { passive: true },
+        );
 
-    nav.addEventListener('mouseenter', () => {
-      clearTimeout(timeout)
-      if (isHidden) {
-        wrapper.classList.remove('is-hidden')
-        wrapper.classList.add('is-bouncing')
-        isHidden = false
-        nav.addEventListener('animationend', () => wrapper.classList.remove('is-bouncing'), { once: true })
-      }
-    })
-  }
+        nav.addEventListener("mouseenter", () => {
+            clearTimeout(timeout);
+            if (isHidden) {
+                wrapper.classList.remove("is-hidden");
+                wrapper.classList.add("is-bouncing");
+                isHidden = false;
+                nav.addEventListener(
+                    "animationend",
+                    () => wrapper.classList.remove("is-bouncing"),
+                    { once: true },
+                );
+            }
+        });
+    }
+
+    // Services fan stack
+    const stack = document.getElementById("services-stack");
+    if (stack) {
+        const items = stack.querySelectorAll<HTMLElement>(".stack-item");
+        const total = items.length;
+
+        // Set staggered delays and rotation per item
+        items.forEach((item, i) => {
+            item.style.transitionDelay = `${i * 40}ms`;
+            const rotation = -(i * 3);
+            item.style.setProperty("--fan-rotate", `${rotation}deg`);
+        });
+
+        let closeTimeout: ReturnType<typeof setTimeout>;
+
+        stack.addEventListener("mouseenter", () => {
+            clearTimeout(closeTimeout);
+            // Reset open delays
+            items.forEach((item, i) => {
+                item.style.transitionDelay = `${i * 40}ms`;
+            });
+            stack.classList.add("is-open");
+        });
+
+        stack.addEventListener("mouseleave", () => {
+            closeTimeout = setTimeout(() => {
+                // Reverse stagger for closing
+                items.forEach((item, i) => {
+                    item.style.transitionDelay = `${(total - 1 - i) * 30}ms`;
+                });
+                stack.classList.remove("is-open");
+            }, 50);
+        });
+    }
 </script>
