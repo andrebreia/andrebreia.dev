@@ -5,17 +5,22 @@ interface Props {
   icon: string
   title: string
   description: string
+  href?: string
 }
 
-const { icon, title, description } = Astro.props
+const { icon, title, description, href } = Astro.props
+const Tag = href ? 'a' : 'div'
 ---
 
-<div class="group flex items-start gap-4 p-3 -mx-3 rounded-xl">
+<Tag href={href} class:list={["group flex items-start gap-4 p-3 -mx-3 rounded-xl", href && "hover:bg-slate-50 transition-colors"]}>
   <div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 shrink-0">
     <Icon name={icon} class="size-5" aria-hidden="true" />
   </div>
-  <div>
-    <h3 class="text-slate-900 font-medium text-sm">{title}</h3>
+  <div class="flex-1">
+    <div class="flex items-center justify-between gap-2">
+      <h3 class:list={["text-slate-900 font-medium text-sm", href && "group-hover:underline decoration-slate-300 underline-offset-4"]}>{title}</h3>
+      {href && <Icon name="solar:arrow-right-linear" class="size-4 text-slate-400 group-hover:text-slate-600 transition-colors shrink-0" aria-hidden="true" />}
+    </div>
     <p class="text-slate-600 text-sm mt-0.5 leading-relaxed">{description}</p>
   </div>
-</div>
+</Tag>
