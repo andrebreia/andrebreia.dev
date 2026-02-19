@@ -24,4 +24,15 @@ const articles = defineCollection({
   }),
 })
 
-export const collections = { projects, articles }
+const services = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/services' }),
+  schema: z.object({
+    title: z.string(),
+    icon: z.string(),
+    description: z.string(),
+    excerpt: z.string(),
+    order: z.number().optional(),
+  }),
+})
+
+export const collections = { projects, articles, services }

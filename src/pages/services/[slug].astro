@@ -1,0 +1,67 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Card from '../../components/Card.astro'
+import Footer from '../../components/Footer.astro'
+import CTASection from '../../components/CTASection.astro'
+import { Icon } from 'astro-icon/components'
+import { siteConfig } from '../../data/site'
+
+export async function getStaticPaths() {
+  const services = await getCollection('services')
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }))
+}
+
+const { service } = Astro.props
+const { Content } = await render(service)
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.data.title,
+  description: service.data.excerpt,
+  provider: {
+    '@type': 'Person',
+    name: 'André Breia',
+    url: 'https://andrebreia.dev',
+  },
+}
+---
+
+<BaseLayout
+  title={`${service.data.title} – ${siteConfig.name}`}
+  description={service.data.excerpt}
+  ogImage={`/og/services/${service.id}.png`}
+  jsonLd={jsonLd}
+>
+  <Card>
+    <header class="relative mb-12">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 shrink-0">
+          <Icon name={service.data.icon} class="size-5" aria-hidden="true" />
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight">
+          {service.data.title}
+        </h1>
+      </div>
+    </header>
+
+    <article class="prose prose-slate prose-sm max-w-none
+      prose-headings:font-heading prose-headings:tracking-tight
+      prose-h2:text-lg prose-h2:mt-10 prose-h2:mb-4
+      prose-p:text-slate-600 prose-p:leading-relaxed
+      prose-strong:text-slate-700 prose-strong:font-medium
+      prose-li:text-slate-600
+      prose-ul:my-4">
+      <Content />
+    </article>
+
+    <CTASection bookingUrl={siteConfig.bookingUrl} />
+
+    <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+  </Card>
+</BaseLayout>

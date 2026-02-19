@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Card from '../../components/Card.astro'
+import Footer from '../../components/Footer.astro'
+import CTASection from '../../components/CTASection.astro'
+import ServiceItem from '../../components/ServiceItem.astro'
+import { siteConfig } from '../../data/site'
+
+const services = (await getCollection('services'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+---
+
+<BaseLayout title={`Services – ${siteConfig.name}`} description="Freelance web development services: full-stack development, MVP builds, consulting, and API integrations. Based in France, working worldwide.">
+  <Card>
+    <header class="relative mb-12">
+      <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
+        Services
+      </h1>
+      <p class="text-sm text-slate-600 leading-relaxed max-w-lg">
+        I work with startups and agencies on full-stack web applications — building from scratch, shipping MVPs, connecting third-party services, or just being a second pair of eyes on something that already exists.
+      </p>
+    </header>
+
+    <div class="flex flex-col gap-1">
+      {services.map((s) => (
+        <ServiceItem
+          icon={s.data.icon}
+          title={s.data.title}
+          description={s.data.excerpt}
+          href={`/services/${s.id}`}
+        />
+      ))}
+    </div>
+
+    <CTASection bookingUrl={siteConfig.bookingUrl} />
+
+    <Footer name={siteConfig.name} location={siteConfig.location} timezone={siteConfig.timezone} />
+  </Card>
+</BaseLayout>

@@ -19,10 +19,11 @@ import Footer from '../components/Footer.astro'
 
 import { siteConfig, socialLinks } from '../data/site'
 import { experience } from '../data/experience'
-import { services } from '../data/services'
 import { testimonials } from '../data/testimonials'
 import { certifications } from '../data/certifications'
 
+export const services = (await getCollection('services'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
 export const projects = (await getCollection('projects'))
   .sort((a, b) => Number(b.data.year) - Number(a.data.year))
 export const articles = (await getCollection('articles'))
@@ -47,7 +48,7 @@ export const articles = (await getCollection('articles'))
     <SectionHeading icon="solar:widget-2-linear" label="Services" />
     <div class="flex flex-col gap-1">
       {services.map((s) => (
-        <ServiceItem icon={s.icon} title={s.title} description={s.description} />
+        <ServiceItem icon={s.data.icon} title={s.data.title} description={s.data.description} href={`/services/${s.id}`} />
       ))}
     </div>
   </section>
