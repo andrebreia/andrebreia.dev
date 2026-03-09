@@ -6,6 +6,30 @@ interface Props {
 }
 
 const { title, text, link } = Astro.props
+
+// Parse markdown-style links [text](url) in the text prop
+function parseTextWithLinks(input: string) {
+  const parts: Array<{ type: 'text'; value: string } | { type: 'link'; text: string; url: string }> = []
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g
+  let lastIndex = 0
+  let match
+
+  while ((match = regex.exec(input)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push({ type: 'text', value: input.slice(lastIndex, match.index) })
+    }
+    parts.push({ type: 'link', text: match[1], url: match[2] })
+    lastIndex = match.index + match[0].length
+  }
+
+  if (lastIndex < input.length) {
+    parts.push({ type: 'text', value: input.slice(lastIndex) })
+  }
+
+  return parts
+}
+
+const textParts = parseTextWithLinks(text)
 ---
 
 <div class="group py-3">
@@ -19,5 +43,13 @@ const { title, text, link } = Astro.props
       title
     )}
   </h3>
-  <p class="text-slate-600 text-sm mt-0.5 leading-relaxed">{text}</p>
+  <p class="text-slate-600 text-sm mt-0.5 leading-relaxed">
+    {textParts.map((part) =>
+      part.type === 'link' ? (
+        <a href={part.url} target="_blank" rel="noopener noreferrer" class="text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-500">{part.text}</a>
+      ) : (
+        part.value
+      )
+    )}
+  </p>
 </div>
