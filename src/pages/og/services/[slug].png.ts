@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const GET: APIRoute = async ({ props }) => {
   const { service } = props as { service: any }
   const png = await generateOgImage({
-    title: service.data.title,
+    title: service.data.headline ?? service.data.title,
     description: service.data.excerpt,
   })
 

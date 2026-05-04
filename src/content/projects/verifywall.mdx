@@ -8,4 +8,30 @@ excerpt: "An API service that protects online platforms from fake sign-ups, disp
 url: "https://verifywall.com?ref=andrebreia.dev"
 ---
 
-An API service that protects online platforms from fake sign-ups, disposable emails, VPN abuse, and bot registrations. A single endpoint cross-checks email addresses, domains, and IP addresses against continuously-updated threat intelligence to return a clear risk assessment.
+VerifyWall is an API service that protects online platforms from fake sign-ups, disposable emails, VPN abuse, and bot registrations. A single endpoint cross-checks email addresses, domains, and IP addresses against threat intelligence to return a clear risk assessment.
+
+## Problem
+
+Many SaaS products only discover account abuse after it has already created support, billing, moderation, or deliverability problems. The product needed to make that risk visible at sign-up time without adding friction for legitimate users.
+
+The API had to be simple enough for developers to adopt quickly, but reliable enough to sit inside a critical onboarding flow.
+
+## Role
+
+I designed and built the core product as a full-stack SaaS application. That included the public API, authentication, dashboard flows, risk checks, billing foundations, documentation, deployment, and the surrounding operational pieces needed to keep the service useful.
+
+## Stack
+
+Laravel, PHP, React paired with Inertia, TailwindCSS, external data providers, background jobs, API authentication, and deployment automation.
+
+## Implementation highlights
+
+The main work was turning multiple risk signals into a predictable API response. That meant normalizing provider data, handling failures carefully, and keeping the response shape clear enough that customers can make product decisions from it.
+
+The application also needed the usual SaaS foundations: account management, usage tracking, API keys, documentation, and internal visibility into how checks are being used.
+
+## Outcome
+
+VerifyWall is a focused SaaS product with a clear developer-facing API and a practical integration path for platforms that need stronger sign-up protection.
+
+Related services: [Full-Stack Development](/services/full-stack-development), [MVP Development](/services/mvp-development), and [API & Integrations](/services/api-integrations).

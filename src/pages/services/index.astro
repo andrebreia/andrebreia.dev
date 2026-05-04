@@ -11,7 +11,7 @@ const services = (await getCollection('services'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
 ---
 
-<BaseLayout title={`Services – ${siteConfig.name}`} description="Freelance web development services: full-stack development, MVP builds, consulting, and API integrations. Based in France, working worldwide.">
+<BaseLayout title={`Services – ${siteConfig.name}`} description="Freelance web development services for startups and agencies: full-stack development, MVP builds, consulting, and API integrations.">
   <Card>
     <header class="relative mb-12">
       <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">

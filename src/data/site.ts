@@ -3,7 +3,7 @@ export const siteConfig = {
   initials: 'AB',
   title: 'André Breia – Software Developer',
   description:
-    'Freelance Laravel & JavaScript developer based in France. 10+ years building web applications for startups and agencies.',
+    'Freelance Laravel & JavaScript developer with 10+ years building web applications for startups and agencies.',
   url: 'https://andrebreia.dev',
   location: 'France',
   timezone: 'Europe/Paris',

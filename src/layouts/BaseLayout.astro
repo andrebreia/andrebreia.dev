@@ -8,13 +8,20 @@ interface Props {
   ogImage?: string
   ogType?: 'website' | 'article'
   jsonLd?: Record<string, any>
+  frontmatter?: {
+    title?: string
+    description?: string
+    ogImage?: string
+    ogType?: 'website' | 'article'
+  }
 }
 
+const frontmatter = Astro.props.frontmatter ?? {}
 const {
-  title = 'André Breia – Freelance Developer',
-  description = 'Full-stack developer specializing in Laravel, Vue/React, and TailwindCSS. Helping businesses build fast, reliable web applications.',
-  ogImage = '/og-image.png',
-  ogType = 'website',
+  title = frontmatter.title ?? 'André Breia – Freelance Developer',
+  description = frontmatter.description ?? 'Full-stack developer specializing in Laravel, Vue/React, and TailwindCSS. Helping businesses build fast, reliable web applications.',
+  ogImage = frontmatter.ogImage ?? '/og-image.png',
+  ogType = frontmatter.ogType ?? 'website',
   jsonLd,
 } = Astro.props
 

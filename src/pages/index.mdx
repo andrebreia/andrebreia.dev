@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/BaseLayout.astro
-title: "André Breia – Software Developer"
-description: "Freelance Laravel & JavaScript developer based in France. 10+ years building web applications for startups and agencies."
+title: "André Breia – Freelance Laravel & JavaScript Developer"
+description: "Freelance Laravel and JavaScript developer helping startups and agencies build reliable web applications with Laravel, Vue, React, Inertia, Livewire, and TailwindCSS."
 ---
 
 import { getCollection } from 'astro:content'
@@ -37,8 +37,8 @@ export const articles = (await getCollection('articles'))
 
 <Card>
   <Hero
-    heading="I build web applications that work. Fast, reliable, and maintainable."
-    bio="I'm André, a freelance developer based in France with 10+ years of experience. I help startups and agencies ship products faster and keep them running smoothly."
+    heading="Freelance Laravel & JavaScript developer for fast, reliable web applications."
+    bio="I'm André, a freelance developer with 10+ years of experience. I help startups and agencies ship Laravel, Vue, React, Inertia, Livewire, and TailwindCSS projects faster and keep them running smoothly."
     links={socialLinks}
     bookingUrl={siteConfig.bookingUrl}
   />

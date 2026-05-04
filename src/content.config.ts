@@ -20,6 +20,7 @@ const articles = defineCollection({
     title: z.string(),
     excerpt: z.string(),
     date: z.coerce.date().optional(),
+    dateModified: z.coerce.date().optional(),
     draft: z.boolean().optional(),
   }),
 })
@@ -28,6 +29,8 @@ const services = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
+    seoTitle: z.string().optional(),
+    headline: z.string().optional(),
     icon: z.string(),
     description: z.string(),
     excerpt: z.string(),

@@ -18,12 +18,18 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props
 const { Content } = await render(service)
+const seoTitle = service.data.seoTitle ?? service.data.title
+const headline = service.data.headline ?? service.data.title
+const canonicalUrl = new URL(`/services/${service.id}/`, Astro.site).href
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: service.data.title,
+  name: headline,
   description: service.data.excerpt,
+  url: canonicalUrl,
+  serviceType: service.data.title,
+  areaServed: 'Worldwide',
   provider: {
     '@type': 'Person',
     name: 'André Breia',
@@ -33,7 +39,7 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={`${service.data.title} – ${siteConfig.name}`}
+  title={`${seoTitle} – ${siteConfig.name}`}
   description={service.data.excerpt}
   ogImage={`/og/services/${service.id}.png`}
   jsonLd={jsonLd}
@@ -45,7 +51,7 @@ const jsonLd = {
           <Icon name={service.data.icon} class="size-5" aria-hidden="true" />
         </div>
         <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight">
-          {service.data.title}
+          {headline}
         </h1>
       </div>
     </header>

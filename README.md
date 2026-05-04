@@ -43,3 +43,7 @@ public/
 | `npm run dev`     | Start dev server at `localhost:4321`         |
 | `npm run build`   | Build production site to `./dist/`           |
 | `npm run preview` | Preview the build locally before deploying   |
+
+## Deployment notes
+
+- Live HTML currently returns `cache-control: no-cache` through Cloudflare, while hashed static assets are cached long-term. If improving Core Web Vitals or TTFB becomes a priority, tune the hosting or Cloudflare cache rules for static HTML with an appropriate edge `s-maxage` and stale revalidation policy.

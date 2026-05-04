@@ -3,9 +3,9 @@ import { generateOgImage } from '../lib/og-image'
 
 export const GET: APIRoute = async () => {
   const png = await generateOgImage({
-    title: 'I build web applications that work.',
+    title: 'Freelance Laravel & JavaScript Developer',
     description:
-      'Freelance developer based in France with 10+ years of experience helping startups and agencies ship products faster.',
+      '10+ years of experience helping startups and agencies ship reliable Laravel, Vue, React, Inertia, Livewire, and TailwindCSS projects.',
   })
 
   return new Response(png, {
