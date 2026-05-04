@@ -1,26 +1,222 @@
 ---
 title: "Building a SaaS MVP with Laravel in 2 weeks"
-excerpt: "A practical walkthrough of shipping a production-ready MVP fast — what to build, what to skip, and the tech decisions that matter."
-date: 2026-02-21
-draft: true
+excerpt: "What I would actually build, what I would leave out, and where Laravel helps when the timeline is tight."
+date: 2026-05-04
 ---
 
 ## The brief
 
-TODO: Set the scene — a client needs to validate a SaaS idea quickly. What the product does, what the constraints are.
+Two weeks is not enough time to build a complete SaaS product.
+
+It might be enough time to build something useful, though.
+
+A SaaS MVP should not try to look like the product you hope to have in a year. That is how you end up spending three days on billing settings nobody needs yet, or a permissions setup for a team structure that does not exist.
+
+The first version has a much smaller job. It needs to prove that the main thing is useful enough for real people to use, pay for, or at least complain about in a specific way. Vague feedback is not very helpful. A working product gets you better feedback.
+
+When I think about a two-week Laravel MVP, I am usually thinking about one of these situations:
+
+- A founder has a clear problem and wants to validate the first product flow.
+- A product team wants to test a new direction without distracting the main team for months.
+- An agency needs a client project launched quickly, but does not want a codebase nobody wants to touch afterwards.
+
+The constraints are boring but useful. Keep the scope narrow. Use a stack you know. Make every feature earn its place.
+
+For example, imagine a small B2B SaaS product where users can sign up, create a workspace, invite someone, connect a data source, review records, and export a report.
+
+There might be billing later. There might be reporting later. There might be a proper admin area later.
+
+For now, the question is simpler: does anyone care enough about the main thing?
 
 ## Tech decisions upfront
 
-TODO: Laravel + Inertia + Vue + TailwindCSS. Why this stack for speed. Choosing between Stripe Billing vs Paddle. Auth with Laravel Breeze.
+The fastest stack is usually the one you already know well. For me, that often means Laravel, Inertia, Vue or React, and TailwindCSS.
 
-## Week 1: Core features
+Laravel gives you the basics quickly: routing, validation, database migrations, queues, mail, jobs, scheduled commands, policies, and a deployment story that does not need much ceremony. Inertia lets you build app screens without creating a separate API too early. TailwindCSS is fast enough for a clean first version without spending the first week inventing a component system.
 
-TODO: Database design, key models, the main user flow. What gets built first and why.
+For a small MVP, I want fewer moving parts than people usually suggest:
 
-## Week 2: Polish and ship
+- Laravel for the application backend
+- Inertia for the app screens
+- Vue or React for the interactive UI
+- TailwindCSS for styling
+- MySQL or PostgreSQL for the database
+- Queues from day one if anything talks to external services
+- Forge, Ploi, Laravel Cloud, or a similar setup for deployment
+- Sentry, Flare, or another error tracker before users touch it
 
-TODO: Billing integration, transactional emails, basic admin. Deployment with Forge.
+Authentication is usually not worth custom building. I would start with Laravel's starter kits, or whatever the current project already uses, and move on. The product-specific part is the interesting bit.
 
-## What I deliberately skipped
+Billing is the decision I would push on hardest.
 
-TODO: Things that don't matter for an MVP — custom design system, advanced permissions, multi-tenancy. Ship now, iterate later.
+If payment is part of the validation, it belongs in the first version. If the product needs to prove that people will pay, Stripe Checkout or Stripe Billing should be in scope. If the product first needs to prove that people will use the workflow at all, billing can wait.
+
+The mistake is treating billing as "just an integration". Pricing plans, trials, feature limits, invoices, customer portals, and failed payments all affect the application. Sometimes in annoying ways.
+
+For a two-week MVP, I would pick one of these:
+
+- No billing yet: use the product manually with invited users and validate the main flow first.
+- Simple one-plan billing: use Stripe Checkout and keep the pricing model intentionally boring.
+- Subscription billing: use Laravel Cashier when recurring revenue and plan state are part of the test.
+
+None of these is always right. It depends what you are trying to learn first.
+
+## Week 1: core features
+
+Week one should be about the core product. Not settings. Not polish. Not a marketing site inside the app.
+
+I usually start with the database shape, but only for the things that are clearly needed. For the example product, that might mean:
+
+- Users
+- Workspaces
+- Invitations
+- Connected accounts or data sources
+- Imported records
+- Reports
+- Export jobs
+
+That is enough for the first version. It is not enough for every future feature. Good.
+
+The first thing I want working is the path through the product:
+
+1. A user creates an account.
+2. They create or join a workspace.
+3. They connect or upload the thing the product needs.
+4. The app processes it.
+5. The user reviews the result.
+6. The user gets the output they came for.
+
+That path needs to work before spending serious time anywhere else. If this part is weak, better settings pages will not save it.
+
+I also like building a small internal support view earlier than people expect. Not a polished admin panel. Just enough to answer basic questions without poking around in the database:
+
+- Who signed up?
+- What workspaces exist?
+- What records or jobs were created?
+- Did a background job fail?
+- What did the external provider return?
+- Can I retry or inspect something without touching the database directly?
+
+This is not exciting work. It is the sort of thing you miss immediately when the first user gets stuck and all you have is a vague screenshot.
+
+By the end of week one, I want a rough but working application. It does not need to look finished. The main path should be real, the database should be migrated, the important pages should exist, and the jobs should run.
+
+At that point, it should feel like something you can test. Not just a set of nice screens.
+
+## Week 2: polish and ship
+
+Week two is where the product becomes usable enough to put in front of people.
+
+That usually means cleaning up the bits people will trip over first:
+
+- Better validation and error messages
+- Empty states where users might otherwise get stuck
+- A dashboard that explains what is going on
+- Transactional emails where they matter
+- Background jobs that can be inspected
+- Basic workspace permissions
+- Production deployment
+- Error tracking and logs
+- A few tests around the riskiest flows
+
+This is also where billing fits if it is part of the validation. For Stripe, I would keep the first version simple: one product, one or two prices, clear webhook handling, and enough internal visibility to understand customer state.
+
+The Stripe work is not finished when Checkout redirects back successfully. That is the happy path. You still need to handle webhooks, retries, subscription changes, failed payments, customer portal access, and the awkward cases where your app and Stripe disagree about what happened.
+
+For an MVP, I do not mean building every billing feature. I mean handling the states that would cause support pain on day one.
+
+The same goes for email. The MVP probably needs account emails, invitations, and maybe a notification when a report or import is ready. It probably does not need a lifecycle email system yet.
+
+By the end of week two, I want the product deployed somewhere stable. My checklist would be fairly short:
+
+- Production environment configured
+- Database backups enabled
+- Error tracking active
+- Queue workers running
+- Scheduled jobs configured
+- Transactional email tested
+- Critical user flow tested manually
+- A few high-value automated tests passing
+- Basic internal visibility available
+- A rollback path understood
+
+At that point, it is less "it works on my machine" and more "we can put real users through this without holding our breath".
+
+## What I would skip
+
+The hardest part is deciding what not to build.
+
+For a two-week SaaS MVP, I would usually skip:
+
+- A custom design system
+- Advanced roles and permissions
+- Complex multi-tenancy unless it is essential
+- Full reporting and analytics
+- Deep onboarding flows
+- A complete admin panel
+- Multiple billing plans
+- Annual billing
+- Coupons and discounts
+- Complex account settings
+- White-labeling
+- Public API access
+- Mobile-specific flows
+- Heavy refactoring for theoretical scale
+
+Some of those things may matter later. That does not mean they belong in the first version.
+
+I try to avoid asking "will we ever need this?" because the answer is usually maybe. That is how everything sneaks into scope.
+
+A better question is: "does this help us learn the next important thing?"
+
+If the MVP is trying to prove that users want the main feature, advanced permissions are probably noise. If the MVP is trying to prove that agencies will invite clients into a workspace, then permissions might be part of the test.
+
+Scope depends on the risk you are trying to reduce.
+
+## What I would not skip
+
+There are a few things I would keep, even when the timeline is tight.
+
+A clean database foundation. It does not need to model every future edge case, but the main concepts should be named clearly and connected sensibly. Bad data models are expensive to unwind.
+
+A repeatable deployment path. Manual FTP uploads, undocumented environment changes, and "just SSH in and run this" do not age well.
+
+Error tracking. If real users are testing the product, you need to know when it fails before they explain it badly in a message.
+
+Basic authorization. Even a small MVP needs to make sure users cannot see or edit data that belongs to someone else.
+
+A little internal tooling. Someone will need to answer support questions, inspect accounts, retry failed jobs, or understand why a customer got stuck.
+
+An MVP can be small without being fragile.
+
+## A two-week shape
+
+If I were planning this with a founder, the schedule would probably look something like this:
+
+| Day | Focus |
+| --- | --- |
+| 1 | Confirm scope, write the main user flow, decide what is explicitly out. |
+| 2 | Set up the Laravel app, authentication, database models, and deployment path. |
+| 3-4 | Build the core create/review/manage workflow. |
+| 5 | Add background jobs, imports, external API calls, or whatever powers the main product result. |
+| 6 | Build the dashboard and the minimum internal support view. |
+| 7 | Tighten permissions, validation, and core UI states. |
+| 8 | Add billing or invitations, depending on what matters most for validation. |
+| 9 | Add transactional emails, error tracking, and production configuration. |
+| 10 | Test the main flow, fix rough edges, deploy, and prepare for first users. |
+
+Real projects never follow the table perfectly. Something always moves. But I would still want the same shape: get the main path working early, then spend the remaining time making it reliable enough to learn from.
+
+## The point
+
+The point of a Laravel SaaS MVP is not to prove that Laravel can build SaaS products. It can. That part is not very interesting.
+
+The useful question is whether this product, for this audience, solves a problem people care about.
+
+This is why scope matters so much. Every extra feature delays feedback. Every unnecessary abstraction pushes the first real user a little further away.
+
+Laravel is a good fit because it lets you move quickly without treating the first version as throwaway code. You can start with a focused product flow, then add deeper billing, better onboarding, richer reporting, stronger permissions, and proper internal tools when the product earns them.
+
+That is the version of "move fast" I trust. Small enough to launch. Solid enough to keep.
+
+If you are planning a SaaS MVP and want help cutting it down to the first useful version, I offer focused [MVP development](/services/mvp-development) with Laravel, Inertia, Vue/React, TailwindCSS, Stripe, and production deployment. You can also see some of that foundation in [VerifyWall](/projects/verifywall).
