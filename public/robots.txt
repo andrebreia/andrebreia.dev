@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /resume.pdf
 
 Sitemap: https://andrebreia.dev/sitemap-index.xml
