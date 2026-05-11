@@ -22,7 +22,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props
 ---
 
-<BaseLayout title={`Articles${page.currentPage > 1 ? ` – Page ${page.currentPage}` : ''} – ${siteConfig.name}`} description="Thoughts on web development, tools, and the things I'm learning along the way.">
+<BaseLayout title={`Articles${page.currentPage > 1 ? ` – Page ${page.currentPage}` : ''} – ${siteConfig.name}`} description="Practical articles on Laravel, JavaScript, web development, developer tools, freelancing, and the lessons I learn while building software.">
   <Card>
     <header class="relative mb-12">
       <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
