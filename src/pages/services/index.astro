@@ -6,32 +6,104 @@ import Footer from '../../components/Footer.astro'
 import CTASection from '../../components/CTASection.astro'
 import ServiceItem from '../../components/ServiceItem.astro'
 import { siteConfig } from '../../data/site'
+import { breadcrumbSchema, faqSchema, professionalServiceSchema } from '../../lib/schema'
 
 const services = (await getCollection('services'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+
+const faqs = [
+  {
+    question: 'Can you join an existing Laravel project?',
+    answer: 'Yes. I can start with a focused codebase review, identify the riskiest areas, and then work through features, fixes, or refactors without forcing a rewrite.',
+  },
+  {
+    question: 'Do you work with agencies as well as startups?',
+    answer: 'Yes. I work with startups, product teams, and agencies that need senior Laravel, JavaScript, API, or MVP development support.',
+  },
+  {
+    question: 'Can you handle both back-end and front-end work?',
+    answer: 'Yes. Most of my work spans Laravel, PHP, databases, Vue or React, Inertia, Livewire, TailwindCSS, APIs, and deployment workflows.',
+  },
+]
+
+const jsonLd = [
+  professionalServiceSchema(),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services/' },
+  ]),
+  faqSchema(faqs),
+]
 ---
 
-<BaseLayout title={`Services – ${siteConfig.name}`} description="Freelance web development services for startups and agencies: full-stack development, MVP builds, consulting, and API integrations.">
+<BaseLayout
+  title={`Freelance Laravel Development Services – ${siteConfig.name}`}
+  description="Freelance Laravel, MVP, API integration, and technical consulting services for startups and agencies that need reliable web applications shipped well."
+  jsonLd={jsonLd}
+>
   <Card>
     <header class="relative mb-12">
       <h1 class="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight leading-tight mb-3">
-        Services
+        Laravel, MVP, and API development services for startups and agencies.
       </h1>
       <p class="text-sm text-slate-600 leading-relaxed max-w-lg">
-        I work with startups and agencies on full-stack web applications — building from scratch, shipping MVPs, connecting third-party services, or just being a second pair of eyes on something that already exists.
+        I help teams build, improve, and connect web applications using Laravel, PHP, Vue, React, Inertia, Livewire, TailwindCSS, and third-party APIs. The work is usually practical: ship the first version, fix the risky parts, integrate the systems, or get a senior second opinion before a technical decision becomes expensive.
       </p>
     </header>
 
-    <div class="flex flex-col gap-1">
-      {services.map((s) => (
-        <ServiceItem
-          icon={s.data.icon}
-          title={s.data.title}
-          description={s.data.excerpt}
-          href={`/services/${s.id}/`}
-        />
-      ))}
-    </div>
+    <section class="mb-14">
+      <h2 class="text-sm font-medium text-slate-500 uppercase tracking-wider mb-6">
+        How I can help
+      </h2>
+      <div class="flex flex-col gap-1">
+        {services.map((s) => (
+          <ServiceItem
+            icon={s.data.icon}
+            title={s.data.title}
+            description={s.data.excerpt}
+            href={`/services/${s.id}/`}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-sm font-medium text-slate-500 uppercase tracking-wider mb-6">
+        Typical projects
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+          <h3 class="text-slate-900 font-medium text-sm mb-2">New Laravel applications</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Database design, application architecture, user flows, dashboards, admin tools, authentication, and production deployment.</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+          <h3 class="text-slate-900 font-medium text-sm mb-2">SaaS MVP builds</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Focused first versions for founders and teams that need to validate a product without creating throwaway code.</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+          <h3 class="text-slate-900 font-medium text-sm mb-2">API and payment integrations</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Stripe, CRMs, webhooks, queues, retry handling, reconciliation, and custom APIs that need to keep working in production.</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+          <h3 class="text-slate-900 font-medium text-sm mb-2">Codebase reviews and consulting</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Architecture reviews, delivery risk assessments, performance checks, and practical recommendations before major work starts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-sm font-medium text-slate-500 uppercase tracking-wider mb-6">
+        Questions I can help answer
+      </h2>
+      <div class="space-y-6">
+        {faqs.map((faq) => (
+          <div>
+            <h3 class="text-slate-900 font-medium text-sm mb-2">{faq.question}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
     <CTASection bookingUrl={siteConfig.bookingUrl} />
 

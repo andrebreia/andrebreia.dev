@@ -1,13 +1,15 @@
 ---
 import '../styles/global.css'
 import FloatingNav from '../components/FloatingNav.astro'
+import { personSchema, websiteSchema, type JsonLd } from '../lib/schema'
 
 interface Props {
   title?: string
   description?: string
   ogImage?: string
   ogType?: 'website' | 'article'
-  jsonLd?: Record<string, any>
+  jsonLd?: JsonLd | JsonLd[]
+  robots?: string
   frontmatter?: {
     title?: string
     description?: string
@@ -23,10 +25,20 @@ const {
   ogImage = frontmatter.ogImage ?? '/og-image.png',
   ogType = frontmatter.ogType ?? 'website',
   jsonLd,
+  robots,
 } = Astro.props
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
 const ogImageUrl = new URL(ogImage, Astro.site).href
+const pageJsonLd = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    personSchema(),
+    websiteSchema(),
+    ...pageJsonLd,
+  ],
+}
 ---
 
 <!doctype html>
@@ -36,10 +48,10 @@ const ogImageUrl = new URL(ogImage, Astro.site).href
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Fonts -->
-    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Favicon -->
@@ -63,35 +75,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'André Breia',
-      url: 'https://andrebreia.dev',
-      jobTitle: 'Freelance Full-Stack Developer',
-      knowsAbout: ['Laravel', 'React', 'Vue', 'PHP', 'JavaScript', 'TypeScript', 'InertiaJs', 'Livewire'],
-      hasCredential: [
-        {
-          '@type': 'EducationalOccupationalCredential',
-          name: 'Laravel Certified Developer',
-          credentialCategory: 'Professional Certification',
-        },
-        {
-          '@type': 'EducationalOccupationalCredential',
-          name: 'Stripe Certified Architect',
-          credentialCategory: 'Professional Certification',
-        },
-      ],
-      sameAs: [
-        'https://github.com/andrebreia',
-        'https://www.linkedin.com/in/andre-breia',
-        'https://bsky.app/profile/andrebreia.dev',
-        'https://www.x.com/andrebreia',
-      ],
-    })} />
-    {jsonLd && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    )}
+    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
 
     <!-- Analytics -->
     {import.meta.env.PROD && (

@@ -7,6 +7,7 @@ import Footer from '../../components/Footer.astro'
 import CTASection from '../../components/CTASection.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '../../data/site'
+import { breadcrumbSchema, faqSchema } from '../../lib/schema'
 
 export async function getStaticPaths() {
   const services = await getCollection('services')
@@ -21,21 +22,69 @@ const { Content } = await render(service)
 const seoTitle = service.data.seoTitle ?? service.data.title
 const headline = service.data.headline ?? service.data.title
 const canonicalUrl = new URL(`/services/${service.id}/`, Astro.site).href
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: headline,
-  description: service.data.excerpt,
-  url: canonicalUrl,
-  serviceType: service.data.title,
-  areaServed: 'Worldwide',
-  provider: {
-    '@type': 'Person',
-    name: 'André Breia',
-    url: 'https://andrebreia.dev',
-  },
+const serviceFaqs: Record<string, Array<{ question: string; answer: string }>> = {
+  'api-integrations': [
+    {
+      question: 'Can you work with an API that has poor documentation?',
+      answer: 'Usually, yes. I start by isolating the critical flows, testing the provider behavior directly, and building a small integration surface that can be debugged when something changes.',
+    },
+    {
+      question: 'Can you build the internal API too?',
+      answer: 'Yes. If your application needs its own API for internal tools, mobile apps, partner access, or background services, I can design and build that alongside the integration work.',
+    },
+  ],
+  consulting: [
+    {
+      question: 'Can you review code without joining the project long term?',
+      answer: 'Yes. A short review can be useful when you need an independent view of the biggest risks and the next practical steps.',
+    },
+    {
+      question: 'Can you help implement the recommendations?',
+      answer: 'Yes. If the review identifies work that needs doing, I can either support your team or take on a focused implementation pass.',
+    },
+  ],
+  'full-stack-development': [
+    {
+      question: 'Can you work inside an existing Laravel app?',
+      answer: 'Yes. A lot of freelance work is improving or extending an application that already exists. I can start with a codebase review, identify the riskiest areas, and then work through features or refactors in a controlled way.',
+    },
+    {
+      question: 'Do you only build Laravel applications?',
+      answer: 'Laravel is my strongest back-end stack, but I also work comfortably across JavaScript front ends, APIs, integrations, and deployment. If Laravel is the core of the product, I can usually handle the surrounding pieces too.',
+    },
+  ],
+  'mvp-development': [
+    {
+      question: 'How long does an MVP take?',
+      answer: 'It depends on scope, but the useful conversation is usually about what can be removed. A focused first version can often be measured in weeks rather than months.',
+    },
+    {
+      question: 'Will the MVP need to be rebuilt later?',
+      answer: 'The aim is no. Some parts will evolve, but the foundation should be clean enough to keep building on once the idea has real traction.',
+    },
+  ],
 }
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services/' },
+    { name: service.data.title, path: `/services/${service.id}/` },
+  ]),
+  {
+    '@type': 'Service',
+    '@id': `${canonicalUrl}#service`,
+    name: headline,
+    description: service.data.excerpt,
+    url: canonicalUrl,
+    serviceType: service.data.title,
+    areaServed: 'Worldwide',
+    provider: {
+      '@id': `${siteConfig.url}/#person`,
+    },
+  },
+  ...(serviceFaqs[service.id] ? [faqSchema(serviceFaqs[service.id])] : []),
+]
 ---
 
 <BaseLayout

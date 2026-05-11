@@ -5,6 +5,7 @@ import Card from '../../components/Card.astro'
 import Footer from '../../components/Footer.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '../../data/site'
+import { breadcrumbSchema } from '../../lib/schema'
 
 export async function getStaticPaths() {
   const articles = (await getCollection('articles')).filter((a) => !a.data.draft)
@@ -18,8 +19,8 @@ const { article } = Astro.props
 const { Content } = await render(article)
 
 const articleJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `${new URL(`/articles/${article.id}/`, Astro.site).href}#article`,
   headline: article.data.title,
   description: article.data.excerpt,
   ...(article.data.date && { datePublished: new Date(article.data.date).toISOString() }),
@@ -28,14 +29,24 @@ const articleJsonLd = {
   mainEntityOfPage: new URL(`/articles/${article.id}/`, Astro.site).href,
   image: new URL(`/og/articles/${article.id}.png`, Astro.site).href,
   author: {
-    '@type': 'Person',
-    name: siteConfig.name,
-    url: siteConfig.url,
+    '@id': `${siteConfig.url}/#person`,
+  },
+  publisher: {
+    '@id': `${siteConfig.url}/#person`,
   },
 }
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Articles', path: '/articles/' },
+    { name: article.data.title, path: `/articles/${article.id}/` },
+  ]),
+  articleJsonLd,
+]
 ---
 
-<BaseLayout title={`${article.data.title} – ${siteConfig.name}`} description={article.data.excerpt} ogImage={`/og/articles/${article.id}.png`} ogType="article" jsonLd={articleJsonLd}>
+<BaseLayout title={`${article.data.title} – ${siteConfig.name}`} description={article.data.excerpt} ogImage={`/og/articles/${article.id}.png`} ogType="article" jsonLd={jsonLd}>
   <Card>
     <header class="relative mb-12">
       <a id="back-link" href="/articles/" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-600 transition-colors mb-8">
