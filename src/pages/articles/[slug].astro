@@ -24,8 +24,8 @@ const articleJsonLd = {
   description: article.data.excerpt,
   ...(article.data.date && { datePublished: new Date(article.data.date).toISOString() }),
   ...(article.data.dateModified && { dateModified: new Date(article.data.dateModified).toISOString() }),
-  url: new URL(`/articles/${article.id}`, Astro.site).href,
-  mainEntityOfPage: new URL(`/articles/${article.id}`, Astro.site).href,
+  url: new URL(`/articles/${article.id}/`, Astro.site).href,
+  mainEntityOfPage: new URL(`/articles/${article.id}/`, Astro.site).href,
   image: new URL(`/og/articles/${article.id}.png`, Astro.site).href,
   author: {
     '@type': 'Person',
