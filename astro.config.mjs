@@ -22,7 +22,7 @@ const articleLastmod = new Map(
       }
 
       const slug = file.replace(/\.mdx$/, '');
-      return [`/articles/${slug}/`, dateModified ?? date];
+      return [`/articles/${slug}`, dateModified ?? date];
     })
     .filter(Boolean)
 );
@@ -30,6 +30,7 @@ const articleLastmod = new Map(
 // https://astro.build/config
 export default defineConfig({
   site: 'https://andrebreia.dev',
+  trailingSlash: 'never',
   vite: {
     plugins: [tailwindcss()],
   },
