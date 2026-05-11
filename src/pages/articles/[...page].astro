@@ -40,7 +40,7 @@ const { page } = Astro.props
           : null
 
         return (
-          <a href={`/articles/${article.id}`} class="group py-4 first:pt-0 last:pb-0 block">
+          <a href={`/articles/${article.id}/`} class="group py-4 first:pt-0 last:pb-0 block">
             <div class="flex items-baseline justify-between gap-4 mb-1">
               <h2 class="text-slate-900 font-medium text-sm group-hover:underline decoration-slate-300 underline-offset-4">
                 {article.data.title}

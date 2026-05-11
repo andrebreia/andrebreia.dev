@@ -6,10 +6,10 @@ const pathname = Astro.url.pathname;
 
 const links = [
     { href: "/", label: "Home", icon: "solar:home-smile-linear" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services", hasChildren: true },
-    { href: "/articles", label: "Articles" },
-    { href: "/uses", label: "Uses" },
+    { href: "/about/", label: "About" },
+    { href: "/services/", label: "Services", hasChildren: true },
+    { href: "/articles/", label: "Articles" },
+    { href: "/uses/", label: "Uses" },
 ];
 
 const services = (await getCollection("services")).sort(
@@ -58,7 +58,7 @@ function isActive(href: string, current: string) {
                             >
                                 {services.map((service, i) => (
                                     <a
-                                        href={`/services/${service.id}`}
+                                        href={`/services/${service.id}/`}
                                         class="stack-item"
                                         data-index={i}
                                         data-total={services.length}

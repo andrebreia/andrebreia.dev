@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: "André Breia – Freelance Laravel & JavaScript Developer"
-description: "Freelance Laravel and JavaScript developer helping startups and agencies build reliable web applications with Laravel, Vue, React, Inertia, Livewire, and TailwindCSS."
+description: "Freelance Laravel and JavaScript developer helping startups and agencies build reliable web apps with Laravel, Vue, React, Inertia, and Livewire."
 ---
 
 import { getCollection } from 'astro:content'
@@ -48,7 +48,7 @@ export const articles = (await getCollection('articles'))
     <SectionHeading icon="solar:widget-2-linear" label="Services" />
     <div class="flex flex-col gap-1">
       {services.map((s) => (
-        <ServiceItem icon={s.data.icon} title={s.data.title} description={s.data.description} href={`/services/${s.id}`} />
+        <ServiceItem icon={s.data.icon} title={s.data.title} description={s.data.description} href={`/services/${s.id}/`} />
       ))}
     </div>
   </section>
@@ -64,7 +64,7 @@ export const articles = (await getCollection('articles'))
           year={p.data.year}
           icon={p.data.icon}
           logo={p.data.logo}
-          href={`/projects/${p.id}`}
+          href={`/projects/${p.id}/`}
         />
       ))}
     </div>
@@ -115,7 +115,7 @@ export const articles = (await getCollection('articles'))
         <ArticleCard
           title={a.data.title}
           excerpt={a.data.excerpt}
-          href={`/articles/${a.id}`}
+          href={`/articles/${a.id}/`}
         />
       ))}
     </div>
