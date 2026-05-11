@@ -20,7 +20,7 @@ const { service } = Astro.props
 const { Content } = await render(service)
 const seoTitle = service.data.seoTitle ?? service.data.title
 const headline = service.data.headline ?? service.data.title
-const canonicalUrl = new URL(`/services/${service.id}/`, Astro.site).href
+const canonicalUrl = new URL(`/services/${service.id}`, Astro.site).href
 
 const jsonLd = {
   '@context': 'https://schema.org',

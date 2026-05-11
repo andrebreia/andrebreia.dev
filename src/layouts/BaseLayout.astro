@@ -25,7 +25,10 @@ const {
   jsonLd,
 } = Astro.props
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
+const canonicalPath = Astro.url.pathname === '/'
+  ? '/'
+  : Astro.url.pathname.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '')
+const canonicalUrl = new URL(canonicalPath, Astro.site).href
 const ogImageUrl = new URL(ogImage, Astro.site).href
 ---
 
