@@ -18,6 +18,7 @@ const articles = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
+    seoTitle: z.string().optional(),
     excerpt: z.string(),
     date: z.coerce.date().optional(),
     dateModified: z.coerce.date().optional(),
