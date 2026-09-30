@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# Amp's base orb includes Node and npm; Astro requires Node >=22.12.
+node -e 'const [major, minor] = process.versions.node.split(".").map(Number); if (major < 22 || (major === 22 && minor < 12)) { console.error("Astro requires Node >=22.12.0"); process.exit(1); }'
+printf 'Toolchain: Node %s, npm %s\n' "$(node --version)" "$(npm --version)"
+
+# npm ci deletes node_modules even on a warm snapshot. Reuse a successful
+# install only when all dependency inputs and toolchain versions still match.
+fingerprint="$(
+  { sha256sum package.json package-lock.json .npmrc; node --version; npm --version; uname -sm; } |
+    sha256sum | cut -d ' ' -f 1
+)"
+marker=node_modules/.amp-setup-fingerprint
+if [[ -f "$marker" && -x node_modules/.bin/astro && "$(cat "$marker")" == "$fingerprint" ]]; then
+  echo 'Dependencies match the snapshot; skipping npm ci.'
+else
+  rm -f "$marker"
+  echo 'Installing dependencies from package-lock.json...'
+  time npm ci --no-audit --no-fund
+  printf '%s\n' "$fingerprint" > "$marker"
+fi
