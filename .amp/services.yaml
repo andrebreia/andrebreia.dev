@@ -1,0 +1,10 @@
+services:
+  statamic:
+    command: >-
+      APP_URL="$PUBLIC_URL" ASSET_URL=""
+      php artisan serve --host=0.0.0.0 --port="$PORT"
+    port: 8000
+    health: /up
+    portal:
+      title: Statamic preview
+      description: Blade and Alpine frontend. The control panel is available only in local environments.

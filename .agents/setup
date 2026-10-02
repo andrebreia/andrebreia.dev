@@ -3,9 +3,47 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-# Amp's base orb includes Node and npm; Astro requires Node >=22.12.
-node -e 'const [major, minor] = process.versions.node.split(".").map(Number); if (major < 22 || (major === 22 && minor < 12)) { console.error("Astro requires Node >=22.12.0"); process.exit(1); }'
+# Vite and the social-image build use Node's native TypeScript support.
+node -e 'const [major, minor] = process.versions.node.split(".").map(Number); if (major < 22 || (major === 22 && minor < 18)) { console.error("Node >=22.18.0 is required"); process.exit(1); }'
 printf 'Toolchain: Node %s, npm %s\n' "$(node --version)" "$(npm --version)"
+
+packages=(php8.5-cli php8.5-bcmath php8.5-curl php8.5-gd php8.5-intl php8.5-mbstring php8.5-sqlite3 php8.5-xml php8.5-zip php8.5-redis)
+missing=()
+for package in "${packages[@]}"; do
+  if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q 'install ok installed'; then
+    missing+=("$package")
+  fi
+done
+if ((${#missing[@]})); then
+  echo 'Installing PHP 8.5 and required extensions...'
+  if [[ ! -f /etc/apt/sources.list.d/php.list ]]; then
+    curl -fsSL https://packages.sury.org/debsuryorg-archive-keyring.deb -o /tmp/debsuryorg-archive-keyring.deb
+    sudo dpkg -i /tmp/debsuryorg-archive-keyring.deb
+    echo 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ bookworm main' | sudo tee /etc/apt/sources.list.d/php.list >/dev/null
+    rm /tmp/debsuryorg-archive-keyring.deb
+  fi
+  sudo apt-get update -qq
+  time sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${missing[@]}"
+fi
+if ! command -v composer >/dev/null; then
+  installer="$(mktemp)"
+  trap 'rm -f "$installer"' EXIT
+  curl -fsSL https://getcomposer.org/installer -o "$installer"
+  expected="$(curl -fsSL https://composer.github.io/installer.sig)"
+  actual="$(php -r 'echo hash_file("sha384", $argv[1]);' "$installer")"
+  [[ "$expected" == "$actual" ]] || { echo 'Composer installer checksum mismatch'; exit 1; }
+  php "$installer" --install-dir=/tmp --filename=composer
+  sudo install -m 755 /tmp/composer /usr/local/bin/composer
+  rm -f "$installer" /tmp/composer
+  trap - EXIT
+fi
+
+[ -f .env ] || cp .env.example .env
+echo 'Installing locked Composer dependencies...'
+time composer install --no-interaction --prefer-dist
+if ! grep -q '^APP_KEY=base64:' .env; then
+  php artisan key:generate --no-interaction
+fi
 
 # npm ci deletes node_modules even on a warm snapshot. Reuse a successful
 # install only when all dependency inputs and toolchain versions still match.
@@ -14,7 +52,7 @@ fingerprint="$(
     sha256sum | cut -d ' ' -f 1
 )"
 marker=node_modules/.amp-setup-fingerprint
-if [[ -f "$marker" && -x node_modules/.bin/astro && "$(cat "$marker")" == "$fingerprint" ]]; then
+if [[ -f "$marker" && -x node_modules/.bin/vite && "$(cat "$marker")" == "$fingerprint" ]]; then
   echo 'Dependencies match the snapshot; skipping npm ci.'
 else
   rm -f "$marker"
@@ -22,3 +60,7 @@ else
   time npm ci --no-audit --no-fund
   printf '%s\n' "$fingerprint" > "$marker"
 fi
+
+echo 'Building frontend and social images...'
+time npm run build
+php please stache:refresh --no-interaction

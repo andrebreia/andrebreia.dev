@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This static site has no authentication or backing services to reconnect.
+# This flat-file site has no authentication or backing services to reconnect.
 # Dependencies are preserved in the orb snapshot and installed only by setup.
-echo 'Astro workspace ready; no resume steps required.'
+echo 'Statamic workspace ready; use amp orb services ensure to start the preview.'
