@@ -1,0 +1,9 @@
+title: Image
+tabs:
+  main:
+    sections:
+      - fields:
+          - handle: alt
+            field:
+              type: text
+              display: Alternative text

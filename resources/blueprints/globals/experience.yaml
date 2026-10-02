@@ -1,0 +1,15 @@
+title: Experience
+tabs:
+  main:
+    sections:
+      - fields:
+          - handle: items
+            field:
+              type: grid
+              validate: required
+              fields:
+                - { handle: role, field: { type: text, validate: required } }
+                - { handle: period, field: { type: text, validate: required } }
+                - { handle: company, field: { type: text, validate: required } }
+                - { handle: description, field: { type: textarea, validate: required } }
+                - { handle: isCurrent, field: { type: toggle, display: Current Role } }

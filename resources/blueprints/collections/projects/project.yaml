@@ -1,0 +1,20 @@
+title: Project
+tabs:
+  main:
+    sections:
+      - fields:
+          - handle: title
+            field: { type: text, validate: required }
+          - handle: tags
+            field: { type: text, validate: required }
+          - handle: year
+            field: { type: integer, validate: 'required|integer|min:2000|max:2100' }
+          - handle: icon
+            field: { type: text, validate: required, instructions: 'Iconify icon name.' }
+          - handle: logo
+            field: { type: assets, container: images, max_files: 1, mode: list }
+          - handle: excerpt
+            field: { type: textarea, validate: required, character_limit: 200 }
+          - handle: external_url
+            field: { type: link, display: External URL }
+          - import: content

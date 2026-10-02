@@ -1,0 +1,9 @@
+title: Projects
+route: '/projects/{slug}'
+template: project
+layout: false
+sort_by: year
+sort_dir: desc
+revisions: false
+inject:
+  view_model: App\ViewModels\SiteViewModel

@@ -1,0 +1,9 @@
+title: Pages
+route: '{parent_uri}/{slug}'
+template: page
+layout: false
+structure:
+  root: true
+revisions: false
+inject:
+  view_model: App\ViewModels\SiteViewModel

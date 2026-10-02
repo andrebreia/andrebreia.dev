@@ -1,0 +1,80 @@
+title: Page
+tabs:
+  main:
+    sections:
+      - fields:
+          - import: seo
+          - handle: heading
+            field: { type: text, validate: required }
+          - handle: intro
+            field: { type: textarea, unless: { template: 'equals home' } }
+          - handle: bio
+            field: { type: textarea, if: { template: 'equals home' } }
+          - handle: body
+            field:
+              type: bard
+              buttons: [h2, h3, bold, italic, unorderedlist, orderedlist, anchor, table, horizontalrule, removeformat]
+              container: images
+              if_any: { template: [about, page] }
+          - handle: services_label
+            field: { type: text, if_any: { template: [home, services] } }
+          - handle: projects_label
+            field: { type: text, if_any: { template: [home, services] } }
+          - handle: experience_label
+            field: { type: text, if: { template: 'equals home' } }
+          - handle: certifications_label
+            field: { type: text, if_any: { template: [home, about] } }
+          - handle: testimonials_label
+            field: { type: text, if: { template: 'equals home' } }
+          - handle: articles_label
+            field: { type: text, if: { template: 'equals home' } }
+          - handle: faqs_label
+            field: { type: text, if: { template: 'equals services' } }
+          - handle: show_testimonials
+            field: { type: toggle, default: false, if: { template: 'equals home' } }
+          - handle: sections
+            field:
+              type: grid
+              if: { template: 'equals uses' }
+              fields:
+                - handle: label
+                  field: { type: text, validate: required }
+                - handle: icon
+                  field: { type: text, validate: required }
+                - handle: items
+                  field:
+                    type: grid
+                    fields:
+                      - handle: title
+                        field: { type: text, validate: required }
+                      - handle: text
+                        field: { type: markdown, validate: required }
+                      - handle: link
+                        field: { type: link }
+          - handle: projects
+            field:
+              type: grid
+              if: { template: 'equals services' }
+              fields:
+                - handle: title
+                  field: { type: text, validate: required }
+                - handle: description
+                  field: { type: textarea, validate: required }
+          - handle: faqs
+            field:
+              type: grid
+              if: { template: 'equals services' }
+              fields:
+                - handle: question
+                  field: { type: text, validate: required }
+                - handle: answer
+                  field: { type: textarea, validate: required }
+  sidebar:
+    sections:
+      - fields:
+          - handle: template
+            field:
+              type: text
+              display: Layout
+              read_only: true
+              default: page

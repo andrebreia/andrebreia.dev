@@ -1,0 +1,20 @@
+title: Service
+tabs:
+  main:
+    sections:
+      - fields:
+          - handle: title
+            field: { type: text, validate: required }
+          - handle: seoTitle
+            field: { type: text, display: SEO Title, character_limit: 70 }
+          - handle: headline
+            field: { type: text }
+          - handle: icon
+            field: { type: text, validate: required }
+          - handle: description
+            field: { type: textarea, validate: required }
+          - handle: excerpt
+            field: { type: textarea, validate: required, character_limit: 200 }
+          - handle: order
+            field: { type: integer, validate: 'required|integer|min:1' }
+          - import: content

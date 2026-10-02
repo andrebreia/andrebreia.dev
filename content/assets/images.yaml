@@ -1,0 +1,7 @@
+title: Images
+disk: images
+allow_uploads: true
+allow_downloading: true
+allow_moving: true
+allow_renaming: true
+create_folders: true

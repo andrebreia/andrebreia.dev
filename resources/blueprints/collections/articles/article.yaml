@@ -1,0 +1,20 @@
+title: Article
+tabs:
+  main:
+    display: Main
+    sections:
+      - fields:
+          - handle: title
+            field: { type: text, validate: required }
+          - handle: excerpt
+            field: { type: textarea, validate: required, character_limit: 200 }
+          - import: content
+          - handle: dateModified
+            field: { type: date, display: Date Modified, time_enabled: false }
+  sidebar:
+    sections:
+      - fields:
+          - handle: slug
+            field: { type: slug, validate: required }
+          - handle: date
+            field: { type: date, time_enabled: false, validate: required }

@@ -1,0 +1,13 @@
+title: SEO
+fields:
+  - handle: title
+    field:
+      type: text
+      display: SEO Title
+      validate: required
+      character_limit: 70
+  - handle: description
+    field:
+      type: textarea
+      display: SEO Description
+      character_limit: 160

@@ -1,0 +1,9 @@
+title: Services
+route: '/services/{slug}'
+template: service
+layout: false
+sort_by: order
+sort_dir: asc
+revisions: false
+inject:
+  view_model: App\ViewModels\SiteViewModel

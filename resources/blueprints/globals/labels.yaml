@@ -1,0 +1,16 @@
+title: Labels
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: backToArticles, field: { type: text, validate: required } }
+          - { handle: backToHome, field: { type: text, validate: required } }
+          - { handle: previous, field: { type: text, validate: required } }
+          - { handle: next, field: { type: text, validate: required } }
+          - { handle: pageLabel, field: { type: text, validate: required } }
+          - { handle: ofLabel, field: { type: text, validate: required } }
+          - { handle: socialLinks, field: { type: text, validate: required } }
+          - { handle: mainNavigation, field: { type: text, validate: required } }
+          - { handle: servicesSubmenu, field: { type: text, validate: required } }
+          - { handle: skipToContent, field: { type: text, validate: required } }
+          - { handle: current, field: { type: text, validate: required } }

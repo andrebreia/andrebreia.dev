@@ -1,0 +1,45 @@
+title: 'André Breia – Software Developer'
+name: 'André Breia'
+initials: AB
+description: 'Freelance Laravel & JavaScript developer with 10+ years building web applications for startups and agencies.'
+url: 'https://andrebreia.dev'
+location: France
+timezone: Europe/Paris
+bookingUrl: 'https://www.cal.eu/andrebreia'
+socialLinks:
+  -
+    href: 'https://www.github.com/andrebreia'
+    icon: 'lucide:github'
+    label: GitHub
+  -
+    href: 'https://www.linkedin.com/in/andre-breia'
+    icon: 'lucide:linkedin'
+    label: LinkedIn
+  -
+    href: 'https://bsky.app/profile/andrebreia.dev'
+    icon: 'ri:bluesky-line'
+    label: Bluesky
+  -
+    href: 'https://www.x.com/andrebreia'
+    icon: 'lucide:twitter'
+    label: X
+emailHref: 'mailto:contact@andrebreia.dev'
+statusLabel: 'Available for projects'
+logo: logo.png
+portrait: andre.jpg
+logoAlt: 'BreiaDev logo'
+portraitAlt: 'André Breia'
+jobTitle: 'Freelance Full-Stack Developer'
+knowsAbout:
+  - Laravel
+  - React
+  - Vue
+  - PHP
+  - JavaScript
+  - TypeScript
+  - Inertia.js
+  - Livewire
+ogLogo: logo@2x.png
+ogRole: Freelance Developer
+ogTitle: Freelance Laravel & JavaScript Developer
+ogDescription: '10+ years of experience helping startups and agencies ship reliable Laravel, Vue, React, Inertia, Livewire, and TailwindCSS projects.'

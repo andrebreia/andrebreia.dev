@@ -1,0 +1,34 @@
+title: Site
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: name, field: { type: text, validate: required } }
+          - { handle: initials, field: { type: text, validate: required, character_limit: 4 } }
+          - { handle: title, field: { type: text, validate: required } }
+          - { handle: description, field: { type: textarea, validate: required } }
+          - { handle: url, field: { type: text, input_type: url, validate: 'required|url:http,https' } }
+          - { handle: location, field: { type: text, validate: required } }
+          - { handle: timezone, field: { type: text, validate: required } }
+          - { handle: bookingUrl, field: { type: link, display: Booking URL } }
+          - { handle: emailHref, field: { type: text, display: Email Href, validate: required } }
+          - { handle: statusLabel, field: { type: text, validate: required } }
+          - { handle: logo, field: { type: assets, container: images, max_files: 1, validate: required } }
+          - { handle: portrait, field: { type: assets, container: images, max_files: 1, validate: required } }
+          - { handle: logoAlt, field: { type: text, validate: required } }
+          - { handle: portraitAlt, field: { type: text, validate: required } }
+          - { handle: jobTitle, field: { type: text, validate: required } }
+          - { handle: ogLogo, field: { type: assets, container: images, max_files: 1, validate: required } }
+          - { handle: ogRole, field: { type: text, validate: required } }
+          - { handle: ogTitle, field: { type: text, validate: required } }
+          - { handle: ogDescription, field: { type: textarea, validate: required } }
+          - handle: knowsAbout
+            field: { type: list, validate: required }
+          - handle: socialLinks
+            field:
+              type: grid
+              validate: required
+              fields:
+                - { handle: href, field: { type: link, validate: required } }
+                - { handle: icon, field: { type: text, validate: required } }
+                - { handle: label, field: { type: text, validate: required } }

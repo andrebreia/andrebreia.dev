@@ -1,0 +1,21 @@
+title: Rich Content
+fields:
+  - handle: body
+    field:
+      type: bard
+      display: Body
+      buttons:
+        - h2
+        - h3
+        - bold
+        - italic
+        - unorderedlist
+        - orderedlist
+        - anchor
+        - table
+        - horizontalrule
+        - removeformat
+      link_noopener: true
+      container: images
+      save_html: false
+      validate: required

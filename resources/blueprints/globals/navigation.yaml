@@ -1,0 +1,13 @@
+title: Navigation
+tabs:
+  main:
+    sections:
+      - fields:
+          - handle: items
+            field:
+              type: grid
+              fields:
+                - { handle: href, field: { type: text, validate: required } }
+                - { handle: label, field: { type: text, validate: required } }
+                - { handle: icon, field: { type: text } }
+                - { handle: hasChildren, field: { type: toggle } }

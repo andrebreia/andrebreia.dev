@@ -1,0 +1,18 @@
+items:
+  -
+    href: /
+    label: Home
+    icon: 'solar:home-smile-linear'
+  -
+    href: /about/
+    label: About
+  -
+    href: /services/
+    label: Services
+    hasChildren: true
+  -
+    href: /articles/
+    label: Articles
+  -
+    href: /uses/
+    label: Uses

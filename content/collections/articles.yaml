@@ -1,0 +1,13 @@
+title: Articles
+route: '/articles/{slug}'
+template: article
+layout: false
+date: true
+date_behavior:
+  future: public
+  past: public
+sort_dir: desc
+sort_by: date
+revisions: false
+inject:
+  view_model: App\ViewModels\SiteViewModel

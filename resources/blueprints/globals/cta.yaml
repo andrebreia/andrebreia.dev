@@ -1,0 +1,10 @@
+title: CTA
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: heading, field: { type: text, validate: required } }
+          - { handle: description, field: { type: textarea, validate: required } }
+          - { handle: bookingLabel, field: { type: text, validate: required } }
+          - { handle: emailLabel, field: { type: text, validate: required } }
+          - { handle: newTabLabel, field: { type: text, validate: required } }
