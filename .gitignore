@@ -28,3 +28,20 @@ pnpm-debug.log*
 
 # Orb portal metadata
 .amp/portals/*
+.amp/in/
+
+# Laravel / Statamic generated and private files
+/vendor/
+/public/build/
+/public/og/
+/public/og-image.png
+/public/hot
+/public/static/
+/public/vendor/
+/public/storage
+/storage/*.key
+/.phpunit.cache/
+/.phpunit.result.cache
+/auth.json
+/users/*.yaml
+/database/*.sqlite*
