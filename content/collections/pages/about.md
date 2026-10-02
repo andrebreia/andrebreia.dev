@@ -28,7 +28,7 @@ body:
     content:
       -
         type: text
-        text: "Most recently, I spent just over a year at Atma Energy, working on making solar energy more accessible. At the start of 2026, I made the move to full-time freelance – something I'd been doing on the side since 2020."
+        text: "Most recently, I spent just over a year at Atma Energy, working on making solar energy more accessible. At the start of 2026, I made the move to full-time freelance."
   -
     type: paragraph
     attrs:
