@@ -31,12 +31,13 @@ it('orders same-date articles by slug across the pagination boundary', function 
         }
 
         $this->get('/articles/')->assertSeeInOrder([
-            '6 Raycast extensions for Laravel developers', 'Building a SaaS MVP with Laravel',
+            '6 Raycast extensions for Laravel developers',
             'Going full-time freelance', 'How I use AI coding agents',
+            'Lessons from 7 years as a Technical Lead',
         ])->assertDontSee('The Uncomfortable Middle');
         $this->get('/articles/2/')->assertSeeInOrder([
-            'Lessons from 7 years as a Technical Lead', 'The Uncomfortable Middle',
-        ])->assertDontSee('Building a SaaS MVP with Laravel');
+            'The Uncomfortable Middle',
+        ])->assertDontSee('Lessons from 7 years as a Technical Lead');
     } finally {
         foreach ($articles as $index => $article) {
             $article->date($originals[$index][0])->published($originals[$index][1]);

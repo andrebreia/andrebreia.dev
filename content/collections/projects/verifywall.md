@@ -138,18 +138,7 @@ body:
               href: /services/full-stack-development/
       -
         type: text
-        text: ', '
-      -
-        type: text
-        text: 'MVP Development'
-        marks:
-          -
-            type: link
-            attrs:
-              href: /services/mvp-development/
-      -
-        type: text
-        text: ', and '
+        text: ' and '
       -
         type: text
         text: 'API & Integrations'

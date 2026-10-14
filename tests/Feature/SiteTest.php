@@ -50,25 +50,48 @@ class SiteTest extends TestCase
 
     public function test_pagination_uses_path_urls_and_handles_boundaries(): void
     {
-        $draft = Entry::query()->where('slug', 'how-i-use-ai-coding-agents')->first();
+        $drafts = Entry::query()->where('collection', 'articles')->get()->filter(fn ($entry) => ! $entry->published());
         // In-memory mutation only: never publish or write the repository fixture.
-        $draft->published(true);
+        foreach ($drafts as $draft) {
+            $draft->published(true);
+        }
         try {
             $this->get('/articles/')->assertOk()->assertSee('href="/articles/2/"', false);
             $response = $this->get('/articles/2/')->assertOk()->assertSee('6 Raycast extensions for Laravel developers')->assertDontSee('The Uncomfortable Middle');
             $response->assertSee('https://andrebreia.dev/articles/2/')->assertSee('href="/articles/"', false);
             $this->get('/articles/3/')->assertNotFound();
         } finally {
-            $draft->published(false);
+            foreach ($drafts as $draft) {
+                $draft->published(false);
+            }
         }
     }
 
     public function test_bard_renders_lists_tables_links_and_horizontal_rules(): void
     {
-        $xpath = $this->xpath($this->get('/articles/building-a-saas-mvp-with-laravel/')->assertOk()->getContent());
-        $this->assertSame(1, $xpath->query('//article//table')->length);
-        $this->assertSame(10, $xpath->query('//article//table//tr')->length);
-        $this->assertSame(6, $xpath->query('//article//ol/li')->length);
+        $article = Entry::query()->where('slug', 'the-uncomfortable-middle')->first();
+        $originalBody = $article->get('body');
+        $paragraph = fn (string $text): array => ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => $text]]];
+        $article->set('body', [
+            ['type' => 'table', 'content' => [
+                ['type' => 'tableRow', 'content' => [['type' => 'tableHeader', 'content' => [$paragraph('Task')]]]],
+                ['type' => 'tableRow', 'content' => [['type' => 'tableCell', 'content' => [$paragraph('Deploy')]]]],
+            ]],
+            ['type' => 'orderedList', 'content' => [['type' => 'listItem', 'content' => [$paragraph('Run tests')]]]],
+        ]);
+
+        try {
+            $xpath = $this->xpath($this->get('/articles/the-uncomfortable-middle/')->assertOk()->getContent());
+            $this->assertSame(1, $xpath->query('//article//table')->length);
+            $this->assertSame(2, $xpath->query('//article//table//tr')->length);
+            $this->assertSame('Task', $xpath->evaluate('string(//article//table/thead/tr/th)'));
+            $this->assertSame('Deploy', $xpath->evaluate('string(//article//table/tbody/tr/td)'));
+            $this->assertSame(1, $xpath->query('//article//ol/li')->length);
+            $this->assertSame('Run tests', $xpath->evaluate('string(//article//ol/li)'));
+        } finally {
+            $article->set('body', $originalBody);
+        }
+
         $this->get('/articles/the-uncomfortable-middle/')->assertSee('<hr', false)->assertSee('href="/articles/going-full-time-freelance/"', false);
     }
 
@@ -92,7 +115,7 @@ class SiteTest extends TestCase
 
     public function test_every_entry_has_a_valid_blueprint_and_bard_round_trips(): void
     {
-        $this->assertCount(22, Entry::all());
+        $this->assertCount(20, Entry::all());
         foreach (Entry::all() as $entry) {
             $this->assertNotNull($entry->blueprint(), $entry->slug());
             if (! $entry->get('body')) {
