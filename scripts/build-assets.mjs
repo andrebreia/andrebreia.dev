@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { createHash } from 'node:crypto'
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import sharp from 'sharp'
 import { generateOgImage } from './og-image.ts'
 
