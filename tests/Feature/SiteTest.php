@@ -115,7 +115,7 @@ class SiteTest extends TestCase
 
     public function test_every_entry_has_a_valid_blueprint_and_bard_round_trips(): void
     {
-        $this->assertCount(20, Entry::all());
+        $this->assertCount(21, Entry::all());
         foreach (Entry::all() as $entry) {
             $this->assertNotNull($entry->blueprint(), $entry->slug());
             if (! $entry->get('body')) {
