@@ -12,6 +12,9 @@ projects:
     title: 'New Laravel applications'
     description: 'Database design, application architecture, user flows, dashboards, admin tools, authentication, and production deployment.'
   -
+    title: 'Vibe-coded apps ready for production'
+    description: 'Reviewing, fixing, or rewriting apps built with Lovable, Bolt, Cursor, or Claude Code before they take real users, data, or payments.'
+  -
     title: 'API and payment integrations'
     description: 'Stripe, CRMs, webhooks, queues, retry handling, reconciliation, and custom APIs that need to keep working in production.'
   -
