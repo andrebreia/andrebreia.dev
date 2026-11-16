@@ -35,6 +35,7 @@ pnpm-debug.log*
 /public/build/
 /public/og/
 /public/og-image.png
+/public/og-image-fr.png
 /public/hot
 /public/static/
 /public/vendor/

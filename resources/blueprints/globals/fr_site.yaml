@@ -1,0 +1,15 @@
+title: 'Site (français)'
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: title, field: { type: text, display: Titre } }
+          - { handle: description, field: { type: textarea, display: Description } }
+          - { handle: statusLabel, field: { type: text, display: Disponibilité } }
+          - { handle: logoAlt, field: { type: text, display: 'Texte alternatif du logo' } }
+          - { handle: portraitAlt, field: { type: text, display: 'Texte alternatif du portrait' } }
+          - { handle: jobTitle, field: { type: text, display: 'Intitulé du métier' } }
+          - { handle: ogRole, field: { type: text, display: 'Métier Open Graph' } }
+          - { handle: ogTitle, field: { type: text, display: 'Titre Open Graph' } }
+          - { handle: ogDescription, field: { type: textarea, display: 'Description Open Graph' } }
+          - { handle: location, field: { type: text, display: Localisation } }

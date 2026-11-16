@@ -18,7 +18,7 @@ body:
     content:
       -
         type: text
-        text: 'Most applications I work on need to talk to something external — a payment provider, a CRM, an API model/tool or a custom API. Building that well means thinking about error handling, retries, rate limits, and what happens when the third-party goes down.'
+        text: 'Most applications I work on need to talk to something external — a payment provider, a CRM, an AI model, or a custom API. Building that well means thinking about error handling, retries, rate limits, and what happens when the third-party goes down.'
   -
     type: heading
     attrs:
@@ -35,7 +35,7 @@ body:
     content:
       -
         type: text
-        text: 'Stripe is the one I’ve done the most. I’m a Stripe Certified Architect, so payments — subscriptions, one-off charges, invoicing — is something I’m very comfortable with. Beyond that: HubSpot, Tesla Powerhub, Enphase, Sigenergy, and more. The list is long.'
+        text: 'Stripe is the one I’ve done the most. I’m a Stripe Certified Implementation Architect, so payments — subscriptions, one-off charges, invoicing — are something I’m very comfortable with. Beyond that: HubSpot, DocuSign, Scanifly, Tesla Powerhub, Enphase, Sigenergy, and more. The list is long.'
   -
     type: paragraph
     attrs:
@@ -85,7 +85,7 @@ body:
     content:
       -
         type: text
-        text: 'For Stripe projects, I can help with Checkout, Billing, subscriptions, invoices, customer portals, webhook handling, and internal admin flows. The goal is to keep money-related state consistent and make support cases easier to diagnose.'
+        text: 'For Stripe projects, I can help with Checkout, Billing, Connect, subscriptions, invoices, dunning, customer portals, webhook handling, and internal admin flows. The goal is to keep money-related state consistent and make support cases easier to diagnose.'
   -
     type: heading
     attrs:

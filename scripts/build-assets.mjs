@@ -7,6 +7,7 @@ import { generateOgImage } from './og-image.ts'
 
 const require = createRequire(import.meta.url)
 const site = yaml.load(await readFile('content/globals/default/site.yaml', 'utf8'))
+const frenchSite = { ...site, ...yaml.load(await readFile('content/globals/default/fr_site.yaml', 'utf8')) }
 
 // Keep all installed icons available when their names are edited in the CP.
 // PHP loads only the icons a page uses. Hashes keep CP input out of file paths.
@@ -29,8 +30,9 @@ for (const [name, icon] of Object.entries(icons)) {
 const logoBuffer = await sharp(`public/images/${site.ogLogo}`).png().toBuffer()
 const common = { name: site.name, role: site.ogRole, siteUrl: new URL(site.url).hostname, logoBase64: `data:image/png;base64,${logoBuffer.toString('base64')}` }
 await rm('public/og', { recursive: true, force: true })
-let count = 1
+let count = 2
 await writeFile('public/og-image.png', await generateOgImage({ ...common, title: site.ogTitle, description: site.ogDescription }))
+await writeFile('public/og-image-fr.png', await generateOgImage({ ...common, role: frenchSite.ogRole, title: frenchSite.ogTitle, description: frenchSite.ogDescription }))
 for (const collection of ['articles', 'projects', 'services']) {
   await mkdir(`public/og/${collection}`, { recursive: true })
   for (const file of (await readdir(`content/collections/${collection}`)).filter(file => file.endsWith('.md'))) {
@@ -38,7 +40,7 @@ for (const collection of ['articles', 'projects', 'services']) {
     const entry = yaml.load(source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)[1])
     if (entry.published === false) continue
     const slug = file.replace(/^\d{4}-\d{2}-\d{2}\./, '').replace(/\.md$/, '')
-    await writeFile(`public/og/${collection}/${slug}.png`, await generateOgImage({ ...common, title: entry.headline ?? entry.title, description: entry.excerpt }))
+    await writeFile(`public/og/${collection}/${slug}.png`, await generateOgImage({ ...common, role: entry.content_language === 'fr' ? frenchSite.ogRole : site.ogRole, title: entry.headline ?? entry.title, description: entry.excerpt }))
     count++
   }
 }

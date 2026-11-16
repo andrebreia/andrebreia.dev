@@ -1,5 +1,5 @@
 title: Articles
-route: '/articles/{slug}'
+route: "{{ if content_language == 'fr' }}{{ french_url }}{{ else }}/articles/{{ slug }}{{ /if }}"
 template: article
 layout: false
 date: true

@@ -1,0 +1,10 @@
+title: 'Appel à l’action (français)'
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: heading, field: { type: text, display: Titre, validate: required } }
+          - { handle: description, field: { type: textarea, display: Description, validate: required } }
+          - { handle: bookingLabel, field: { type: text, display: 'Libellé de réservation', validate: required } }
+          - { handle: emailLabel, field: { type: text, display: 'Libellé de l’e-mail', validate: required } }
+          - { handle: newTabLabel, field: { type: text, display: 'Mention du nouvel onglet', validate: required } }

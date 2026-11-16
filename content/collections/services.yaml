@@ -1,5 +1,5 @@
 title: Services
-route: '/services/{slug}'
+route: "{{ if content_language == 'fr' }}{{ french_url }}{{ else }}/services/{{ slug }}{{ /if }}"
 template: service
 layout: false
 sort_by: order

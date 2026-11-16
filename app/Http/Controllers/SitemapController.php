@@ -19,15 +19,21 @@ class SitemapController extends Controller
     {
         $base = rtrim(SiteData::globals('site')['url'], '/');
         $urls = Entry::query()->where('published', true)->get()
-            ->filter(fn ($entry) => $entry->url() && $entry->slug() !== 'not-found')
+            ->filter(fn ($entry) => $entry->url() && $entry->template() !== 'not-found')
             ->map(function ($entry) use ($base) {
                 $lastmod = $entry->collectionHandle() === 'articles' ? ($entry->get('dateModified') ?: $entry->date()?->toDateString()) : null;
 
                 return '<url><loc>'.e($base.rtrim($entry->url(), '/').'/').'</loc>'.($lastmod ? '<lastmod>'.e($lastmod).'</lastmod>' : '').'</url>';
             });
-        $pages = (int) ceil(SiteData::published('articles')->count() / 4);
-        for ($page = 2; $page <= $pages; $page++) {
-            $urls->push('<url><loc>'.e($base.'/articles/'.$page.'/').'</loc></url>');
+        foreach (['en', 'fr'] as $language) {
+            $landing = SiteData::page('articles', $language);
+            if (! $landing?->published()) {
+                continue;
+            }
+            $pages = (int) ceil(SiteData::published('articles', $language)->count() / 4);
+            for ($page = 2; $page <= $pages; $page++) {
+                $urls->push('<url><loc>'.e($base.SiteData::url($landing, $page)).'</loc></url>');
+            }
         }
 
         return response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.$urls->implode('').'</urlset>', 200, ['Content-Type' => 'application/xml']);

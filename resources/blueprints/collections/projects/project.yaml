@@ -18,3 +18,7 @@ tabs:
           - handle: external_url
             field: { type: link, display: External URL }
           - import: content
+  sidebar:
+    sections:
+      - fields:
+          - import: language

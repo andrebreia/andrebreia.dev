@@ -28,7 +28,7 @@ class SiteTest extends TestCase
             }
             $this->assertSame($expected['texts'], $texts, "$route text content");
             $links = [];
-            foreach ($xpath->query('//main//a[@href]') as $node) {
+            foreach ($xpath->query('//main//a[@href and not(ancestor::nav[@data-language-switcher])]') as $node) {
                 $links[] = $node->getAttribute('href');
             }
             $this->assertSame($expected['links'], $links, "$route links");
@@ -115,7 +115,7 @@ class SiteTest extends TestCase
 
     public function test_every_entry_has_a_valid_blueprint_and_bard_round_trips(): void
     {
-        $this->assertCount(21, Entry::all());
+        $this->assertCount(21, Entry::all()->filter(fn ($entry) => SiteData::language($entry) === 'en'));
         foreach (Entry::all() as $entry) {
             $this->assertNotNull($entry->blueprint(), $entry->slug());
             if (! $entry->get('body')) {

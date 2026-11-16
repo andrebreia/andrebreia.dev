@@ -72,6 +72,7 @@ tabs:
   sidebar:
     sections:
       - fields:
+          - import: language
           - handle: template
             field:
               type: text

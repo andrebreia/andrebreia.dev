@@ -1,0 +1,13 @@
+items:
+  - href: /fr
+    label: Accueil
+    icon: 'solar:home-smile-linear'
+  - href: /fr/a-propos
+    label: 'À propos'
+  - href: /fr/services
+    label: Services
+    hasChildren: true
+  - href: /fr/articles
+    label: Articles
+  - href: /fr/outils
+    label: Outils

@@ -66,7 +66,7 @@
 <section class="mb-14">
     <x-section-heading icon="solar:chat-square-like-linear" :label="$pageData['testimonials_label']" />
     <div class="space-y-4">@foreach($testimonials as $testimonial)
-        <figure class="border-l-2 border-slate-200 pl-4 py-1"><blockquote><p class="text-sm text-slate-700 leading-relaxed mb-2">&ldquo;{{ $testimonial['quote'] }}&rdquo;</p></blockquote><figcaption class="text-xs text-slate-500"><span class="font-medium text-slate-700">{{ $testimonial['author'] }}</span>, {{ $testimonial['role'] }} at {{ $testimonial['company'] }}</figcaption></figure>
+        <figure class="border-l-2 border-slate-200 pl-4 py-1"><blockquote><p class="text-sm text-slate-700 leading-relaxed mb-2">&ldquo;{{ $testimonial['quote'] }}&rdquo;</p></blockquote><figcaption class="text-xs text-slate-500"><span class="font-medium text-slate-700">{{ $testimonial['author'] }}</span>, {{ $testimonial['role'] }} {{ $labels['at'] }} {{ $testimonial['company'] }}</figcaption></figure>
     @endforeach</div>
 </section>
 @endif

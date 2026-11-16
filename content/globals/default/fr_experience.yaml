@@ -1,0 +1,21 @@
+items:
+  - role: Freelance
+    period: 'Janv. 2026 – Aujourd’hui'
+    company: BreiaDev
+    description: 'Accompagnement de startups et d’agences sur des projets Laravel.'
+    isCurrent: true
+  - role: 'Développeur logiciel'
+    period: 'Déc. 2024 – Janv. 2026'
+    company: 'Atma Energy'
+    description: 'Création d’un outil de propositions commerciales solaires lié à plus de 10 M$ de ventes annuelles, réduisant le temps de préparation jusqu’à 78 %. Couverture de tests portée de 0 % à 75 % en trois mois.'
+    isCurrent: false
+  - role: 'Responsable technique'
+    period: 'Août 2017 – Nov. 2024'
+    company: 'Steadfast Collective'
+    description: 'Arrivé comme développeur PHP, devenu responsable technique en 2019. Pilotage de projets Laravel et Vue.js, mentorat des développeurs et revues de code.'
+    isCurrent: false
+  - role: 'Développeur web'
+    period: 'Févr. 2014 – Août 2017'
+    company: Chaptr
+    description: 'Stage après un diplôme en ingénierie informatique, puis création de sites pour les clients, du site vitrine à la boutique en ligne.'
+    isCurrent: false

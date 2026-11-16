@@ -1,7 +1,7 @@
 ---
 id: ae607154-3cd0-4727-950e-337445236217
 blueprint: page
-title: 'About – André Breia'
+title: 'About André Breia – Freelance Laravel Developer'
 description: 'Learn more about André Breia, a Portuguese freelance full-stack developer helping startups and agencies build Laravel and JavaScript applications.'
 heading: "I'm André Breia. A Portuguese freelance developer working with startups and agencies."
 body:
@@ -28,7 +28,7 @@ body:
     content:
       -
         type: text
-        text: "Most recently, I spent just over a year at Atma Energy, working on making solar energy more accessible. At the start of 2026, I made the move to full-time freelance."
+        text: "Most recently, I spent just over a year at Atma Energy, making solar energy more accessible. I built a proposal system tied to more than $10M in annual sales and a service platform that cut customer response times from weeks to hours. At the start of 2026, I made the move to full-time freelance. I'm based in France and work remotely in English, Portuguese, or French."
   -
     type: paragraph
     attrs:

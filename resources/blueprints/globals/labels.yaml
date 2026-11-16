@@ -14,3 +14,12 @@ tabs:
           - { handle: servicesSubmenu, field: { type: text, validate: required } }
           - { handle: skipToContent, field: { type: text, validate: required } }
           - { handle: current, field: { type: text, validate: required } }
+          - { handle: languageNavigation, field: { type: text, validate: required } }
+          - { handle: frenchHome, field: { type: text, validate: required } }
+          - { handle: englishHome, field: { type: text, validate: required } }
+          - { handle: pagination, field: { type: text, validate: required } }
+          - { handle: at, field: { type: text, validate: required } }
+          - { handle: home, field: { type: text, validate: required } }
+          - { handle: services, field: { type: text, validate: required } }
+          - { handle: articles, field: { type: text, validate: required } }
+          - { handle: updated, field: { type: text, validate: required } }

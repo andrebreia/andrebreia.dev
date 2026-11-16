@@ -79,7 +79,7 @@ body:
     content:
       -
         type: text
-        text: 'I worked on the application as part of the Steadfast Collective team, contributing to the Laravel application and the video-conferencing product experience.'
+        text: 'I led the project at Steadfast Collective, working on the Laravel application and the video-conferencing product experience.'
   -
     type: heading
     attrs:

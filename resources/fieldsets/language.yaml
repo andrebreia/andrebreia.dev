@@ -1,0 +1,25 @@
+title: Language
+fields:
+  - handle: content_language
+    field:
+      type: select
+      display: Content language
+      options: { en: English, fr: Français }
+      default: en
+      validate: 'required|in:en,fr'
+  - handle: translation_of
+    field:
+      type: entries
+      display: English source
+      max_items: 1
+      collections: [pages, articles, services, projects]
+      if: { content_language: 'equals fr' }
+      validate: 'required_if:content_language,fr'
+      instructions: 'Choose the English entry in the same collection. Each entry can have one French translation.'
+  - handle: french_url
+    field:
+      type: text
+      display: French URL
+      if: { content_language: 'equals fr' }
+      validate: 'required_if:content_language,fr'
+      instructions: 'Public path under /fr, without a trailing slash (for example /fr/a-propos). The articles listing must stay at /fr/articles for pagination. The storage slug must be unique in the collection.'

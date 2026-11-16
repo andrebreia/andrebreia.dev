@@ -6,6 +6,8 @@ tabs:
       - fields:
           - handle: title
             field: { type: text, validate: required }
+          - handle: seoTitle
+            field: { type: text, display: SEO Title, character_limit: 70 }
           - handle: excerpt
             field: { type: textarea, validate: required, character_limit: 200 }
           - import: content
@@ -14,6 +16,7 @@ tabs:
   sidebar:
     sections:
       - fields:
+          - import: language
           - handle: slug
             field: { type: slug, validate: required }
           - handle: date

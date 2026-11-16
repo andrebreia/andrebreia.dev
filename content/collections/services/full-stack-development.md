@@ -68,7 +68,7 @@ body:
     content:
       -
         type: text
-        text: 'I handle the whole thing. Database design, back-end logic, front-end interfaces, third-party integrations, deployment. If you need a web application built, I can take it from the first commit to something running in production.'
+        text: 'If you need a web application built, I can take it from the first commit to something running in production.'
   -
     type: paragraph
     attrs:

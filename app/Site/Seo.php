@@ -10,45 +10,76 @@ class Seo
     public static function forEntry(Entry $entry, array $site, int $pageNumber): array
     {
         $base = rtrim($site['url'], '/');
+        $language = SiteData::language($entry);
+        $labels = SiteData::globals('labels', $language);
+        $home = $language === 'fr' ? '/fr/' : '/';
         $collection = $entry->collectionHandle();
         $isPage = $collection === 'pages';
-        $path = rtrim($entry->url() ?? '', '/').'/';
-        if ($pageNumber > 1) {
-            $path .= $pageNumber.'/';
-        }
+        $path = SiteData::url($entry, $pageNumber);
         $canonical = $base.$path;
         $title = $entry->get('title');
         if (! $isPage) {
-            $title = ($collection === 'services' ? ($entry->get('seoTitle') ?: $title) : $title).' – '.$site['name'];
+            $title = ($entry->get('seoTitle') ?: $title).' – '.$site['name'];
         }
         if ($pageNumber > 1) {
             $title = str_replace(' – '.$site['name'], ' – Page '.$pageNumber.' – '.$site['name'], $title);
         }
-        $image = $base.($isPage ? '/og-image.png' : '/og/'.$collection.'/'.$entry->slug().'.png');
+        $image = $base.($isPage ? ($language === 'fr' ? '/og-image-fr.png' : '/og-image.png') : '/og/'.$collection.'/'.$entry->slug().'.png');
+        $alternates = [];
+        if ($pageNumber === 1 && $entry->template() !== 'not-found' && ($other = SiteData::counterpart($entry))) {
+            $alternates = [$language => $canonical, SiteData::language($other) => $base.SiteData::url($other)];
+            $alternates['x-default'] = $alternates['en'];
+        }
         $person = ['@id' => $base.'/#person'];
+        $profile = SiteData::page('about', $language);
+        $authorUrl = $profile?->published() ? SiteData::url($profile) : $home;
+        $publishedAt = $collection === 'articles' ? $entry->date()?->toISOString() : null;
+        $modifiedAt = $collection === 'articles' && $entry->get('dateModified')
+            ? Carbon::parse($entry->get('dateModified'))->toISOString() : null;
         $sameAs = array_column($site['socialLinks'], 'href');
         $graph = [
             [
-                '@type' => 'Person', ...$person, 'name' => $site['name'], 'url' => $base,
+                '@type' => 'Person', ...$person, 'name' => $site['name'], 'url' => $base.$authorUrl,
+                'image' => $base.'/images/'.$site['portrait'],
                 'jobTitle' => $site['jobTitle'], 'knowsAbout' => $site['knowsAbout'],
                 'hasCredential' => array_map(fn ($item) => [
                     '@type' => 'EducationalOccupationalCredential', 'name' => $item['title'],
                     'credentialCategory' => 'Professional Certification',
-                ], SiteData::globals('certifications')['items']),
+                ], SiteData::globals('certifications', $language)['items']),
                 'sameAs' => $sameAs,
             ],
-            ['@type' => 'WebSite', '@id' => $base.'/#website', 'name' => $site['name'], 'url' => $base, 'publisher' => $person],
+            ['@type' => 'WebSite', '@id' => $base.'/#website', 'name' => $site['name'], 'url' => $base.'/', 'inLanguage' => ['en', 'fr'], 'publisher' => $person],
+            array_filter([
+                '@type' => match ($entry->template()) {
+                    'about' => 'ProfilePage',
+                    'articles', 'services' => 'CollectionPage',
+                    default => 'WebPage',
+                },
+                '@id' => $canonical.'#webpage', 'url' => $canonical,
+                'name' => $title, 'description' => $entry->get($isPage ? 'description' : 'excerpt'),
+                'inLanguage' => $language, 'isPartOf' => ['@id' => $base.'/#website'],
+                'mainEntity' => match (true) {
+                    $entry->template() === 'about' => $person,
+                    $collection === 'articles' => ['@id' => $canonical.'#article'],
+                    $collection === 'projects' => ['@id' => $canonical.'#project'],
+                    $collection === 'services' => ['@id' => $canonical.'#service'],
+                    default => null,
+                },
+            ], fn ($value) => $value !== null),
         ];
-        $crumbs = [['name' => 'Home', 'path' => '/']];
+        $crumbs = [['name' => $labels['home'], 'path' => $home]];
         if (in_array($collection, ['articles', 'services'])) {
-            $crumbs[] = ['name' => ucfirst($collection), 'path' => '/'.$collection.'/'];
+            $landing = SiteData::page($collection, $language);
+            if ($landing?->published()) {
+                $crumbs[] = ['name' => $labels[$collection], 'path' => SiteData::url($landing)];
+            }
         }
         if (! $isPage) {
             $crumbs[] = ['name' => $entry->get('title'), 'path' => $path];
         }
-        if (! $isPage || $entry->slug() === 'services') {
+        if (! $isPage || $entry->template() === 'services') {
             if ($isPage) {
-                $crumbs[] = ['name' => 'Services', 'path' => '/services/'];
+                $crumbs[] = ['name' => $labels['services'], 'path' => $path];
             }
             $graph[] = ['@type' => 'BreadcrumbList', 'itemListElement' => array_map(fn ($item, $index) => [
                 '@type' => 'ListItem', 'position' => $index + 1, 'name' => $item['name'], 'item' => $base.$item['path'],
@@ -57,14 +88,14 @@ class Seo
         if ($collection === 'articles') {
             $graph[] = array_filter([
                 '@type' => 'BlogPosting', '@id' => $canonical.'#article', 'headline' => $entry->get('title'),
-                'description' => $entry->get('excerpt'), 'datePublished' => $entry->date()?->toISOString(),
-                'dateModified' => $entry->get('dateModified') ? Carbon::parse($entry->get('dateModified'))->toISOString() : null,
-                'url' => $canonical, 'mainEntityOfPage' => $canonical, 'image' => $image, 'author' => $person, 'publisher' => $person,
+                'description' => $entry->get('excerpt'), 'inLanguage' => $language, 'datePublished' => $publishedAt,
+                'dateModified' => $modifiedAt,
+                'url' => $canonical, 'mainEntityOfPage' => ['@id' => $canonical.'#webpage'], 'author' => $person, 'publisher' => $person,
             ], fn ($value) => $value !== null);
         } elseif ($collection === 'projects') {
             $graph[] = array_filter([
                 '@type' => 'CreativeWork', '@id' => $canonical.'#project', 'name' => $entry->get('title'),
-                'description' => $entry->get('excerpt'), 'url' => $canonical, 'dateCreated' => $entry->get('year'),
+                'description' => $entry->get('excerpt'), 'inLanguage' => $language, 'url' => $canonical,
                 'creator' => $person, 'sameAs' => (string) $entry->augmentedValue('external_url')->value(),
             ]);
         } elseif ($collection === 'services') {
@@ -72,12 +103,6 @@ class Seo
                 '@type' => 'Service', '@id' => $canonical.'#service', 'name' => $entry->get('headline') ?: $entry->get('title'),
                 'description' => $entry->get('excerpt'), 'url' => $canonical, 'serviceType' => $entry->get('title'),
                 'areaServed' => 'Worldwide', 'provider' => $person,
-            ];
-        } elseif ($entry->slug() === 'services') {
-            $graph[] = [
-                '@type' => 'ProfessionalService', '@id' => $base.'/#professional-service',
-                'name' => $site['name'].' Freelance Development', 'url' => $base, 'description' => $site['description'],
-                'areaServed' => 'Worldwide', 'founder' => $person, 'sameAs' => $sameAs,
             ];
         }
         // Derive service FAQs from the same Bard nodes shown on the page.
@@ -108,9 +133,13 @@ class Seo
 
         return [
             'title' => $title, 'description' => $entry->get($isPage ? 'description' : 'excerpt'),
-            'canonical' => $canonical, 'image' => $image, 'type' => $collection === 'articles' ? 'article' : 'website',
-            'robots' => $entry->slug() === 'not-found' ? 'noindex, follow' : null,
-            'jsonLd' => ['@context' => 'https://schema.org', '@graph' => $graph],
+            'canonical' => $entry->template() === 'not-found' ? null : $canonical,
+            'image' => $image, 'type' => $collection === 'articles' ? 'article' : 'website',
+            'imageAlt' => $isPage ? $site['ogTitle'] : ($entry->get('headline') ?: $entry->get('title')),
+            'authorUrl' => $authorUrl, 'publishedAt' => $publishedAt, 'modifiedAt' => $modifiedAt,
+            'alternates' => $alternates,
+            'robots' => $entry->template() === 'not-found' || ! $entry->published() ? 'noindex, follow' : 'max-image-preview:large',
+            'jsonLd' => ['@context' => 'https://schema.org', '@graph' => $entry->template() === 'not-found' ? [] : $graph],
         ];
     }
 }

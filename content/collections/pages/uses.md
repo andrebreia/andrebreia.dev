@@ -3,7 +3,7 @@ id: f58cae7f-0c7d-489a-8cd9-8f4e9ec8fe4d
 title: 'Uses – André Breia'
 description: 'A curated list of the software, hardware, development tools, productivity apps, and desk gear I use to build software and work day to day.'
 heading: 'Software I use, gadgets I love, and other things I recommend.'
-intro: "Here's an extensive list of all my favourite stuff where you can learn about the things I use to build software and stay productive."
+intro: "A list of my favourite tools: the things I use to build software and stay productive."
 sections:
   -
     label: Workstation
@@ -23,7 +23,7 @@ sections:
         text: 'I enjoy using this trackpad. I have not had hand or wrist pain again since I replaced the mouse.'
       -
         title: 'Flexispot Standing Desk'
-        text: 'Paired with an IKEA table top. I stand on my desk 2 or 3 times a day.'
+        text: 'Paired with an IKEA table top. I work standing up 2 or 3 times a day.'
   -
     label: 'Development Tools'
     icon: 'solar:code-square-linear'
@@ -37,7 +37,7 @@ sections:
         link: 'https://warp.dev/'
       -
         title: TablePlus
-        text: 'After Sequel Pro stopped working on macOS the hunt for a new database management tool started. After trying a few of them, only TablePlus stuck.'
+        text: 'After Sequel Pro stopped working on macOS, the hunt for a new database management tool started. After trying a few of them, only TablePlus stuck.'
         link: 'https://tableplus.com/'
       -
         title: Tinkerwell
@@ -49,14 +49,14 @@ sections:
         link: 'https://spatie.be/products/ray'
       -
         title: 'Claude Code/Codex'
-        text: 'AI pair-programming agents for scaffolding, bug fixes and refactoring. These help me be more productive. If you want to try Claude for yourself, [get a free week](https://claude.ai/referral/JA33INmxKg) (only 3 slots available).'
+        text: 'AI pair-programming agents for scaffolding, bug fixes and refactoring. These help me be more productive.'
   -
     label: Productivity
     icon: 'solar:rocket-linear'
     items:
       -
         title: Raycast
-        text: "This is a launcher (and more) that replaces macOS spotlight and it's the ultimate productivity hack."
+        text: "This is a launcher (and more) that replaces macOS Spotlight, and it's the ultimate productivity hack."
         link: 'https://raycast.com/?via=andrebreia'
       -
         title: 'Notion Calendar'

@@ -1,5 +1,5 @@
 title: Projects
-route: '/projects/{slug}'
+route: "{{ if content_language == 'fr' }}{{ french_url }}{{ else }}/projects/{{ slug }}{{ /if }}"
 template: project
 layout: false
 sort_by: year

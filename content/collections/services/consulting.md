@@ -18,7 +18,7 @@ body:
     content:
       -
         type: text
-        text: 'I spent around seven years as a Technical Lead at Steadfast Collective before going full-time freelance. A lot of that time was spent on code reviews, architecture decisions, and making sure the work we shipped was something we could maintain long-term.'
+        text: 'I spent over seven years at Steadfast Collective, most of them as Technical Lead, before going full-time freelance. A lot of that time was spent on code reviews, architecture decisions, and making sure the work we shipped was something we could maintain long-term.'
   -
     type: heading
     attrs:

@@ -1,0 +1,9 @@
+items:
+  - quote: 'André a reconstruit notre ancien système en deux fois moins de temps que prévu. Un code propre, une communication claire et aucune interruption de service pendant la migration.'
+    author: 'Maria Silva'
+    role: 'Directrice technique'
+    company: TechStart
+  - quote: 'Travailler avec André, c’était comme avoir un ingénieur senior dans l’équipe. Il a compris nos contraintes et livré exactement ce dont nous avions besoin.'
+    author: 'James Chen'
+    role: Fondateur
+    company: DataFlow

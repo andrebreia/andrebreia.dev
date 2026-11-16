@@ -1,5 +1,5 @@
 title: Pages
-route: '{parent_uri}/{slug}'
+route: "{{ if content_language == 'fr' }}{{ french_url }}{{ else }}{{ parent_uri }}/{{ slug }}{{ /if }}"
 template: page
 layout: false
 structure:

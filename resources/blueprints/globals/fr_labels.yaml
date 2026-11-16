@@ -1,0 +1,25 @@
+title: 'Libellés (français)'
+tabs:
+  main:
+    sections:
+      - fields:
+          - { handle: backToArticles, field: { type: text, validate: required } }
+          - { handle: backToHome, field: { type: text, validate: required } }
+          - { handle: previous, field: { type: text, validate: required } }
+          - { handle: next, field: { type: text, validate: required } }
+          - { handle: pageLabel, field: { type: text, validate: required } }
+          - { handle: ofLabel, field: { type: text, validate: required } }
+          - { handle: socialLinks, field: { type: text, validate: required } }
+          - { handle: mainNavigation, field: { type: text, validate: required } }
+          - { handle: servicesSubmenu, field: { type: text, validate: required } }
+          - { handle: skipToContent, field: { type: text, validate: required } }
+          - { handle: current, field: { type: text, validate: required } }
+          - { handle: languageNavigation, field: { type: text, validate: required } }
+          - { handle: frenchHome, field: { type: text, validate: required } }
+          - { handle: englishHome, field: { type: text, validate: required } }
+          - { handle: pagination, field: { type: text, validate: required } }
+          - { handle: at, field: { type: text, validate: required } }
+          - { handle: home, field: { type: text, validate: required } }
+          - { handle: services, field: { type: text, validate: required } }
+          - { handle: articles, field: { type: text, validate: required } }
+          - { handle: updated, field: { type: text, validate: required } }

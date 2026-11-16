@@ -66,6 +66,7 @@ it('validates and persists a CP page that renders through its public URL', funct
         $this->postJson('/cp/collections/pages/entries/default', [
             '_blueprint' => 'page', 'slug' => 'saved-page', 'title' => 'Saved page title',
             'heading' => 'Saved page heading', 'template' => 'page', 'published' => true,
+            'content_language' => 'en',
             'body' => [['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'Saved Bard body.']]]],
         ])->assertSuccessful()->assertJsonPath('saved', true);
 

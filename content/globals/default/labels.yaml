@@ -9,3 +9,12 @@ mainNavigation: 'Main navigation'
 servicesSubmenu: 'Services submenu'
 skipToContent: 'Skip to content'
 current: Current
+languageNavigation: 'Site language'
+frenchHome: 'French homepage'
+englishHome: 'English homepage'
+pagination: Pagination
+at: at
+home: Home
+services: Services
+articles: Articles
+updated: Updated

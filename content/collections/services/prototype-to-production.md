@@ -153,7 +153,7 @@ body:
     content:
       -
         type: text
-        text: 'Payments are something I pay extra attention to. I’m a Stripe Certified Architect, and payment issues are one of the most common problems in AI-built apps — Stripe webhooks that aren’t verified, subscriptions that don’t match what users actually have access to, that kind of thing. If your app takes money, it’s one of the first things I’ll look at. There’s more about that side of my work on the '
+        text: 'Payments are something I pay extra attention to. I’m a Stripe Certified Implementation Architect, and payment issues are one of the most common problems in AI-built apps — Stripe webhooks that aren’t verified, subscriptions that don’t match what users actually have access to, that kind of thing. If your app takes money, it’s one of the first things I’ll look at. There’s more about that side of my work on the '
       -
         type: text
         marks:

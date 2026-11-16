@@ -102,9 +102,13 @@ it('renders a newly created page using the default Blade and Bard layout', funct
         ->toContain('New page heading', 'New page body.')->not->toContain('Certifications');
 });
 
-it('does not offer an unused article SEO title override', function () {
-    $article = Entry::query()->where('slug', 'the-uncomfortable-middle')->first();
-    expect($article->blueprint()->fields()->all()->has('seoTitle'))->toBeFalse();
+it('uses the editable article SEO title and falls back to its visible title when cleared', function () {
+    $article = clone Entry::query()->where('slug', 'the-uncomfortable-middle')->first();
+    $fields = $article->blueprint()->fields()->addValues($article->data()->all())->preProcess()->values();
+    expect($fields->get('seoTitle'))->toBe('Career Identity After a Layoff');
+    expect(Seo::forEntry($article, SiteData::globals('site'), 1)['title'])
+        ->toBe('Career Identity After a Layoff – André Breia');
+    $article->set('seoTitle', null);
     expect(Seo::forEntry($article, SiteData::globals('site'), 1)['title'])
         ->toBe('The Uncomfortable Middle – André Breia');
 });

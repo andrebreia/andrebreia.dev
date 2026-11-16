@@ -18,3 +18,7 @@ tabs:
           - handle: order
             field: { type: integer, validate: 'required|integer|min:1' }
           - import: content
+  sidebar:
+    sections:
+      - fields:
+          - import: language
