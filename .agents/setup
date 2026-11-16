@@ -16,12 +16,13 @@ for package in "${packages[@]}"; do
 done
 if ((${#missing[@]})); then
   echo 'Installing PHP 8.5 and required extensions...'
-  if [[ ! -f /etc/apt/sources.list.d/php.list ]]; then
+  source /etc/os-release
+  if [[ ! -f /usr/share/keyrings/debsuryorg-archive-keyring.gpg ]]; then
     curl -fsSL https://packages.sury.org/debsuryorg-archive-keyring.deb -o /tmp/debsuryorg-archive-keyring.deb
     sudo dpkg -i /tmp/debsuryorg-archive-keyring.deb
-    echo 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ bookworm main' | sudo tee /etc/apt/sources.list.d/php.list >/dev/null
     rm /tmp/debsuryorg-archive-keyring.deb
   fi
+  printf 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ %s main\n' "${VERSION_CODENAME:?}" | sudo tee /etc/apt/sources.list.d/php.list >/dev/null
   sudo apt-get update -qq
   time sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${missing[@]}"
 fi
