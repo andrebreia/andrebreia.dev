@@ -10,7 +10,7 @@
     @foreach($seo['alternates'] as $locale => $url)
     <link rel="alternate" hreflang="{{ $locale }}" href="{{ $url }}">
     @endforeach
-    <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ Vite::asset('resources/fonts/GeistVF-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
