@@ -13,6 +13,7 @@
         "php": "^8.3",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
+        "sentry/sentry-laravel": "^4.30",
         "statamic/cms": "^6.35.1"
     },
     "require-dev": {
