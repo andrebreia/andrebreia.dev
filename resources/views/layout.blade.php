@@ -7,6 +7,7 @@
     <meta name="description" content="{{ $seo['description'] }}">
     @if($seo['robots'])<meta name="robots" content="{{ $seo['robots'] }}">@endif
     @if($seo['canonical'])<link rel="canonical" href="{{ $seo['canonical'] }}">@endif
+    <link rel="ard" href="{{ route('agent.ard') }}" type="application/json">
     @foreach($seo['alternates'] as $locale => $url)
     <link rel="alternate" hreflang="{{ $locale }}" href="{{ $url }}">
     @endforeach

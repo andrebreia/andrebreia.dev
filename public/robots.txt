@@ -1,5 +1,7 @@
 User-agent: *
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 Allow: /
 Disallow: /resume.pdf
 
 Sitemap: https://andrebreia.dev/sitemap-index.xml
+Agentmap: https://andrebreia.dev/.well-known/ai-catalog.json
