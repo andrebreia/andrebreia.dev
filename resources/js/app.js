@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import { registerPageTools } from './agent-tools'
 
 Alpine.data('floatingNav', () => ({
   hidden: false,
@@ -47,3 +48,4 @@ Alpine.data('localClock', () => ({
 
 window.Alpine = Alpine
 Alpine.start()
+void registerPageTools(document, navigator)
